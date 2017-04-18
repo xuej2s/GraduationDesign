@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sdu.lpy.dao.ActivityManageMapper">
+  <resultMap id="BaseResultMap" type="sdu.lpy.entity.ActivityManage">
+    <result column="activity_name" jdbcType="VARCHAR" property="activityName" />
+    <result column="card_type" jdbcType="CHAR" property="cardType" />
+    <result column="activity_obj" jdbcType="CHAR" property="activityObj" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="discount" jdbcType="DOUBLE" property="discount" />
+  </resultMap>
+  <insert id="insert" parameterType="sdu.lpy.entity.ActivityManage">
+    insert into activity_manage (activity_name, card_type, activity_obj, 
+      start_time, end_time, discount
+      )
+    values (#{activityName,jdbcType=VARCHAR}, #{cardType,jdbcType=CHAR}, #{activityObj,jdbcType=CHAR}, 
+      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{discount,jdbcType=DOUBLE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="sdu.lpy.entity.ActivityManage">
+    insert into activity_manage
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="activityName != null">
+        activity_name,
+      </if>
+      <if test="cardType != null">
+        card_type,
+      </if>
+      <if test="activityObj != null">
+        activity_obj,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="discount != null">
+        discount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="activityName != null">
+        #{activityName,jdbcType=VARCHAR},
+      </if>
+      <if test="cardType != null">
+        #{cardType,jdbcType=CHAR},
+      </if>
+      <if test="activityObj != null">
+        #{activityObj,jdbcType=CHAR},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="discount != null">
+        #{discount,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+</mapper>

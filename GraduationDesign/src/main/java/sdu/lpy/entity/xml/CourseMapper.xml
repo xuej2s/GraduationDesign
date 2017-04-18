@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sdu.lpy.dao.CourseMapper">
+  <resultMap id="BaseResultMap" type="sdu.lpy.entity.Course">
+    <id column="course_id" jdbcType="VARCHAR" property="courseId" />
+    <result column="course_name" jdbcType="VARCHAR" property="courseName" />
+    <result column="sum_person" jdbcType="INTEGER" property="sumPerson" />
+    <result column="selected_person" jdbcType="INTEGER" property="selectedPerson" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="weekend" jdbcType="CHAR" property="weekend" />
+    <result column="course_cost" jdbcType="DOUBLE" property="courseCost" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    course_id, course_name, sum_person, selected_person, start_time, end_time, weekend, 
+    course_cost
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from course
+    where course_id = #{courseId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from course
+    where course_id = #{courseId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="sdu.lpy.entity.Course">
+    insert into course (course_id, course_name, sum_person, 
+      selected_person, start_time, end_time, 
+      weekend, course_cost)
+    values (#{courseId,jdbcType=VARCHAR}, #{courseName,jdbcType=VARCHAR}, #{sumPerson,jdbcType=INTEGER}, 
+      #{selectedPerson,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
+      #{weekend,jdbcType=CHAR}, #{courseCost,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="sdu.lpy.entity.Course">
+    insert into course
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="courseId != null">
+        course_id,
+      </if>
+      <if test="courseName != null">
+        course_name,
+      </if>
+      <if test="sumPerson != null">
+        sum_person,
+      </if>
+      <if test="selectedPerson != null">
+        selected_person,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="weekend != null">
+        weekend,
+      </if>
+      <if test="courseCost != null">
+        course_cost,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="courseId != null">
+        #{courseId,jdbcType=VARCHAR},
+      </if>
+      <if test="courseName != null">
+        #{courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="sumPerson != null">
+        #{sumPerson,jdbcType=INTEGER},
+      </if>
+      <if test="selectedPerson != null">
+        #{selectedPerson,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="weekend != null">
+        #{weekend,jdbcType=CHAR},
+      </if>
+      <if test="courseCost != null">
+        #{courseCost,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="sdu.lpy.entity.Course">
+    update course
+    <set>
+      <if test="courseName != null">
+        course_name = #{courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="sumPerson != null">
+        sum_person = #{sumPerson,jdbcType=INTEGER},
+      </if>
+      <if test="selectedPerson != null">
+        selected_person = #{selectedPerson,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="weekend != null">
+        weekend = #{weekend,jdbcType=CHAR},
+      </if>
+      <if test="courseCost != null">
+        course_cost = #{courseCost,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where course_id = #{courseId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="sdu.lpy.entity.Course">
+    update course
+    set course_name = #{courseName,jdbcType=VARCHAR},
+      sum_person = #{sumPerson,jdbcType=INTEGER},
+      selected_person = #{selectedPerson,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      weekend = #{weekend,jdbcType=CHAR},
+      course_cost = #{courseCost,jdbcType=DOUBLE}
+    where course_id = #{courseId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sdu.lpy.dao.CardFeeMapper">
+  <resultMap id="BaseResultMap" type="sdu.lpy.entity.CardFee">
+    <id column="card_type" jdbcType="CHAR" property="cardType" />
+    <id column="vip_id" jdbcType="VARCHAR" property="vipId" />
+    <result column="card_fee" jdbcType="DOUBLE" property="cardFee" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    card_type, vip_id, card_fee, start_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="sdu.lpy.entity.CardFeeKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from card_fee
+    where card_type = #{cardType,jdbcType=CHAR}
+      and vip_id = #{vipId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="sdu.lpy.entity.CardFeeKey">
+    delete from card_fee
+    where card_type = #{cardType,jdbcType=CHAR}
+      and vip_id = #{vipId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="sdu.lpy.entity.CardFee">
+    insert into card_fee (card_type, vip_id, card_fee, 
+      start_time)
+    values (#{cardType,jdbcType=CHAR}, #{vipId,jdbcType=VARCHAR}, #{cardFee,jdbcType=DOUBLE}, 
+      #{startTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="sdu.lpy.entity.CardFee">
+    insert into card_fee
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cardType != null">
+        card_type,
+      </if>
+      <if test="vipId != null">
+        vip_id,
+      </if>
+      <if test="cardFee != null">
+        card_fee,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cardType != null">
+        #{cardType,jdbcType=CHAR},
+      </if>
+      <if test="vipId != null">
+        #{vipId,jdbcType=VARCHAR},
+      </if>
+      <if test="cardFee != null">
+        #{cardFee,jdbcType=DOUBLE},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="sdu.lpy.entity.CardFee">
+    update card_fee
+    <set>
+      <if test="cardFee != null">
+        card_fee = #{cardFee,jdbcType=DOUBLE},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where card_type = #{cardType,jdbcType=CHAR}
+      and vip_id = #{vipId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="sdu.lpy.entity.CardFee">
+    update card_fee
+    set card_fee = #{cardFee,jdbcType=DOUBLE},
+      start_time = #{startTime,jdbcType=TIMESTAMP}
+    where card_type = #{cardType,jdbcType=CHAR}
+      and vip_id = #{vipId,jdbcType=VARCHAR}
+  </update>
+</mapper>

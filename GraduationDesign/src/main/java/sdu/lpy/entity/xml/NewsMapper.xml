@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sdu.lpy.dao.NewsMapper">
+  <resultMap id="BaseResultMap" type="sdu.lpy.entity.News">
+    <id column="news_name" jdbcType="VARCHAR" property="newsName" />
+    <result column="news_config" jdbcType="VARCHAR" property="newsConfig" />
+    <result column="news_time" jdbcType="TIMESTAMP" property="newsTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    news_name, news_config, news_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from news
+    where news_name = #{newsName,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from news
+    where news_name = #{newsName,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="sdu.lpy.entity.News">
+    insert into news (news_name, news_config, news_time
+      )
+    values (#{newsName,jdbcType=VARCHAR}, #{newsConfig,jdbcType=VARCHAR}, #{newsTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="sdu.lpy.entity.News">
+    insert into news
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="newsName != null">
+        news_name,
+      </if>
+      <if test="newsConfig != null">
+        news_config,
+      </if>
+      <if test="newsTime != null">
+        news_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="newsName != null">
+        #{newsName,jdbcType=VARCHAR},
+      </if>
+      <if test="newsConfig != null">
+        #{newsConfig,jdbcType=VARCHAR},
+      </if>
+      <if test="newsTime != null">
+        #{newsTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="sdu.lpy.entity.News">
+    update news
+    <set>
+      <if test="newsConfig != null">
+        news_config = #{newsConfig,jdbcType=VARCHAR},
+      </if>
+      <if test="newsTime != null">
+        news_time = #{newsTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where news_name = #{newsName,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="sdu.lpy.entity.News">
+    update news
+    set news_config = #{newsConfig,jdbcType=VARCHAR},
+      news_time = #{newsTime,jdbcType=TIMESTAMP}
+    where news_name = #{newsName,jdbcType=VARCHAR}
+  </update>
+</mapper>

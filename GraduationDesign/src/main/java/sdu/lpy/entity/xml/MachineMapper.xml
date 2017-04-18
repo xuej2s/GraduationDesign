@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sdu.lpy.dao.MachineMapper">
+  <resultMap id="BaseResultMap" type="sdu.lpy.entity.Machine">
+    <id column="machine_id" jdbcType="VARCHAR" property="machineId" />
+    <result column="machine_type" jdbcType="VARCHAR" property="machineType" />
+    <result column="calorie" jdbcType="DOUBLE" property="calorie" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    machine_id, machine_type, calorie
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from machine
+    where machine_id = #{machineId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from machine
+    where machine_id = #{machineId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="sdu.lpy.entity.Machine">
+    insert into machine (machine_id, machine_type, calorie
+      )
+    values (#{machineId,jdbcType=VARCHAR}, #{machineType,jdbcType=VARCHAR}, #{calorie,jdbcType=DOUBLE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="sdu.lpy.entity.Machine">
+    insert into machine
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="machineId != null">
+        machine_id,
+      </if>
+      <if test="machineType != null">
+        machine_type,
+      </if>
+      <if test="calorie != null">
+        calorie,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="machineId != null">
+        #{machineId,jdbcType=VARCHAR},
+      </if>
+      <if test="machineType != null">
+        #{machineType,jdbcType=VARCHAR},
+      </if>
+      <if test="calorie != null">
+        #{calorie,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="sdu.lpy.entity.Machine">
+    update machine
+    <set>
+      <if test="machineType != null">
+        machine_type = #{machineType,jdbcType=VARCHAR},
+      </if>
+      <if test="calorie != null">
+        calorie = #{calorie,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where machine_id = #{machineId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="sdu.lpy.entity.Machine">
+    update machine
+    set machine_type = #{machineType,jdbcType=VARCHAR},
+      calorie = #{calorie,jdbcType=DOUBLE}
+    where machine_id = #{machineId,jdbcType=VARCHAR}
+  </update>
+</mapper>

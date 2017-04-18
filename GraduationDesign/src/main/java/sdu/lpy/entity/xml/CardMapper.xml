@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sdu.lpy.dao.CardMapper">
+  <resultMap id="BaseResultMap" type="sdu.lpy.entity.Card">
+    <id column="card_type" jdbcType="CHAR" property="cardType" />
+    <result column="card_name" jdbcType="VARCHAR" property="cardName" />
+    <result column="card_cost" jdbcType="VARCHAR" property="cardCost" />
+    <result column="card_time" jdbcType="INTEGER" property="cardTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    card_type, card_name, card_cost, card_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from card
+    where card_type = #{cardType,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from card
+    where card_type = #{cardType,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="sdu.lpy.entity.Card">
+    insert into card (card_type, card_name, card_cost, 
+      card_time)
+    values (#{cardType,jdbcType=CHAR}, #{cardName,jdbcType=VARCHAR}, #{cardCost,jdbcType=VARCHAR}, 
+      #{cardTime,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="sdu.lpy.entity.Card">
+    insert into card
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cardType != null">
+        card_type,
+      </if>
+      <if test="cardName != null">
+        card_name,
+      </if>
+      <if test="cardCost != null">
+        card_cost,
+      </if>
+      <if test="cardTime != null">
+        card_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cardType != null">
+        #{cardType,jdbcType=CHAR},
+      </if>
+      <if test="cardName != null">
+        #{cardName,jdbcType=VARCHAR},
+      </if>
+      <if test="cardCost != null">
+        #{cardCost,jdbcType=VARCHAR},
+      </if>
+      <if test="cardTime != null">
+        #{cardTime,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="sdu.lpy.entity.Card">
+    update card
+    <set>
+      <if test="cardName != null">
+        card_name = #{cardName,jdbcType=VARCHAR},
+      </if>
+      <if test="cardCost != null">
+        card_cost = #{cardCost,jdbcType=VARCHAR},
+      </if>
+      <if test="cardTime != null">
+        card_time = #{cardTime,jdbcType=INTEGER},
+      </if>
+    </set>
+    where card_type = #{cardType,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="sdu.lpy.entity.Card">
+    update card
+    set card_name = #{cardName,jdbcType=VARCHAR},
+      card_cost = #{cardCost,jdbcType=VARCHAR},
+      card_time = #{cardTime,jdbcType=INTEGER}
+    where card_type = #{cardType,jdbcType=CHAR}
+  </update>
+</mapper>

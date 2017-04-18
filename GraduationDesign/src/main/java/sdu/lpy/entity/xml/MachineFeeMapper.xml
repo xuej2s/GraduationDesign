@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sdu.lpy.dao.MachineFeeMapper">
+  <resultMap id="BaseResultMap" type="sdu.lpy.entity.MachineFee">
+    <id column="machine_fee_id" jdbcType="VARCHAR" property="machineFeeId" />
+    <result column="machine_type" jdbcType="VARCHAR" property="machineType" />
+    <result column="machine_count" jdbcType="INTEGER" property="machineCount" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="sum_cost" jdbcType="DOUBLE" property="sumCost" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    machine_fee_id, machine_type, machine_count, time, sum_cost
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from machine_fee
+    where machine_fee_id = #{machineFeeId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from machine_fee
+    where machine_fee_id = #{machineFeeId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="sdu.lpy.entity.MachineFee">
+    insert into machine_fee (machine_fee_id, machine_type, machine_count, 
+      time, sum_cost)
+    values (#{machineFeeId,jdbcType=VARCHAR}, #{machineType,jdbcType=VARCHAR}, #{machineCount,jdbcType=INTEGER}, 
+      #{time,jdbcType=TIMESTAMP}, #{sumCost,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="sdu.lpy.entity.MachineFee">
+    insert into machine_fee
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="machineFeeId != null">
+        machine_fee_id,
+      </if>
+      <if test="machineType != null">
+        machine_type,
+      </if>
+      <if test="machineCount != null">
+        machine_count,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+      <if test="sumCost != null">
+        sum_cost,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="machineFeeId != null">
+        #{machineFeeId,jdbcType=VARCHAR},
+      </if>
+      <if test="machineType != null">
+        #{machineType,jdbcType=VARCHAR},
+      </if>
+      <if test="machineCount != null">
+        #{machineCount,jdbcType=INTEGER},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sumCost != null">
+        #{sumCost,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="sdu.lpy.entity.MachineFee">
+    update machine_fee
+    <set>
+      <if test="machineType != null">
+        machine_type = #{machineType,jdbcType=VARCHAR},
+      </if>
+      <if test="machineCount != null">
+        machine_count = #{machineCount,jdbcType=INTEGER},
+      </if>
+      <if test="time != null">
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sumCost != null">
+        sum_cost = #{sumCost,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where machine_fee_id = #{machineFeeId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="sdu.lpy.entity.MachineFee">
+    update machine_fee
+    set machine_type = #{machineType,jdbcType=VARCHAR},
+      machine_count = #{machineCount,jdbcType=INTEGER},
+      time = #{time,jdbcType=TIMESTAMP},
+      sum_cost = #{sumCost,jdbcType=DOUBLE}
+    where machine_fee_id = #{machineFeeId,jdbcType=VARCHAR}
+  </update>
+</mapper>

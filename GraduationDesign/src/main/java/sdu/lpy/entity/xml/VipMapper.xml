@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sdu.lpy.dao.VipMapper">
+  <resultMap id="BaseResultMap" type="sdu.lpy.entity.Vip">
+    <id column="vip_id" jdbcType="VARCHAR" property="vipId" />
+    <result column="vip_name" jdbcType="VARCHAR" property="vipName" />
+    <result column="vip_sex" jdbcType="VARCHAR" property="vipSex" />
+    <result column="vip_card" jdbcType="VARCHAR" property="vipCard" />
+    <result column="vip_tel" jdbcType="VARCHAR" property="vipTel" />
+    <result column="card_type" jdbcType="VARCHAR" property="cardType" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="vip_password" jdbcType="VARCHAR" property="vipPassword" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    vip_id, vip_name, vip_sex, vip_card, vip_tel, card_type, end_time, vip_password
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from vip
+    where vip_id = #{vipId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from vip
+    where vip_id = #{vipId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="sdu.lpy.entity.Vip">
+    insert into vip (vip_id, vip_name, vip_sex, 
+      vip_card, vip_tel, card_type, 
+      end_time, vip_password)
+    values (#{vipId,jdbcType=VARCHAR}, #{vipName,jdbcType=VARCHAR}, #{vipSex,jdbcType=VARCHAR}, 
+      #{vipCard,jdbcType=VARCHAR}, #{vipTel,jdbcType=VARCHAR}, #{cardType,jdbcType=VARCHAR}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{vipPassword,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="sdu.lpy.entity.Vip">
+    insert into vip
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="vipId != null">
+        vip_id,
+      </if>
+      <if test="vipName != null">
+        vip_name,
+      </if>
+      <if test="vipSex != null">
+        vip_sex,
+      </if>
+      <if test="vipCard != null">
+        vip_card,
+      </if>
+      <if test="vipTel != null">
+        vip_tel,
+      </if>
+      <if test="cardType != null">
+        card_type,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="vipPassword != null">
+        vip_password,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="vipId != null">
+        #{vipId,jdbcType=VARCHAR},
+      </if>
+      <if test="vipName != null">
+        #{vipName,jdbcType=VARCHAR},
+      </if>
+      <if test="vipSex != null">
+        #{vipSex,jdbcType=VARCHAR},
+      </if>
+      <if test="vipCard != null">
+        #{vipCard,jdbcType=VARCHAR},
+      </if>
+      <if test="vipTel != null">
+        #{vipTel,jdbcType=VARCHAR},
+      </if>
+      <if test="cardType != null">
+        #{cardType,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="vipPassword != null">
+        #{vipPassword,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="sdu.lpy.entity.Vip">
+    update vip
+    <set>
+      <if test="vipName != null">
+        vip_name = #{vipName,jdbcType=VARCHAR},
+      </if>
+      <if test="vipSex != null">
+        vip_sex = #{vipSex,jdbcType=VARCHAR},
+      </if>
+      <if test="vipCard != null">
+        vip_card = #{vipCard,jdbcType=VARCHAR},
+      </if>
+      <if test="vipTel != null">
+        vip_tel = #{vipTel,jdbcType=VARCHAR},
+      </if>
+      <if test="cardType != null">
+        card_type = #{cardType,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="vipPassword != null">
+        vip_password = #{vipPassword,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where vip_id = #{vipId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="sdu.lpy.entity.Vip">
+    update vip
+    set vip_name = #{vipName,jdbcType=VARCHAR},
+      vip_sex = #{vipSex,jdbcType=VARCHAR},
+      vip_card = #{vipCard,jdbcType=VARCHAR},
+      vip_tel = #{vipTel,jdbcType=VARCHAR},
+      card_type = #{cardType,jdbcType=VARCHAR},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      vip_password = #{vipPassword,jdbcType=VARCHAR}
+    where vip_id = #{vipId,jdbcType=VARCHAR}
+  </update>
+</mapper>
