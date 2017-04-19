@@ -1,29 +1,50 @@
 package sdu.lpy.controller;
 
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import sdu.lpy.service.LoginService;
 
 @Controller
 @RequestMapping("/login")
 public class LoginController {
 
-	@RequestMapping("/a.do")
-	public String test(){
+	@Autowired
+	private LoginService loginService;
+
+	@RequestMapping("/admin.do")
+	public String adminLogin() {
+	
 		return "login";
+	
+	}
+
+	@RequestMapping("/ahomepage.do")
+	public String aLogin(String inputEmail, String inputPassword) {
+
+		if (inputPassword.equals(loginService.getAdminPwd(inputEmail))) {
+		
+			return "homePage";
+		
+		} else {
+		
+			return "login";
+		
+		}
+
 	}
 	
-	@RequestMapping("/managers.do")
-	public String login(String inputEmail,String inputPassword){
-
-		System.out.println(inputEmail+":"+inputPassword);
-		if (inputPassword.equals("123456")) {
-			System.out.println("---------");
-			return "page1";
-		} else {
-			System.out.println("++++++++++");
-			return "login";
-		}
+	@RequestMapping("/vip.do")
+	public String vipLogin(){
 		
+		return "";
+	
 	}
+	
+	@RequestMapping("/vhomepage.do")
+	public String vLogin(String vipAccount, String vipPwd ){
+		return "";
+	}
+	
 }
