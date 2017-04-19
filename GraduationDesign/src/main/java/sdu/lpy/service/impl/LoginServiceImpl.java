@@ -24,13 +24,23 @@ public class LoginServiceImpl implements LoginService {
 	public String getAdminPwd(String adminAccount) {
 		// TODO Auto-generated method stub
 		Admin admin = adminMapper.selectByPrimaryKey(adminAccount);
-		return admin.getPassword();
+		if (admin == null) {
+			return null;
+		} else {
+			
+			return admin.getPassword();
+		}
 	}
 
 	public String getVipPwd(String vipAccount) {
 		// TODO Auto-generated method stub
 		Vip vip = vipMapper.selectByPrimaryKey(vipAccount);
-		return vip.getVipPassword();
+		if (vip == null) {
+			return null;
+		}else {
+			
+			return vip.getVipPassword();
+		}
 	}
 
 }

@@ -1,50 +1,97 @@
 package sdu.lpy.controller;
 
+import java.io.IOException;
+
+import javax.json.Json;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSONObject;
+
+import net.sf.json.JSONArray;
 import sdu.lpy.service.LoginService;
 
 @Controller
-@RequestMapping("/login")
+@RequestMapping("/login/")
 public class LoginController {
 
 	@Autowired
 	private LoginService loginService;
 
-	@RequestMapping("/admin.do")
+	@RequestMapping("admin.do")
 	public String adminLogin() {
-	
+
 		return "login";
-	
+
 	}
 
-	@RequestMapping("/ahomepage.do")
+	@RequestMapping("ahomepage.do")
 	public String aLogin(String inputEmail, String inputPassword) {
 
 		if (inputPassword.equals(loginService.getAdminPwd(inputEmail))) {
-		
+
 			return "homePage";
-		
+
 		} else {
-		
+
 			return "login";
-		
+
 		}
 
 	}
-	
-	@RequestMapping("/vip.do")
-	public String vipLogin(){
+
+	@RequestMapping("vip.do")
+	public String vipLogin() {
+
+		return "vipLogin";
+
+	}
+
+	@RequestMapping(value = "vlogin.do", method = RequestMethod.POST)
+
+	public void vLogin(String loginname, String password, HttpServletRequest request, HttpServletResponse response)
+			throws IOException {
+		String[] KEYDATA = { loginname, password };
+		String errInfo = "";
+		if (!"".equals(loginname) && loginname != null && !"".equals(password) && password != null) {
+			
+			String pwd = loginService.getVipPwd(loginname);
+			if (password.equals(pwd)) {
+				errInfo = "success";//成功
+			}else {
+				errInfo = "usererror";//用户名或密码错误
+			}
+			
+		}else{
+			errInfo="error";//缺少参数
+		}
 		
-		return "";
-	
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("result", errInfo);
+		response.setContentType("text/html");
+		response.setCharacterEncoding("utf-8");
+		response.getWriter().print(jsonObject.toJSONString());
+
 	}
 	
 	@RequestMapping("/vhomepage.do")
-	public String vLogin(String vipAccount, String vipPwd ){
-		return "";
+	public String vHomePage(){
+		return "homePage";
 	}
-	
+
+	public static boolean notEmpty(String s) {
+		return s != null && !"".equals(s) && !"null".equals(s);
+	}
+
+	public static boolean isEmpty(String s) {
+		return s == null || "".equals(s) || "null".equals(s);
+	}
+
 }
