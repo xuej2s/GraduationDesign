@@ -9,6 +9,17 @@
     <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
     <result column="discount" jdbcType="DOUBLE" property="discount" />
   </resultMap>
+  
+  <sql id="Base_Column_List">
+		activity_name, card_type, activity_obj,start_time,end_time,discount
+	</sql>
+	
+	<select id="getActivity" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List"></include>
+		from activity_manage
+	</select>
+  
   <insert id="insert" parameterType="sdu.lpy.entity.ActivityManage">
     insert into activity_manage (activity_name, card_type, activity_obj, 
       start_time, end_time, discount
@@ -17,6 +28,8 @@
       #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{discount,jdbcType=DOUBLE}
       )
   </insert>
+  
+  
   <insert id="insertSelective" parameterType="sdu.lpy.entity.ActivityManage">
     insert into activity_manage
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -60,4 +73,6 @@
       </if>
     </trim>
   </insert>
+  
+  
 </mapper>

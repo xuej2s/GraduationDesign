@@ -107,7 +107,8 @@
 					dataType:'json',
 					cache: false,
 					success: function(data){
-						 
+						 alert(JSON.stringify(data));
+						 alert(data.session.vipId);
 						if("success" == data.result){
 							saveCookie();
 							window.location.href="vhomepage.do";

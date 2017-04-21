@@ -2,6 +2,7 @@ package sdu.lpy.controller;
 
 import java.io.IOException;
 
+import javax.jms.Session;
 import javax.json.Json;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -58,12 +59,13 @@ public class LoginController {
 
 	public void vLogin(String loginname, String password, HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
-		String[] KEYDATA = { loginname, password };
 		String errInfo = "";
+		HttpSession session = request.getSession();
 		if (!"".equals(loginname) && loginname != null && !"".equals(password) && password != null) {
 			
 			String pwd = loginService.getVipPwd(loginname);
 			if (password.equals(pwd)) {
+				session.setAttribute("vipId", loginname);
 				errInfo = "success";//成功
 			}else {
 				errInfo = "usererror";//用户名或密码错误
@@ -75,6 +77,7 @@ public class LoginController {
 		
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("result", errInfo);
+		jsonObject.put("session", session);
 		response.setContentType("text/html");
 		response.setCharacterEncoding("utf-8");
 		response.getWriter().print(jsonObject.toJSONString());
@@ -82,7 +85,9 @@ public class LoginController {
 	}
 	
 	@RequestMapping("/vhomepage.do")
-	public String vHomePage(){
+	public String vHomePage(HttpServletRequest request){
+		String vipId = (String) request.getSession().getAttribute("vipId");
+		System.out.println(vipId);
 		return "homePage";
 	}
 
