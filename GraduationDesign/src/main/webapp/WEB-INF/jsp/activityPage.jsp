@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 
@@ -329,22 +329,29 @@
 
 				<!-- 导航栏 -->
 				<ul class="nav nav-list">
-					<li class="active"><a href="<%=basePath %>admin/activity.do"> <i
-							class="icon-dashboard"></i> <span class="menu-text"> 活动管理
+					<li class="active"><a href="<%=basePath%>admin/activity.do">
+							<i class="icon-calendar"></i> <span class="menu-text">
+								活动管理 </span>
+					</a></li>
+
+					<li><a href="<%=basePath%>admin/vip.do"> <i
+							class="icon-group"></i> <span class="menu-text"> 会员管理 </span>
+					</a></li>
+
+					<li><a href="<%=basePath%>admin/course.do"> <i
+							class="icon-book"></i> <span class="menu-text"> 课程管理 </span>
+					</a></li>
+
+					<li><a href="<%=basePath%>admin/machine.do"> <i
+							class="icon-legal"></i> <span class="menu-text"> 器械管理 </span>
+					</a></li>
+
+					<li><a href="<%=basePath%>admin/profit.do"> <i
+							class="icon-bar-chart"></i> <span class="menu-text"> 财务管理
 						</span>
 					</a></li>
 
-					<li><a href="<%=basePath %>admin/vip.do"> <i class="icon-text-width"></i>
-							<span class="menu-text"> 会员管理 </span>
-					</a></li>
 
-					<li><a href="<%=basePath %>admin/course.do"> <i class="icon-text-width"></i>
-							<span class="menu-text"> 课程管理 </span>
-					</a></li>
-
-					<li><a href="<%=basePath %>admin/machine.do"> <i class="icon-text-width"></i>
-							<span class="menu-text"> 器械管理 </span>
-					</a></li>
 
 
 				</ul>
@@ -389,10 +396,8 @@
 									class="table table-striped table-bordered table-hover">
 									<thead>
 										<tr>
-											<th class="center">
-											<label> 
-												<input type="checkbox" class="ace" /> 
-												<span class="lbl"></span>
+											<th class="center"><label> <input
+													type="checkbox" class="ace" /> <span class="lbl"></span>
 											</label></th>
 											<th>活动名称</th>
 											<th>适用会员ll</th>
@@ -414,71 +419,77 @@
 									<tbody>
 										<c:forEach items="${activityList }" var="a">
 											<tr>
-											<td class="center"><label> <input
-													type="checkbox" class="ace" /> <span class="lbl"></span>
-											</label></td>
-											
-											<td><c:out value="${a.activityName }"></c:out></td>
-											<td><c:out value="${a.cardType }"></c:out></td>
-											<c:choose>
-												<c:when test="${a.cardType == 0 }">
-													<td>所有会员</td>
-												</c:when>
-												<c:when test="${a.cardType == 1 }">
-													<td>年卡会员</td>
-												</c:when>
-												<c:when test="${a.cardType == 2 }">
-													<td>年卡、季卡会员</td>
-												</c:when>
-											</c:choose>
-											<td><c:out value="${a.activityObj }"></c:out></td>
-											<td><c:out value="${a.discount }"></c:out></td>
-											<td><c:out value="${a.startTime }"></c:out></td>
-											<td><c:out value="${a.endTime }"></c:out></td>
-											<td>
-												<div
-													class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
-													<a class="blue" href="<%=basePath %>login/vip.do"> <i
-														class="icon-zoom-in bigger-130"></i>
-													</a> <a class="green" href="#"> <i
-														class="icon-pencil bigger-130"></i>
-													</a> <a class="red" href="#"> <i
-														class="icon-trash bigger-130"></i>
-													</a>
-												</div>
+												<td class="center"><label> <input
+														type="checkbox" class="ace" /> <span class="lbl"></span>
+												</label></td>
 
-												<div class="visible-xs visible-sm hidden-md hidden-lg">
-													<div class="inline position-relative">
-														<button class="btn btn-minier btn-yellow dropdown-toggle"
-															data-toggle="dropdown">
-															<i class="icon-caret-down icon-only bigger-120"></i>
-														</button>
-
-														<ul
-															class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
-															<li><a href="#" class="tooltip-info"
-																data-rel="tooltip" title="View"> <span class="blue">
-																		<i class="icon-zoom-in bigger-120"></i>
-																</span>
-															</a></li>
-
-															<li><a href="#" class="tooltip-success"
-																data-rel="tooltip" title="Edit"> <span class="green">
-																		<i class="icon-edit bigger-120"></i>
-																</span>
-															</a></li>
-
-															<li><a href="#" class="tooltip-error"
-																data-rel="tooltip" title="Delete"> <span class="red">
-																		<i class="icon-trash bigger-120"></i>
-																</span>
-															</a></li>
-														</ul>
+												<td><c:out value="${a.activityName }"></c:out></td>
+												<td><c:out value="${a.cardType }"></c:out></td>
+												<c:choose>
+													<c:when test="${a.cardType == 0 }">
+														<td>所有会员</td>
+													</c:when>
+													<c:when test="${a.cardType == 1 }">
+														<td>年卡会员</td>
+													</c:when>
+													<c:when test="${a.cardType == 2 }">
+														<td>季卡会员</td>
+													</c:when>
+													<c:when test="${a.cardType == 3 }">
+														<td>月卡会员</td>
+													</c:when>
+												</c:choose>
+												<td><c:out value="${a.activityObj }"></c:out></td>
+												<td><c:out value="${a.discount }"></c:out></td>
+												<td><c:out value="${a.startTime }"></c:out></td>
+												<td><c:out value="${a.endTime }"></c:out></td>
+												<td>
+													<div
+														class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+														<a class="blue" href="<%=basePath%>admin/addactivity.do">
+															<i class="icon-plus-sign bigger-130"></i>
+														</a> <a class="green"
+															href="<%=basePath %>admin/updateactivity.do?activityName=${a.activityName}&cardType=${a.cardType}&
+															activityObj=${a.activityObj}&discount=${a.discount}&startTime=${a.startTime}&endTime=${a.endTime}">
+															<i class="icon-pencil bigger-130"></i>
+														</a> <a class="red" href="<%=basePath %>admin/deleteactivity.do?activityName=${a.activityName}&cardType=${a.cardType}&
+															activityObj=${a.activityObj}&discount=${a.discount}&startTime=${a.startTime}&endTime=${a.endTime}"> <i
+															class="icon-trash bigger-130"></i>
+														</a>
 													</div>
-												</div>
-											</td>
+
+													<div class="visible-xs visible-sm hidden-md hidden-lg">
+														<div class="inline position-relative">
+															<button class="btn btn-minier btn-yellow dropdown-toggle"
+																data-toggle="dropdown">
+																<i class="icon-caret-down icon-only bigger-120"></i>
+															</button>
+
+															<ul
+																class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
+																<li><a href="#" class="tooltip-info"
+																	data-rel="tooltip" title="View"> <span class="blue">
+																			<i class="icon-zoom-in bigger-120"></i>
+																	</span>
+																</a></li>
+
+																<li><a href="#" class="tooltip-success"
+																	data-rel="tooltip" title="Edit"> <span
+																		class="green"> <i class="icon-edit bigger-120"></i>
+																	</span>
+																</a></li>
+
+																<li><a href="#" class="tooltip-error"
+																	data-rel="tooltip" title="Delete"> <span
+																		class="red"> <i class="icon-trash bigger-120"></i>
+																	</span>
+																</a></li>
+															</ul>
+														</div>
+													</div>
+												</td>
 											</tr>
-										
+
 										</c:forEach>
 									</tbody>
 								</table>
@@ -618,7 +629,7 @@
 			var oTable1 = $('#sample-table-2').dataTable({
 				"aoColumns" : [ {
 					"bSortable" : false
-				}, null, null, null, null, null,null,null, {
+				}, null, null, null, null, null, null, null, {
 					"bSortable" : false
 				} ]
 			});

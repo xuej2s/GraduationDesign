@@ -18,6 +18,7 @@ import com.alibaba.fastjson.JSONObject;
 
 import net.sf.json.JSONArray;
 import sdu.lpy.service.LoginService;
+import sdu.lpy.util.WebUtil;
 
 @Controller
 @RequestMapping("/login/")
@@ -61,20 +62,20 @@ public class LoginController {
 			throws IOException {
 		String errInfo = "";
 		HttpSession session = request.getSession();
-		if (!"".equals(loginname) && loginname != null && !"".equals(password) && password != null) {
-			
+		if (WebUtil.notEmpty(loginname) && WebUtil.notEmpty(password)) {
+
 			String pwd = loginService.getVipPwd(loginname);
 			if (password.equals(pwd)) {
 				session.setAttribute("vipId", loginname);
-				errInfo = "success";//成功
-			}else {
-				errInfo = "usererror";//用户名或密码错误
+				errInfo = "success";// 成功
+			} else {
+				errInfo = "usererror";// 用户名或密码错误
 			}
-			
-		}else{
-			errInfo="error";//缺少参数
+
+		} else {
+			errInfo = "error";// 缺少参数
 		}
-		
+
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("result", errInfo);
 		jsonObject.put("session", session);
@@ -83,20 +84,12 @@ public class LoginController {
 		response.getWriter().print(jsonObject.toJSONString());
 
 	}
-	
+
 	@RequestMapping("/vhomepage.do")
-	public String vHomePage(HttpServletRequest request){
+	public String vHomePage(HttpServletRequest request) {
 		String vipId = (String) request.getSession().getAttribute("vipId");
 		System.out.println(vipId);
 		return "homePage";
-	}
-
-	public static boolean notEmpty(String s) {
-		return s != null && !"".equals(s) && !"null".equals(s);
-	}
-
-	public static boolean isEmpty(String s) {
-		return s == null || "".equals(s) || "null".equals(s);
 	}
 
 }
