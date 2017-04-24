@@ -20,5 +20,23 @@ public class AdminActivityServiceImpl implements AdminActivityService {
 		// TODO Auto-generated method stub
 		return activityManageMapper.getActivity();
 	}
+	
+	//添加活动
+	public int addActivity(ActivityManage activityManage) {
+		// TODO Auto-generated method stub
+		return activityManageMapper.insertSelective(activityManage);
+	}
+	
+	//修改活动
+	public int updateActivity(ActivityManage activityManage) {
+		// TODO Auto-generated method stub
+		return activityManageMapper.updateActivity(activityManage);
+	}
+	
+	//删除活动
+	public int deleteActivity(ActivityManage activityManage) {
+		// TODO Auto-generated method stub
+		return activityManageMapper.deleteActivity(activityManage);
+	}
 
 }

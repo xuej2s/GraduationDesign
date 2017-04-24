@@ -447,6 +447,18 @@
 									</div>
 								</div>
 								<div class="space-4"></div>
+								
+								<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right"
+										for="form-field-1"> 优惠 </label>
+
+									<div class="col-sm-9">
+										<input type="text" id="discount" name="discount"
+											class="col-xs-10 col-sm-5" placeholder="请输入0到1之间的数值"/>
+									</div>
+								</div>
+
+								<div class="space-4"></div>
 
 								<div class="form-group">
 									<label class="col-sm-3 control-label no-padding-right"

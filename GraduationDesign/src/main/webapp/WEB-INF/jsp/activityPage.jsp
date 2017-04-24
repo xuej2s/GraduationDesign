@@ -400,7 +400,6 @@
 													type="checkbox" class="ace" /> <span class="lbl"></span>
 											</label></th>
 											<th>活动名称</th>
-											<th>适用会员ll</th>
 											<th>适用会员</th>
 											<th>优惠项目</th>
 											<th>优惠</th>
@@ -424,7 +423,6 @@
 												</label></td>
 
 												<td><c:out value="${a.activityName }"></c:out></td>
-												<td><c:out value="${a.cardType }"></c:out></td>
 												<c:choose>
 													<c:when test="${a.cardType == 0 }">
 														<td>所有会员</td>
@@ -439,7 +437,18 @@
 														<td>月卡会员</td>
 													</c:when>
 												</c:choose>
-												<td><c:out value="${a.activityObj }"></c:out></td>
+												
+												<c:choose>
+													<c:when test="${a.activityObj == 0 }">
+														<td>所有项目</td>
+													</c:when>
+													<c:when test="${a.activityObj == 1 }">
+														<td>办卡优惠</td>
+													</c:when>
+													<c:when test="${a.activityObj == 2 }">
+														<td>选课优惠</td>
+													</c:when>
+												</c:choose>
 												<td><c:out value="${a.discount }"></c:out></td>
 												<td><c:out value="${a.startTime }"></c:out></td>
 												<td><c:out value="${a.endTime }"></c:out></td>
@@ -629,7 +638,7 @@
 			var oTable1 = $('#sample-table-2').dataTable({
 				"aoColumns" : [ {
 					"bSortable" : false
-				}, null, null, null, null, null, null, null, {
+				}, null, null, null, null, null, null, {
 					"bSortable" : false
 				} ]
 			});

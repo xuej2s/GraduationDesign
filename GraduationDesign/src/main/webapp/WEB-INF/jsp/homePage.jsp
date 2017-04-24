@@ -389,6 +389,11 @@
 					<li><a href="<%=basePath %>admin/machine.do"> <i class="icon-text-width"></i>
 							<span class="menu-text"> 器械管理 </span>
 					</a></li>
+					
+					<li><a href="<%=basePath%>admin/profit.do"> <i
+							class="icon-bar-chart"></i> <span class="menu-text"> 财务管理
+						</span>
+					</a></li>
 
 
 				</ul>

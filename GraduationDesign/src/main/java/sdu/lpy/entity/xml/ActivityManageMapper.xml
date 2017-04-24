@@ -74,5 +74,45 @@
     </trim>
   </insert>
   
+  <delete id="deleteActivity" parameterType="sdu.lpy.entity.ActivityManage">
+    delete from activity_manage
+    where activity_name = #{activityName,jdbcType=VARCHAR}
+    <!-- and card_type = #{cardType,jdbcType=CHAR}
+    and activity_obj = #{activityObj,jdbcType=CHAR}
+    and start_time = #{startTime,jdbcType=TIMESTAMP}
+    and end_time = #{endTime,jdbcType=TIMESTAMP}
+    and discount = #{discount,jdbcType=DOUBLE} -->
+  </delete>
+  
+  <update id="updateActivity" parameterType="sdu.lpy.entity.ActivityManage">
+    update activity_manage
+    <set>
+      <if test="activityName != null">
+        activity_name = #{activityName,jdbcType=VARCHAR},
+      </if>
+      <if test="cardType != null">
+        card_type = #{cardType,jdbcType=CHAR},
+      </if>
+      <if test="activityObj != null">
+        activity_obj = #{activityObj,jdbcType=CHAR},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="discount != null">
+        discount = #{discount,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where activity_name = #{activityName,jdbcType=VARCHAR}
+    <!-- and card_type = #{cardType,jdbcType=CHAR}
+    and activity_obj = #{activityObj,jdbcType=CHAR}
+    and start_time = #{startTime,jdbcType=TIMESTAMP}
+    and end_time = #{endTime,jdbcType=TIMESTAMP}
+    and discount = #{discount,jdbcType=DOUBLE} -->
+  </update>
+  
   
 </mapper>

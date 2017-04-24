@@ -408,7 +408,7 @@
 							<!-- PAGE CONTENT BEGINS -->
 
 							<form class="form-horizontal" name="actForm" role="form"
-								action="<%=basePath%>admin/addActivity.do" method="post">
+								action="<%=basePath%>admin/updateActivity.do" method="post">
 								<div class="form-group">
 									<label class="col-sm-3 control-label no-padding-right"
 										for="form-field-1"> 活动名称 </label>
@@ -450,6 +450,19 @@
 										</select>
 									</div>
 								</div>
+								<div class="space-4"></div>
+								
+								<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right"
+										for="form-field-1"> 优惠 </label>
+
+									<div class="col-sm-9">
+										<input type="text" id="discount" name="discount"
+											class="col-xs-10 col-sm-5" placeholder="请输入0到1之间的数值"
+											value="${a.discount }"/>
+									</div>
+								</div>
+
 								<div class="space-4"></div>
 
 								<div class="form-group">
