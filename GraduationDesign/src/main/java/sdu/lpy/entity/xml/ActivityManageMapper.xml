@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="sdu.lpy.dao.ActivityManageMapper">
   <resultMap id="BaseResultMap" type="sdu.lpy.entity.ActivityManage">
+    <id column="activity_id" jdbcType="VARCHAR" property="activityId" />
     <result column="activity_name" jdbcType="VARCHAR" property="activityName" />
     <result column="card_type" jdbcType="CHAR" property="cardType" />
     <result column="activity_obj" jdbcType="CHAR" property="activityObj" />
@@ -11,28 +12,36 @@
   </resultMap>
   
   <sql id="Base_Column_List">
-		activity_name, card_type, activity_obj,start_time,end_time,discount
-	</sql>
-	
-	<select id="getActivity" resultMap="BaseResultMap">
-		select
-		<include refid="Base_Column_List"></include>
-		from activity_manage
-	</select>
+    activity_id, activity_name, card_type, activity_obj, start_time, end_time, discount
+  </sql>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from activity_manage
+    where activity_id = #{activityId,jdbcType=VARCHAR}
+  </select>
+  
+  <delete id="deleteActivity" parameterType="java.lang.String">
+    delete from activity_manage
+    where activity_id = #{activityId,jdbcType=VARCHAR}
+  </delete>
   
   <insert id="insert" parameterType="sdu.lpy.entity.ActivityManage">
-    insert into activity_manage (activity_name, card_type, activity_obj, 
-      start_time, end_time, discount
-      )
-    values (#{activityName,jdbcType=VARCHAR}, #{cardType,jdbcType=CHAR}, #{activityObj,jdbcType=CHAR}, 
-      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{discount,jdbcType=DOUBLE}
-      )
+    insert into activity_manage (activity_id, activity_name, card_type, 
+      activity_obj, start_time, end_time, 
+      discount)
+    values (#{activityId,jdbcType=VARCHAR}, #{activityName,jdbcType=VARCHAR}, #{cardType,jdbcType=CHAR}, 
+      #{activityObj,jdbcType=CHAR}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
+      #{discount,jdbcType=DOUBLE})
   </insert>
-  
   
   <insert id="insertSelective" parameterType="sdu.lpy.entity.ActivityManage">
     insert into activity_manage
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="activityId != null">
+        activity_id,
+      </if>
       <if test="activityName != null">
         activity_name,
       </if>
@@ -53,6 +62,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="activityId != null">
+        #{activityId,jdbcType=VARCHAR},
+      </if>
       <if test="activityName != null">
         #{activityName,jdbcType=VARCHAR},
       </if>
@@ -73,16 +85,6 @@
       </if>
     </trim>
   </insert>
-  
-  <delete id="deleteActivity" parameterType="sdu.lpy.entity.ActivityManage">
-    delete from activity_manage
-    where activity_name = #{activityName,jdbcType=VARCHAR}
-    <!-- and card_type = #{cardType,jdbcType=CHAR}
-    and activity_obj = #{activityObj,jdbcType=CHAR}
-    and start_time = #{startTime,jdbcType=TIMESTAMP}
-    and end_time = #{endTime,jdbcType=TIMESTAMP}
-    and discount = #{discount,jdbcType=DOUBLE} -->
-  </delete>
   
   <update id="updateActivity" parameterType="sdu.lpy.entity.ActivityManage">
     update activity_manage
@@ -106,13 +108,27 @@
         discount = #{discount,jdbcType=DOUBLE},
       </if>
     </set>
-    where activity_name = #{activityName,jdbcType=VARCHAR}
-    <!-- and card_type = #{cardType,jdbcType=CHAR}
-    and activity_obj = #{activityObj,jdbcType=CHAR}
-    and start_time = #{startTime,jdbcType=TIMESTAMP}
-    and end_time = #{endTime,jdbcType=TIMESTAMP}
-    and discount = #{discount,jdbcType=DOUBLE} -->
+    where activity_id = #{activityId,jdbcType=VARCHAR}
   </update>
+  
+  <update id="updateByPrimaryKey" parameterType="sdu.lpy.entity.ActivityManage">
+    update activity_manage
+    set activity_name = #{activityName,jdbcType=VARCHAR},
+      card_type = #{cardType,jdbcType=CHAR},
+      activity_obj = #{activityObj,jdbcType=CHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      discount = #{discount,jdbcType=DOUBLE}
+    where activity_id = #{activityId,jdbcType=VARCHAR}
+  </update>
+
+	
+	<select id="getActivity" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from activity_manage
+	</select>
+  
   
   
 </mapper>

@@ -3,63 +3,77 @@ package sdu.lpy.entity;
 import java.util.Date;
 
 public class ActivityManage {
+    private String activityId;
+
     private String activityName;
-
+    
     private String cardType;
-
+    
     private String activityObj;
-
+    
     private Date startTime;
-
+    
     private Date endTime;
-
+    
     private Double discount;
+	
 
+
+    public String getActivityId() {
+    	return activityId;
+    }
+    
+    public void setActivityId(String activityId) {
+    	this.activityId = activityId == null ? null : activityId.trim();
+    }
     public String getActivityName() {
-        return activityName;
+    	return activityName;
     }
-
+    
     public void setActivityName(String activityName) {
-        this.activityName = activityName == null ? null : activityName.trim();
+    	this.activityName = activityName == null ? null : activityName.trim();
     }
-
+    
     public String getCardType() {
-        return cardType;
+    	return cardType;
     }
-
+    
     public void setCardType(String cardType) {
-        this.cardType = cardType == null ? null : cardType.trim();
+    	this.cardType = cardType == null ? null : cardType.trim();
     }
-
+    
     public String getActivityObj() {
-        return activityObj;
+    	return activityObj;
     }
-
+    
     public void setActivityObj(String activityObj) {
-        this.activityObj = activityObj == null ? null : activityObj.trim();
+    	this.activityObj = activityObj == null ? null : activityObj.trim();
     }
-
+    
     public Date getStartTime() {
-        return startTime;
+    	return startTime;
     }
-
+    
     public void setStartTime(Date startTime) {
-        this.startTime = startTime;
+    	this.startTime = startTime;
     }
-
+    
     public Date getEndTime() {
-        return endTime;
+    	return endTime;
     }
-
+    
     public void setEndTime(Date endTime) {
-        this.endTime = endTime;
+    	this.endTime = endTime;
     }
-
+    
     public Double getDiscount() {
-        return discount;
+    	return discount;
     }
-
+    
     public void setDiscount(Double discount) {
-        this.discount = discount;
+    	this.discount = discount;
     }
+	
+
+
 }

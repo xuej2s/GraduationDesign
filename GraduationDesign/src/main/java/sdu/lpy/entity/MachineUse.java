@@ -3,6 +3,8 @@ package sdu.lpy.entity;
 import java.util.Date;
 
 public class MachineUse {
+    private String machineUseId;
+
     private String machineId;
 
     private String vipId;
@@ -14,6 +16,14 @@ public class MachineUse {
     private Integer costTime;
 
     private Double calorieCost;
+
+    public String getMachineUseId() {
+        return machineUseId;
+    }
+
+    public void setMachineUseId(String machineUseId) {
+        this.machineUseId = machineUseId == null ? null : machineUseId.trim();
+    }
 
     public String getMachineId() {
         return machineId;

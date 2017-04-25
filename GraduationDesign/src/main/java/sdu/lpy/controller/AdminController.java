@@ -42,7 +42,8 @@ public class AdminController {
 	// 活动增加
 	@RequestMapping("addActivity.do")
 	public String addAct(ActivityManage activityManage, String dateRange,HttpServletResponse response,Model model) throws ParseException, IOException {
-		System.out.println(dateRange);
+		activityManage.setActivityId(WebUtil.autoCreateId());
+		
 		Date[] dates = WebUtil.changeDateRangeToDate(dateRange);
 		activityManage.setStartTime(dates[0]);
 		activityManage.setEndTime(dates[1]);
@@ -79,14 +80,8 @@ public class AdminController {
 	// 删除活动
 	@RequestMapping("deleteactivity.do")
 	public String deleteActivity(ActivityManage activityManage) {
-		System.out.println(activityManage.getActivityName());
 		adminActivityService.deleteActivity(activityManage); 
-		System.out.println(activityManage.getCardType());
-		System.out.println(activityManage.getActivityObj());
-		System.out.println(activityManage.getStartTime());
-		System.out.println(activityManage.getEndTime());
-		System.out.println(activityManage.getDiscount());
-		System.out.println("---------");
+		
 		return "redirect:activity.do";
 		
 	}

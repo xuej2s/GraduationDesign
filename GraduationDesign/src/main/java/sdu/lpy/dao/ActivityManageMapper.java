@@ -5,7 +5,14 @@ import java.util.List;
 import sdu.lpy.entity.ActivityManage;
 
 public interface ActivityManageMapper {
-    int insert(ActivityManage record);
+    
+
+	ActivityManage selectByPrimaryKey(String activityId);
+
+
+	int updateByPrimaryKey(ActivityManage record);
+
+	int insert(ActivityManage record);
     
     //添加活动
     int insertSelective(ActivityManage record);

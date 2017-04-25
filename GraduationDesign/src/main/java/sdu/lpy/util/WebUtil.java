@@ -3,6 +3,7 @@ package sdu.lpy.util;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
 public class WebUtil {
 
@@ -30,6 +31,13 @@ public class WebUtil {
 		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 		String sdate = sdf.format(date);
 		return sdate;
+	}
+	
+	public static String autoCreateId(){
+		UUID uuid = UUID.randomUUID();
+		String id = uuid.toString();
+		
+		return id;
 	}
 	
 }

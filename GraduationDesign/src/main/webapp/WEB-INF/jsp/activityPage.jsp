@@ -458,11 +458,10 @@
 														<a class="blue" href="<%=basePath%>admin/addactivity.do">
 															<i class="icon-plus-sign bigger-130"></i>
 														</a> <a class="green"
-															href="<%=basePath %>admin/updateactivity.do?activityName=${a.activityName}&cardType=${a.cardType}&
+															href="<%=basePath %>admin/updateactivity.do?activityId=${a.activityId}&activityName=${a.activityName}&cardType=${a.cardType}&
 															activityObj=${a.activityObj}&discount=${a.discount}&startTime=${a.startTime}&endTime=${a.endTime}">
 															<i class="icon-pencil bigger-130"></i>
-														</a> <a class="red" href="<%=basePath %>admin/deleteactivity.do?activityName=${a.activityName}&cardType=${a.cardType}&
-															activityObj=${a.activityObj}&discount=${a.discount}&startTime=${a.startTime}&endTime=${a.endTime}"> <i
+														</a> <a class="red" href="<%=basePath %>admin/deleteactivity.do?activityId=${a.activityId}"> <i
 															class="icon-trash bigger-130"></i>
 														</a>
 													</div>

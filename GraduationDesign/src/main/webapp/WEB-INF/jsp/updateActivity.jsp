@@ -78,6 +78,9 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
+<style type="text/css">
+	#activityId {display: none;}
+</style>
 </head>
 
 <body>
@@ -409,12 +412,14 @@
 
 							<form class="form-horizontal" name="actForm" role="form"
 								action="<%=basePath%>admin/updateActivity.do" method="post">
+								<input type="text" id="activityId" name="activityId" value="${a.activityId }"/>
+								
 								<div class="form-group">
 									<label class="col-sm-3 control-label no-padding-right"
 										for="form-field-1"> 活动名称 </label>
 
 									<div class="col-sm-9">
-										<input type="text" id="activityName" name="activityName"
+										<input  type="text" id="activityName" name="activityName"
 											value="${a.activityName }" class="col-xs-10 col-sm-5" />
 									</div>
 								</div>
@@ -1004,6 +1009,9 @@
 	})();
 </script>
 <script type="text/javascript">
+	
+		
+		
 	 function jsSelectItemByValue(objSelect, objItemText) {   
 		    for (var i = 0; i < objSelect.options.length; i++) {   
 		        if (objSelect.options[i].value == objItemText) {   

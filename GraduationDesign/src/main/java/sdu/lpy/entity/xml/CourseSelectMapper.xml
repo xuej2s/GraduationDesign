@@ -3,7 +3,7 @@
 <mapper namespace="sdu.lpy.dao.CourseSelectMapper">
   <resultMap id="BaseResultMap" type="sdu.lpy.entity.CourseSelect">
     <id column="course_id" jdbcType="VARCHAR" property="courseId" />
-    <result column="vip_id" jdbcType="VARCHAR" property="vipId" />
+    <id column="vip_id" jdbcType="VARCHAR" property="vipId" />
     <result column="select_time" jdbcType="TIMESTAMP" property="selectTime" />
     <result column="cancel_time" jdbcType="TIMESTAMP" property="cancelTime" />
     <result column="course_cost" jdbcType="DOUBLE" property="courseCost" />
@@ -12,15 +12,17 @@
   <sql id="Base_Column_List">
     course_id, vip_id, select_time, cancel_time, course_cost, course_evaluation
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="sdu.lpy.entity.CourseSelectKey" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from course_select
     where course_id = #{courseId,jdbcType=VARCHAR}
+      and vip_id = #{vipId,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+  <delete id="deleteByPrimaryKey" parameterType="sdu.lpy.entity.CourseSelectKey">
     delete from course_select
     where course_id = #{courseId,jdbcType=VARCHAR}
+      and vip_id = #{vipId,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="sdu.lpy.entity.CourseSelect">
     insert into course_select (course_id, vip_id, select_time, 
@@ -76,9 +78,6 @@
   <update id="updateByPrimaryKeySelective" parameterType="sdu.lpy.entity.CourseSelect">
     update course_select
     <set>
-      <if test="vipId != null">
-        vip_id = #{vipId,jdbcType=VARCHAR},
-      </if>
       <if test="selectTime != null">
         select_time = #{selectTime,jdbcType=TIMESTAMP},
       </if>
@@ -93,14 +92,15 @@
       </if>
     </set>
     where course_id = #{courseId,jdbcType=VARCHAR}
+      and vip_id = #{vipId,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="sdu.lpy.entity.CourseSelect">
     update course_select
-    set vip_id = #{vipId,jdbcType=VARCHAR},
-      select_time = #{selectTime,jdbcType=TIMESTAMP},
+    set select_time = #{selectTime,jdbcType=TIMESTAMP},
       cancel_time = #{cancelTime,jdbcType=TIMESTAMP},
       course_cost = #{courseCost,jdbcType=DOUBLE},
       course_evaluation = #{courseEvaluation,jdbcType=DOUBLE}
     where course_id = #{courseId,jdbcType=VARCHAR}
+      and vip_id = #{vipId,jdbcType=VARCHAR}
   </update>
 </mapper>

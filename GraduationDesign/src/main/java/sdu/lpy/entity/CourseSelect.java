@@ -2,11 +2,7 @@ package sdu.lpy.entity;
 
 import java.util.Date;
 
-public class CourseSelect {
-    private String courseId;
-
-    private String vipId;
-
+public class CourseSelect extends CourseSelectKey {
     private Date selectTime;
 
     private Date cancelTime;
@@ -14,22 +10,6 @@ public class CourseSelect {
     private Double courseCost;
 
     private Double courseEvaluation;
-
-    public String getCourseId() {
-        return courseId;
-    }
-
-    public void setCourseId(String courseId) {
-        this.courseId = courseId == null ? null : courseId.trim();
-    }
-
-    public String getVipId() {
-        return vipId;
-    }
-
-    public void setVipId(String vipId) {
-        this.vipId = vipId == null ? null : vipId.trim();
-    }
 
     public Date getSelectTime() {
         return selectTime;

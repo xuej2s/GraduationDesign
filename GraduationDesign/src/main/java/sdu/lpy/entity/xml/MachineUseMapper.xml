@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="sdu.lpy.dao.MachineUseMapper">
   <resultMap id="BaseResultMap" type="sdu.lpy.entity.MachineUse">
-    <id column="machine_id" jdbcType="VARCHAR" property="machineId" />
+    <id column="machine_use_id" jdbcType="VARCHAR" property="machineUseId" />
+    <result column="machine_id" jdbcType="VARCHAR" property="machineId" />
     <result column="vip_id" jdbcType="VARCHAR" property="vipId" />
     <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
     <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
@@ -10,29 +11,32 @@
     <result column="calorie_cost" jdbcType="DOUBLE" property="calorieCost" />
   </resultMap>
   <sql id="Base_Column_List">
-    machine_id, vip_id, start_time, end_time, cost_time, calorie_cost
+    machine_use_id, machine_id, vip_id, start_time, end_time, cost_time, calorie_cost
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from machine_use
-    where machine_id = #{machineId,jdbcType=VARCHAR}
+    where machine_use_id = #{machineUseId,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from machine_use
-    where machine_id = #{machineId,jdbcType=VARCHAR}
+    where machine_use_id = #{machineUseId,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="sdu.lpy.entity.MachineUse">
-    insert into machine_use (machine_id, vip_id, start_time, 
-      end_time, cost_time, calorie_cost
-      )
-    values (#{machineId,jdbcType=VARCHAR}, #{vipId,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, 
-      #{endTime,jdbcType=TIMESTAMP}, #{costTime,jdbcType=INTEGER}, #{calorieCost,jdbcType=DOUBLE}
-      )
+    insert into machine_use (machine_use_id, machine_id, vip_id, 
+      start_time, end_time, cost_time, 
+      calorie_cost)
+    values (#{machineUseId,jdbcType=VARCHAR}, #{machineId,jdbcType=VARCHAR}, #{vipId,jdbcType=VARCHAR}, 
+      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{costTime,jdbcType=INTEGER}, 
+      #{calorieCost,jdbcType=DOUBLE})
   </insert>
   <insert id="insertSelective" parameterType="sdu.lpy.entity.MachineUse">
     insert into machine_use
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="machineUseId != null">
+        machine_use_id,
+      </if>
       <if test="machineId != null">
         machine_id,
       </if>
@@ -53,6 +57,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="machineUseId != null">
+        #{machineUseId,jdbcType=VARCHAR},
+      </if>
       <if test="machineId != null">
         #{machineId,jdbcType=VARCHAR},
       </if>
@@ -76,6 +83,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="sdu.lpy.entity.MachineUse">
     update machine_use
     <set>
+      <if test="machineId != null">
+        machine_id = #{machineId,jdbcType=VARCHAR},
+      </if>
       <if test="vipId != null">
         vip_id = #{vipId,jdbcType=VARCHAR},
       </if>
@@ -92,15 +102,16 @@
         calorie_cost = #{calorieCost,jdbcType=DOUBLE},
       </if>
     </set>
-    where machine_id = #{machineId,jdbcType=VARCHAR}
+    where machine_use_id = #{machineUseId,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="sdu.lpy.entity.MachineUse">
     update machine_use
-    set vip_id = #{vipId,jdbcType=VARCHAR},
+    set machine_id = #{machineId,jdbcType=VARCHAR},
+      vip_id = #{vipId,jdbcType=VARCHAR},
       start_time = #{startTime,jdbcType=TIMESTAMP},
       end_time = #{endTime,jdbcType=TIMESTAMP},
       cost_time = #{costTime,jdbcType=INTEGER},
       calorie_cost = #{calorieCost,jdbcType=DOUBLE}
-    where machine_id = #{machineId,jdbcType=VARCHAR}
+    where machine_use_id = #{machineUseId,jdbcType=VARCHAR}
   </update>
 </mapper>

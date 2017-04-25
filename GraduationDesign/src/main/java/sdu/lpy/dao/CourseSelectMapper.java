@@ -1,15 +1,16 @@
 package sdu.lpy.dao;
 
 import sdu.lpy.entity.CourseSelect;
+import sdu.lpy.entity.CourseSelectKey;
 
 public interface CourseSelectMapper {
-    int deleteByPrimaryKey(String courseId);
+    int deleteByPrimaryKey(CourseSelectKey key);
 
     int insert(CourseSelect record);
 
     int insertSelective(CourseSelect record);
 
-    CourseSelect selectByPrimaryKey(String courseId);
+    CourseSelect selectByPrimaryKey(CourseSelectKey key);
 
     int updateByPrimaryKeySelective(CourseSelect record);
 

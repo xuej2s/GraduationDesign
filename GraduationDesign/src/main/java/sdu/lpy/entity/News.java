@@ -3,11 +3,21 @@ package sdu.lpy.entity;
 import java.util.Date;
 
 public class News {
+    private String newId;
+
     private String newsName;
 
     private String newsConfig;
 
     private Date newsTime;
+
+    public String getNewId() {
+        return newId;
+    }
+
+    public void setNewId(String newId) {
+        this.newId = newId == null ? null : newId.trim();
+    }
 
     public String getNewsName() {
         return newsName;
