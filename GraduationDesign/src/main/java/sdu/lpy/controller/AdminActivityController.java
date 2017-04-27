@@ -20,7 +20,7 @@ import sdu.lpy.util.WebUtil;
 
 @Controller
 @RequestMapping("/admin/")
-public class AdminController {
+public class AdminActivityController {
 
 	@Autowired
 	private AdminActivityService adminActivityService;

@@ -7,7 +7,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>活动管理</title>
+<title>消息管理</title>
 <meta name="keywords"
 	content="Bootstrap模版,Bootstrap模版下载,Bootstrap教程,Bootstrap中文" />
 <meta name="description"
@@ -333,15 +333,14 @@
 							<i class="icon-calendar"></i> <span class="menu-text">
 								活动管理 </span>
 					</a></li>
-					
+
 
 					<li><a href="<%=basePath%>admin/vip.do"> <i
 							class="icon-group"></i> <span class="menu-text"> 会员管理 </span>
 					</a></li>
-					
-					<li class="active"><a href="<%=basePath%>admin/news.do">
-							<i class="icon-calendar"></i> <span class="menu-text">
-								消息管理 </span>
+
+					<li class="active"><a href="<%=basePath%>admin/news.do"> <i
+							class="icon-comment"></i> <span class="menu-text"> 消息管理 </span>
 					</a></li>
 
 					<li><a href="<%=basePath%>admin/course.do"> <i
@@ -395,80 +394,41 @@
 					<div class="row">
 						<div class="col-xs-12">
 
-							<div class="table-header">活动列表</div>
+							<div class="table-header">消息列表</div>
 
 							<div class="table-responsive">
 								<table id="sample-table-2"
 									class="table table-striped table-bordered table-hover">
-									<thead>
-										<tr>
-											<th class="center"><label> <input
-													type="checkbox" class="ace" /> <span class="lbl"></span>
-											</label></th>
-											<th>活动名称</th>
-											<th>适用会员</th>
-											<th>优惠项目</th>
-											<th>优惠</th>
-											<th>活动开始时间</th>
-											<th>活动结束时间</th>
-											<!-- <th class="hidden-480">Clicks</th>
-
-											<th><i class="icon-time bigger-110 hidden-480"></i>
-												Update</th>
-											<th class="hidden-480">Status</th> -->
-
-											<th></th>
-										</tr>
-									</thead>
 
 									<tbody>
-										<c:forEach items="${activityList }" var="a">
+										<c:forEach items="${newsList }" var="a">
 											<tr>
-												<td class="center"><label> <input
-														type="checkbox" class="ace" /> <span class="lbl"></span>
-												</label></td>
 
-												<td><c:out value="${a.activityName }"></c:out></td>
-												<c:choose>
-													<c:when test="${a.cardType == 0 }">
-														<td>所有会员</td>
-													</c:when>
-													<c:when test="${a.cardType == 1 }">
-														<td>年卡会员</td>
-													</c:when>
-													<c:when test="${a.cardType == 2 }">
-														<td>季卡会员</td>
-													</c:when>
-													<c:when test="${a.cardType == 3 }">
-														<td>月卡会员</td>
-													</c:when>
-												</c:choose>
-												
-												<c:choose>
-													<c:when test="${a.activityObj == 0 }">
-														<td>所有项目</td>
-													</c:when>
-													<c:when test="${a.activityObj == 1 }">
-														<td>办卡优惠</td>
-													</c:when>
-													<c:when test="${a.activityObj == 2 }">
-														<td>选课优惠</td>
-													</c:when>
-												</c:choose>
-												<td><c:out value="${a.discount }"></c:out></td>
-												<td><c:out value="${a.startTime }"></c:out></td>
-												<td><c:out value="${a.endTime }"></c:out></td>
+
+												<td><c:out value="${a.newsName }"></c:out></td>
+
+												<td><c:out value="${a.newsTime }"></c:out></td>
+
 												<td>
 													<div
 														class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
-														<a class="blue" href="<%=basePath%>admin/addactivity.do">
+
+														<a class="yellow"
+															href="<%=basePath%>admin/shownews.do?newId=${a.newId}"
+															>
+															<i class="icon-zoom-in bigger-130"></i>
+														</a>
+
+														
+
+														<a class="blue" href="<%=basePath%>admin/addnews.do">
 															<i class="icon-plus-sign bigger-130"></i>
 														</a> <a class="green"
-															href="<%=basePath %>admin/updateactivity.do?activityId=${a.activityId}&activityName=${a.activityName}&cardType=${a.cardType}&
-															activityObj=${a.activityObj}&discount=${a.discount}&startTime=${a.startTime}&endTime=${a.endTime}">
+															href="<%=basePath %>admin/updatenews.do?newId=${a.newId}&newsName=${a.newsName}&newsConfig=${a.newsConfig}">
 															<i class="icon-pencil bigger-130"></i>
-														</a> <a class="red" href="<%=basePath %>admin/deleteactivity.do?activityId=${a.activityId}"> <i
-															class="icon-trash bigger-130"></i>
+														</a> <a class="red"
+															href="<%=basePath %>admin/deletenews.do?newId=${a.newId}">
+															<i class="icon-trash bigger-130"></i>
 														</a>
 													</div>
 
@@ -641,9 +601,7 @@
 	<script type="text/javascript">
 		jQuery(function($) {
 			var oTable1 = $('#sample-table-2').dataTable({
-				"aoColumns" : [ {
-					"bSortable" : false
-				}, null, null, null, null, null, null, {
+				"aoColumns" : [ null, null, {
 					"bSortable" : false
 				} ]
 			});

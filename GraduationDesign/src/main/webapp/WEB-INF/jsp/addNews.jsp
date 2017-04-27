@@ -78,9 +78,6 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<style type="text/css">
-	#activityId {display: none;}
-</style>
 </head>
 
 <body>
@@ -352,10 +349,9 @@
 					<li><a href="<%=basePath%>admin/vip.do"> <i
 							class="icon-group"></i> <span class="menu-text"> 会员管理 </span>
 					</a></li>
-					
-					<li class="active"><a href="<%=basePath%>admin/news.do">
-							<i class="icon-calendar"></i> <span class="menu-text">
-								消息管理 </span>
+
+					<li class="active"><a href="<%=basePath%>admin/news.do"> <i
+							class="icon-calendar"></i> <span class="menu-text"> 消息管理 </span>
 					</a></li>
 
 					<li><a href="<%=basePath%>admin/course.do"> <i
@@ -407,7 +403,7 @@
 
 				<div class="page-content">
 					<div class="page-header">
-						<h1>活动添加</h1>
+						<h1>消息发布</h1>
 					</div>
 					<!-- /.page-header -->
 
@@ -415,80 +411,27 @@
 						<div class="col-xs-12">
 							<!-- PAGE CONTENT BEGINS -->
 
-							<form class="form-horizontal" name="actForm" role="form"
-								action="<%=basePath%>admin/updateActivity.do" method="post">
-								<input type="text" id="activityId" name="activityId" value="${a.activityId }"/>
-								
+							<form class="form-horizontal" role="form"
+								action="<%=basePath%>admin/addNews.do" method="post">
 								<div class="form-group">
 									<label class="col-sm-3 control-label no-padding-right"
-										for="form-field-1"> 活动名称 </label>
+										for="form-field-1"> 消息名称 </label>
 
 									<div class="col-sm-9">
-										<input  type="text" id="activityName" name="activityName"
-											value="${a.activityName }" class="col-xs-10 col-sm-5" />
+										<input type="text" id="newsName" name="newsName"
+											class="col-xs-10 col-sm-5" />
 									</div>
 								</div>
 
-
-
-
 								<div class="space-4"></div>
+
 								<div class="form-group">
-									<label class="col-sm-3 control-label no-padding-right"
-										for="form-field-select-1">优惠会员</label>
+									<label class="col-sm-3 control-label no-padding-right" for="form-field-11">消息内容</label>
 									<div class="col-sm-9">
-										<select class="col-xs-10 col-sm-5" id="cardType"
-											name="cardType">
-											<option value="0">所有会员</option>
-											<option value="1">年卡会员</option>
-											<option value="2">季卡会员</option>
-											<option value="3">月卡会员</option>
-										</select>
+									<textarea id="newsConfig" name="newsConfig"
+										class="autosize-transition col-xs-10 col-sm-5"></textarea>
 									</div>
-								</div>
 
-								<div class="space-4"></div>
-								<div class="form-group">
-									<label class="col-sm-3 control-label no-padding-right"
-										for="form-field-select-1">优惠项目</label>
-									<div class="col-sm-9" class="col-xs-10 col-sm-5">
-										<select class="col-xs-10 col-sm-5" id="activityObj"
-											name="activityObj">
-											<option value="0">所有项目</option>
-											<option value="1">办卡优惠</option>
-											<option value="2">选课优惠</option>
-										</select>
-									</div>
-								</div>
-								<div class="space-4"></div>
-								
-								<div class="form-group">
-									<label class="col-sm-3 control-label no-padding-right"
-										for="form-field-1"> 优惠 </label>
-
-									<div class="col-sm-9">
-										<input type="text" id="discount" name="discount"
-											class="col-xs-10 col-sm-5" placeholder="请输入0到1之间的数值"
-											value="${a.discount }"/>
-									</div>
-								</div>
-
-								<div class="space-4"></div>
-
-								<div class="form-group">
-									<label class="col-sm-3 control-label no-padding-right"
-										for="id-date-range-picker-1">活动起止时间</label>
-
-									<div class="row">
-										<div class="col-xs-10 col-sm-3">
-											<div class="input-group">
-												<span class="input-group-addon"> <i
-													class="icon-calendar bigger-110"></i>
-												</span> <input class="form-control" type="text" name="dateRange"
-													id="id-date-range-picker-1" value="${date }"/>
-											</div>
-										</div>
-									</div>
 								</div>
 
 								<div class="space-4"></div>
@@ -1012,19 +955,4 @@
 		var s = document.getElementsByTagName("script")[0];
 		s.parentNode.insertBefore(hm, s);
 	})();
-</script>
-<script type="text/javascript">
-	
-		
-		
-	 function jsSelectItemByValue(objSelect, objItemText) {   
-		    for (var i = 0; i < objSelect.options.length; i++) {   
-		        if (objSelect.options[i].value == objItemText) {   
-		            objSelect.options[i].selected = true;   
-		            break;   
-		            }   
-		        }  
-		    };   
-		    jsSelectItemByValue(document.forms['actForm'].cardType, ${a.cardType });
-		    jsSelectItemByValue(document.forms['actForm'].activityObj, ${a.activityObj });
 </script>

@@ -349,6 +349,11 @@
 					<li><a href="<%=basePath%>admin/vip.do"> <i
 							class="icon-group"></i> <span class="menu-text"> 会员管理 </span>
 					</a></li>
+					
+					<li class="active"><a href="<%=basePath%>admin/news.do">
+							<i class="icon-calendar"></i> <span class="menu-text">
+								消息管理 </span>
+					</a></li>
 
 					<li><a href="<%=basePath%>admin/course.do"> <i
 							class="icon-book"></i> <span class="menu-text"> 课程管理 </span>

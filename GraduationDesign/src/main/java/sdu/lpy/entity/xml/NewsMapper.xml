@@ -1,82 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="sdu.lpy.dao.NewsMapper">
-  <resultMap id="BaseResultMap" type="sdu.lpy.entity.News">
-    <id column="new_id" jdbcType="VARCHAR" property="newId" />
-    <result column="news_name" jdbcType="VARCHAR" property="newsName" />
-    <result column="news_config" jdbcType="VARCHAR" property="newsConfig" />
-    <result column="news_time" jdbcType="TIMESTAMP" property="newsTime" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    new_id, news_name, news_config, news_time
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from news
-    where new_id = #{newId,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from news
-    where new_id = #{newId,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="sdu.lpy.entity.News">
-    insert into news (new_id, news_name, news_config, 
-      news_time)
-    values (#{newId,jdbcType=VARCHAR}, #{newsName,jdbcType=VARCHAR}, #{newsConfig,jdbcType=VARCHAR}, 
-      #{newsTime,jdbcType=TIMESTAMP})
-  </insert>
-  <insert id="insertSelective" parameterType="sdu.lpy.entity.News">
-    insert into news
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="newId != null">
-        new_id,
-      </if>
-      <if test="newsName != null">
-        news_name,
-      </if>
-      <if test="newsConfig != null">
-        news_config,
-      </if>
-      <if test="newsTime != null">
-        news_time,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="newId != null">
-        #{newId,jdbcType=VARCHAR},
-      </if>
-      <if test="newsName != null">
-        #{newsName,jdbcType=VARCHAR},
-      </if>
-      <if test="newsConfig != null">
-        #{newsConfig,jdbcType=VARCHAR},
-      </if>
-      <if test="newsTime != null">
-        #{newsTime,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="sdu.lpy.entity.News">
-    update news
-    <set>
-      <if test="newsName != null">
-        news_name = #{newsName,jdbcType=VARCHAR},
-      </if>
-      <if test="newsConfig != null">
-        news_config = #{newsConfig,jdbcType=VARCHAR},
-      </if>
-      <if test="newsTime != null">
-        news_time = #{newsTime,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where new_id = #{newId,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="sdu.lpy.entity.News">
-    update news
-    set news_name = #{newsName,jdbcType=VARCHAR},
-      news_config = #{newsConfig,jdbcType=VARCHAR},
-      news_time = #{newsTime,jdbcType=TIMESTAMP}
-    where new_id = #{newId,jdbcType=VARCHAR}
-  </update>
+	<resultMap id="BaseResultMap" type="sdu.lpy.entity.News">
+		<id column="new_id" jdbcType="VARCHAR" property="newId" />
+		<result column="news_name" jdbcType="VARCHAR" property="newsName" />
+		<result column="news_config" jdbcType="VARCHAR" property="newsConfig" />
+		<result column="news_time" jdbcType="TIMESTAMP" property="newsTime" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		new_id, news_name, news_config, news_time
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from news
+		where new_id = #{newId,jdbcType=VARCHAR}
+	</select>
+
+	<select id="getNews" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from news
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from news
+		where new_id = #{newId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="sdu.lpy.entity.News">
+		insert into news (new_id, news_name, news_config,
+		news_time)
+		values (#{newId,jdbcType=VARCHAR}, #{newsName,jdbcType=VARCHAR},
+		#{newsConfig,jdbcType=VARCHAR},
+		#{newsTime,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective" parameterType="sdu.lpy.entity.News">
+		insert into news
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="newId != null">
+				new_id,
+			</if>
+			<if test="newsName != null">
+				news_name,
+			</if>
+			<if test="newsConfig != null">
+				news_config,
+			</if>
+			<if test="newsTime != null">
+				news_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="newId != null">
+				#{newId,jdbcType=VARCHAR},
+			</if>
+			<if test="newsName != null">
+				#{newsName,jdbcType=VARCHAR},
+			</if>
+			<if test="newsConfig != null">
+				#{newsConfig,jdbcType=VARCHAR},
+			</if>
+			<if test="newsTime != null">
+				#{newsTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="sdu.lpy.entity.News">
+		update news
+		<set>
+			<if test="newsName != null">
+				news_name = #{newsName,jdbcType=VARCHAR},
+			</if>
+			<if test="newsConfig != null">
+				news_config = #{newsConfig,jdbcType=VARCHAR},
+			</if>
+			<if test="newsTime != null">
+				news_time = #{newsTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where new_id = #{newId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="sdu.lpy.entity.News">
+		update news
+		set news_name = #{newsName,jdbcType=VARCHAR},
+		news_config = #{newsConfig,jdbcType=VARCHAR},
+		news_time = #{newsTime,jdbcType=TIMESTAMP}
+		where new_id = #{newId,jdbcType=VARCHAR}
+	</update>
 </mapper>
