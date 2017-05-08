@@ -79,7 +79,9 @@
 			+ path + "/";
 %>
 <style type="text/css">
-	#activityId {display: none;}
+#courseId {
+	display: none;
+}
 </style>
 </head>
 
@@ -352,40 +354,29 @@
 					<li><a href="<%=basePath%>admin/vip.do"> <i
 							class="icon-group"></i> <span class="menu-text"> 会员管理 </span>
 					</a></li>
-					
-					<li class="active"><a href="<%=basePath%>admin/news.do">
-							<i class="icon-calendar"></i> <span class="menu-text">
-								消息管理 </span>
+
+					<li class="active"><a href="<%=basePath%>admin/news.do"> <i
+							class="icon-calendar"></i> <span class="menu-text"> 消息管理 </span>
 					</a></li>
 
 					<li><a href="<%=basePath%>admin/course.do"> <i
 							class="icon-book"></i> <span class="menu-text"> 课程管理 </span>
 					</a></li>
 
-					<li>
-							<a href="#" class="dropdown-toggle">
-								<i class="icon-legal"></i>
-								<span class="menu-text"> 器械管理 </span>
+					<li><a href="#" class="dropdown-toggle"> <i
+							class="icon-legal"></i> <span class="menu-text"> 器械管理 </span> <b
+							class="arrow icon-angle-down"></b>
+					</a>
 
-								<b class="arrow icon-angle-down"></b>
-							</a>
+						<ul class="submenu">
+							<li><a href="<%=basePath%>admin/machinebuy.do"> <i
+									class="icon-double-angle-right"></i> 器械购置
+							</a></li>
 
-							<ul class="submenu">
-								<li>
-									<a href="<%=basePath%>admin/machinebuy.do">
-										<i class="icon-double-angle-right"></i>
-										器械购置
-									</a>
-								</li>
-
-								<li>
-									<a href="<%=basePath%>admin/machineuse.do">
-										<i class="icon-double-angle-right"></i>
-										器械使用
-									</a>
-								</li>
-							</ul>
-						</li>
+							<li><a href="<%=basePath%>admin/machineuse.do"> <i
+									class="icon-double-angle-right"></i> 器械使用
+							</a></li>
+						</ul></li>
 
 					<li><a href="<%=basePath%>admin/profit.do"> <i
 							class="icon-bar-chart"></i> <span class="menu-text"> 财务管理
@@ -436,69 +427,28 @@
 						<div class="col-xs-12">
 							<!-- PAGE CONTENT BEGINS -->
 
-							<form class="form-horizontal" name="actForm" role="form"
-								action="<%=basePath%>admin/updateActivity.do" method="post">
-								<input type="text" id="activityId" name="activityId" value="${a.activityId }"/>
-								
+							<form class="form-horizontal" name="actForm1" role="form"
+								action="<%=basePath%>admin/updateCourse.do" method="post">
+								<input type="text" id="courseId" name="courseId"
+									value="${a.courseId }" />
+
 								<div class="form-group">
 									<label class="col-sm-3 control-label no-padding-right"
-										for="form-field-1"> 活动名称 </label>
+										for="form-field-1"> 课程名称 </label>
 
 									<div class="col-sm-9">
-										<input  type="text" id="activityName" name="activityName"
-											value="${a.activityName }" class="col-xs-10 col-sm-5" />
-									</div>
-								</div>
-
-
-
-
-								<div class="space-4"></div>
-								<div class="form-group">
-									<label class="col-sm-3 control-label no-padding-right"
-										for="form-field-select-1">优惠会员</label>
-									<div class="col-sm-9">
-										<select class="col-xs-10 col-sm-5" id="cardType"
-											name="cardType">
-											<option value="0">所有会员</option>
-											<option value="1">年卡会员</option>
-											<option value="2">季卡会员</option>
-											<option value="3">月卡会员</option>
-										</select>
-									</div>
-								</div>
-
-								<div class="space-4"></div>
-								<div class="form-group">
-									<label class="col-sm-3 control-label no-padding-right"
-										for="form-field-select-1">优惠项目</label>
-									<div class="col-sm-9" class="col-xs-10 col-sm-5">
-										<select class="col-xs-10 col-sm-5" id="activityObj"
-											name="activityObj">
-											<option value="0">所有项目</option>
-											<option value="1">办卡优惠</option>
-											<option value="2">选课优惠</option>
-										</select>
-									</div>
-								</div>
-								<div class="space-4"></div>
-								
-								<div class="form-group">
-									<label class="col-sm-3 control-label no-padding-right"
-										for="form-field-1"> 优惠 </label>
-
-									<div class="col-sm-9">
-										<input type="text" id="discount" name="discount"
-											class="col-xs-10 col-sm-5" placeholder="请输入0到1之间的数值"
-											value="${a.discount }"/>
+										<input type="text" id="courseName" name="courseName"
+											value="${a.courseName }" class="col-xs-10 col-sm-5" />
 									</div>
 								</div>
 
 								<div class="space-4"></div>
 
+
+
 								<div class="form-group">
 									<label class="col-sm-3 control-label no-padding-right"
-										for="id-date-range-picker-1">活动起止时间</label>
+										for="id-date-range-picker-1">课程起止时间</label>
 
 									<div class="row">
 										<div class="col-xs-10 col-sm-3">
@@ -509,6 +459,35 @@
 													id="id-date-range-picker-1" value="${date }"/>
 											</div>
 										</div>
+									</div>
+								</div>
+
+								<div class="space-4"></div>
+
+								<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right"
+										for="form-field-select-1">具体时间</label>
+									<div class="col-sm-9">
+										<select class="col-xs-10 col-sm-5" id="weekend" name="weekend" >
+											<option value="星期一">星期一</option>
+											<option value="星期二">星期二</option>
+											<option value="星期三">星期三</option>
+											<option value="星期四">星期四</option>
+											<option value="星期五">星期五</option>
+											<option value="星期六">星期六</option>
+											<option value="星期日">星期日</option>
+										</select>
+									</div>
+								</div>
+
+								<div class="space-4"></div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right"
+										for="form-field-1"> 课程费用 </label>
+
+									<div class="col-sm-9">
+										<input type="text" id="courseCost" name="courseCost"
+											class="col-xs-10 col-sm-5" value="${a.courseCost }"/>
 									</div>
 								</div>
 
@@ -1022,6 +1001,7 @@
 
 		});
 	</script>
+	
 
 </body>
 </html>
@@ -1041,12 +1021,10 @@
 	 function jsSelectItemByValue(objSelect, objItemText) {   
 		    for (var i = 0; i < objSelect.options.length; i++) {   
 		        if (objSelect.options[i].value == objItemText) {   
-		            alert(${a.cardType });
 		        	objSelect.options[i].selected = true;   
 		            break;   
 		            }   
 		        }  
 		    };   
-		    jsSelectItemByValue(document.forms['actForm'].cardType, ${a.cardType });
-		    jsSelectItemByValue(document.forms['actForm'].activityObj, ${a.activityObj });
+		    jsSelectItemByValue(document.forms['actForm1'].weekend, ${a.weekend });
 </script>

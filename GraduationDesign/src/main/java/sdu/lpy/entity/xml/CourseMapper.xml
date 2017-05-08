@@ -21,6 +21,14 @@
     from course
     where course_id = #{courseId,jdbcType=VARCHAR}
   </select>
+  
+  <select id="getAllCourse" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from course
+  </select>
+  
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from course
     where course_id = #{courseId,jdbcType=VARCHAR}

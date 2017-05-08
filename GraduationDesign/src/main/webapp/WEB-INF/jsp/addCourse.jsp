@@ -78,9 +78,6 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<style type="text/css">
-	#activityId {display: none;}
-</style>
 </head>
 
 <body>
@@ -428,7 +425,7 @@
 
 				<div class="page-content">
 					<div class="page-header">
-						<h1>活动添加</h1>
+						<h1>课程添加</h1>
 					</div>
 					<!-- /.page-header -->
 
@@ -436,87 +433,73 @@
 						<div class="col-xs-12">
 							<!-- PAGE CONTENT BEGINS -->
 
-							<form class="form-horizontal" name="actForm" role="form"
-								action="<%=basePath%>admin/updateActivity.do" method="post">
-								<input type="text" id="activityId" name="activityId" value="${a.activityId }"/>
-								
+							<form class="form-horizontal" role="form" action="<%=basePath%>admin/addCourse.do" method="post">
 								<div class="form-group">
 									<label class="col-sm-3 control-label no-padding-right"
-										for="form-field-1"> 活动名称 </label>
+										for="form-field-1"> 课程名称 </label>
 
 									<div class="col-sm-9">
-										<input  type="text" id="activityName" name="activityName"
-											value="${a.activityName }" class="col-xs-10 col-sm-5" />
+										<input type="text" id="courseName" name="courseName"
+											class="col-xs-10 col-sm-5" />
 									</div>
 								</div>
 
-
-
-
-								<div class="space-4"></div>
-								<div class="form-group">
-									<label class="col-sm-3 control-label no-padding-right"
-										for="form-field-select-1">优惠会员</label>
-									<div class="col-sm-9">
-										<select class="col-xs-10 col-sm-5" id="cardType"
-											name="cardType">
-											<option value="0">所有会员</option>
-											<option value="1">年卡会员</option>
-											<option value="2">季卡会员</option>
-											<option value="3">月卡会员</option>
-										</select>
-									</div>
-								</div>
-
-								<div class="space-4"></div>
-								<div class="form-group">
-									<label class="col-sm-3 control-label no-padding-right"
-										for="form-field-select-1">优惠项目</label>
-									<div class="col-sm-9" class="col-xs-10 col-sm-5">
-										<select class="col-xs-10 col-sm-5" id="activityObj"
-											name="activityObj">
-											<option value="0">所有项目</option>
-											<option value="1">办卡优惠</option>
-											<option value="2">选课优惠</option>
-										</select>
-									</div>
-								</div>
 								<div class="space-4"></div>
 								
-								<div class="form-group">
-									<label class="col-sm-3 control-label no-padding-right"
-										for="form-field-1"> 优惠 </label>
-
-									<div class="col-sm-9">
-										<input type="text" id="discount" name="discount"
-											class="col-xs-10 col-sm-5" placeholder="请输入0到1之间的数值"
-											value="${a.discount }"/>
-									</div>
-								</div>
-
-								<div class="space-4"></div>
+								
 
 								<div class="form-group">
 									<label class="col-sm-3 control-label no-padding-right"
-										for="id-date-range-picker-1">活动起止时间</label>
+										for="id-date-range-picker-1">课程起止时间</label>
 
 									<div class="row">
 										<div class="col-xs-10 col-sm-3">
 											<div class="input-group">
 												<span class="input-group-addon"> <i
 													class="icon-calendar bigger-110"></i>
-												</span> <input class="form-control" type="text" name="dateRange"
-													id="id-date-range-picker-1" value="${date }"/>
+												</span> <input class="form-control" type="text"
+													name="dateRange" id="id-date-range-picker-1" />
 											</div>
 										</div>
 									</div>
 								</div>
 
 								<div class="space-4"></div>
+								
+								<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right"
+										for="form-field-select-1">具体时间</label>
+									<div class="col-sm-9">
+										<select class="col-xs-10 col-sm-5" id="weekend"
+											name="weekend">
+											<option value="星期一">星期一</option>
+											<option value="星期二">星期二</option>
+											<option value="星期三">星期三</option>
+											<option value="星期四">星期四</option>
+											<option value="星期五">星期五</option>
+											<option value="星期六">星期六</option>
+											<option value="星期日">星期日</option>
+										</select>
+									</div>
+								</div>
+
+								<div class="space-4"></div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right"
+										for="form-field-1"> 课程费用 </label>
+
+									<div class="col-sm-9">
+										<input type="text" id="courseCost" name="courseCost"
+											class="col-xs-10 col-sm-5" />
+									</div>
+								</div>
+
+								<div class="space-4"></div>
+								
 								<!-- ///////////////////////////////////////////////////////////// -->
 
 
-
+								
 
 								<div class="clearfix form-actions">
 									<div class="col-md-offset-3 col-md-9">
@@ -531,12 +514,12 @@
 									</div>
 								</div>
 
+								
 
+							
 
-
-
-
-								<!-- PAGE CONTENT ENDS -->
+							
+							<!-- PAGE CONTENT ENDS -->
 						</div>
 						<!-- /.col -->
 					</div>
@@ -1033,20 +1016,4 @@
 		var s = document.getElementsByTagName("script")[0];
 		s.parentNode.insertBefore(hm, s);
 	})();
-</script>
-<script type="text/javascript">
-	
-		
-		
-	 function jsSelectItemByValue(objSelect, objItemText) {   
-		    for (var i = 0; i < objSelect.options.length; i++) {   
-		        if (objSelect.options[i].value == objItemText) {   
-		            alert(${a.cardType });
-		        	objSelect.options[i].selected = true;   
-		            break;   
-		            }   
-		        }  
-		    };   
-		    jsSelectItemByValue(document.forms['actForm'].cardType, ${a.cardType });
-		    jsSelectItemByValue(document.forms['actForm'].activityObj, ${a.activityObj });
 </script>

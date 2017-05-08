@@ -1,5 +1,7 @@
 package sdu.lpy.dao;
 
+import java.util.List;
+
 import sdu.lpy.entity.Course;
 
 public interface CourseMapper {
@@ -10,6 +12,8 @@ public interface CourseMapper {
     int insertSelective(Course record);
 
     Course selectByPrimaryKey(String courseId);
+    
+    List<Course> getAllCourse();
 
     int updateByPrimaryKeySelective(Course record);
 
