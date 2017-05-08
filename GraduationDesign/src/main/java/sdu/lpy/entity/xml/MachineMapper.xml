@@ -19,6 +19,11 @@
     delete from machine
     where machine_id = #{machineId,jdbcType=VARCHAR}
   </delete>
+  <delete id="deleteByMachineType" parameterType="java.lang.String">
+    delete from machine
+    where machine_type = #{machineType,jdbcType=VARCHAR}
+  </delete>
+  
   <insert id="insert" parameterType="sdu.lpy.entity.Machine">
     insert into machine (machine_id, machine_type, calorie
       )

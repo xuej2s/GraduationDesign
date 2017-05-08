@@ -7,6 +7,18 @@
     <result column="machine_brand" jdbcType="VARCHAR" property="machineBrand" />
     <result column="machine_cost" jdbcType="DOUBLE" property="machineCost" />
   </resultMap>
+  
+  <resultMap type="sdu.lpy.entity.MachineBuyConfig" id="MachineBuyConfigMap">
+  	<id column="machine_type" jdbcType="VARCHAR" property="machineType" />
+  	<id column="machine_fee_id" jdbcType="VARCHAR" property="machineFeeId" />
+    <result column="machine_name" jdbcType="VARCHAR" property="machineName" />
+    <result column="machine_brand" jdbcType="VARCHAR" property="machineBrand" />
+    <result column="machine_cost" jdbcType="DOUBLE" property="machineCost" />
+    <result column="machine_count" jdbcType="INTEGER" property="machineCount" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="sum_cost" jdbcType="DOUBLE" property="sumCost" />
+  </resultMap>
+  
   <sql id="Base_Column_List">
     machine_type, machine_name, machine_brand, machine_cost
   </sql>
@@ -16,6 +28,14 @@
     from machine_config
     where machine_type = #{machineType,jdbcType=VARCHAR}
   </select>
+  
+  <select id="getAllMachine" resultMap="MachineBuyConfigMap">
+  	select *
+  	from machine_config a,machine_fee b
+  	where a.machine_type = b.machine_type
+  </select>
+  
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from machine_config
     where machine_type = #{machineType,jdbcType=VARCHAR}

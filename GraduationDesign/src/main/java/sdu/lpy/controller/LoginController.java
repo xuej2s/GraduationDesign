@@ -27,6 +27,7 @@ public class LoginController {
 	@Autowired
 	private LoginService loginService;
 
+	//经营者登陆页面
 	@RequestMapping("admin.do")
 	public String adminLogin() {
 
@@ -34,6 +35,7 @@ public class LoginController {
 
 	}
 
+	//经营者登陆身份验证
 	@RequestMapping("ahomepage.do")
 	public String aLogin(String inputEmail, String inputPassword) {
 
@@ -49,6 +51,7 @@ public class LoginController {
 
 	}
 
+	//会员登陆页面
 	@RequestMapping("vip.do")
 	public String vipLogin() {
 
@@ -56,6 +59,7 @@ public class LoginController {
 
 	}
 
+	//会员身份验证
 	@RequestMapping(value = "vlogin.do", method = RequestMethod.POST)
 
 	public void vLogin(String loginname, String password, HttpServletRequest request, HttpServletResponse response)
@@ -85,6 +89,7 @@ public class LoginController {
 
 	}
 
+	//获取会员身份id
 	@RequestMapping("/vhomepage.do")
 	public String vHomePage(HttpServletRequest request) {
 		String vipId = (String) request.getSession().getAttribute("vipId");

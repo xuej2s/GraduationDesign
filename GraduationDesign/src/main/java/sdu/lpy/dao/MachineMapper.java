@@ -14,4 +14,6 @@ public interface MachineMapper {
     int updateByPrimaryKeySelective(Machine record);
 
     int updateByPrimaryKey(Machine record);
+    
+    int deleteByMachineType(String machineType);
 }

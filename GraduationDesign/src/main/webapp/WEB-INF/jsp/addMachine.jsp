@@ -78,11 +78,6 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<style type="text/css">
-#newId {
-	display: none;
-}
-</style>
 </head>
 
 <body>
@@ -363,30 +358,20 @@
 							class="icon-book"></i> <span class="menu-text"> 课程管理 </span>
 					</a></li>
 
-					<li>
-							<a href="#" class="dropdown-toggle">
-								<i class="icon-legal"></i>
-								<span class="menu-text"> 器械管理 </span>
+					<li><a href="#" class="dropdown-toggle"> <i
+							class="icon-legal"></i> <span class="menu-text"> 器械管理 </span> <b
+							class="arrow icon-angle-down"></b>
+					</a>
 
-								<b class="arrow icon-angle-down"></b>
-							</a>
+						<ul class="submenu">
+							<li><a href="<%=basePath%>admin/machinebuy.do"> <i
+									class="icon-double-angle-right"></i> 器械购置
+							</a></li>
 
-							<ul class="submenu">
-								<li>
-									<a href="<%=basePath%>admin/machinebuy.do">
-										<i class="icon-double-angle-right"></i>
-										器械购置
-									</a>
-								</li>
-
-								<li>
-									<a href="<%=basePath%>admin/machineuse.do">
-										<i class="icon-double-angle-right"></i>
-										器械使用
-									</a>
-								</li>
-							</ul>
-						</li>
+							<li><a href="<%=basePath%>admin/machineuse.do"> <i
+									class="icon-double-angle-right"></i> 器械使用
+							</a></li>
+						</ul></li>
 
 					<li><a href="<%=basePath%>admin/profit.do"> <i
 							class="icon-bar-chart"></i> <span class="menu-text"> 财务管理
@@ -429,30 +414,37 @@
 
 				<div class="page-content">
 					<div class="page-header">
-						<h1>消息修改</h1>
+						<h1>器械购置</h1>
 					</div>
 					<!-- /.page-header -->
-					
-					
 
 					<div class="row">
 						<div class="col-xs-12">
 							<!-- PAGE CONTENT BEGINS -->
 
-							<form class="form-horizontal" name="actForm" role="form"
-								action="<%=basePath%>admin/updateNews.do" method="post">
-								<input type="text" id="newId" name="newId" value="${a.newId }"/>
-
+							<form class="form-horizontal" role="form"
+								action="<%=basePath%>admin/addMachine.do" method="post">
 								<div class="form-group">
 									<label class="col-sm-3 control-label no-padding-right"
-										for="form-field-1"> 消息名称 </label>
+										for="form-field-1"> 器械名称 </label>
 
 									<div class="col-sm-9">
-										<input type="text" id="newsName" name="newsName"
-											value="${a.newsName }" class="col-xs-10 col-sm-5" />
+										<input type="text" id="machineName" name="machineName"
+											class="col-xs-10 col-sm-5" />
 									</div>
 								</div>
 
+								<div class="space-4"></div>
+
+								<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right"
+										for="form-field-1"> 器械品牌 </label>
+
+									<div class="col-sm-9">
+										<input type="text" id="machineBrand" name="machineBrand"
+											class="col-xs-10 col-sm-5" />
+									</div>
+								</div>
 
 
 
@@ -460,16 +452,33 @@
 
 								<div class="form-group">
 									<label class="col-sm-3 control-label no-padding-right"
-										for="form-field-11">消息内容</label>
-									<div class="col-sm-9">
-										<textarea id="newsConfig" name="newsConfig"
-											class="autosize-transition col-xs-10 col-sm-5">${a.newsConfig }</textarea>
-									</div>
+										for="form-field-1"> 单价 </label>
 
+									<div class="col-sm-9">
+										<input type="text" id="machineCost" name="machineCost"
+											class="col-xs-10 col-sm-5" placeholder="请输入数字" />
+									</div>
+								</div>
+
+								<div class="space-4"></div>
+
+								<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right"
+										for="form-field-1"> 购置数量 </label>
+
+									<div class="col-sm-9">
+
+										<input type="text" class="input-mini" id="machineCount"
+											name="machineCount" />
+
+									</div>
 								</div>
 
 
+
 								<div class="space-4"></div>
+
+
 								<!-- ///////////////////////////////////////////////////////////// -->
 
 
@@ -878,11 +887,11 @@
 								file_input.ace_file_input('reset_input');
 							});
 
-			$('#spinner1').ace_spinner({
+			$('#machineCount').ace_spinner({
 				value : 0,
 				min : 0,
 				max : 200,
-				step : 10,
+				step : 1,
 				btn_up_class : 'btn-info',
 				btn_down_class : 'btn-info'
 			}).on('change', function() {

@@ -358,9 +358,30 @@
 							class="icon-book"></i> <span class="menu-text"> 课程管理 </span>
 					</a></li>
 
-					<li><a href="<%=basePath%>admin/machine.do"> <i
-							class="icon-legal"></i> <span class="menu-text"> 器械管理 </span>
-					</a></li>
+					<li>
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-legal"></i>
+								<span class="menu-text"> 器械管理 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<li>
+									<a href="<%=basePath%>admin/machinebuy.do">
+										<i class="icon-double-angle-right"></i>
+										器械购置
+									</a>
+								</li>
+
+								<li>
+									<a href="<%=basePath%>admin/machineuse.do">
+										<i class="icon-double-angle-right"></i>
+										器械使用
+									</a>
+								</li>
+							</ul>
+						</li>
 
 					<li><a href="<%=basePath%>admin/profit.do"> <i
 							class="icon-bar-chart"></i> <span class="menu-text"> 财务管理

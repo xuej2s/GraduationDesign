@@ -7,7 +7,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>活动管理</title>
+<title>器械管理</title>
 <meta name="keywords"
 	content="Bootstrap模版,Bootstrap模版下载,Bootstrap教程,Bootstrap中文" />
 <meta name="description"
@@ -333,45 +333,37 @@
 							<i class="icon-calendar"></i> <span class="menu-text">
 								活动管理 </span>
 					</a></li>
-					
+
 
 					<li><a href="<%=basePath%>admin/vip.do"> <i
 							class="icon-group"></i> <span class="menu-text"> 会员管理 </span>
 					</a></li>
-					
-					<li class="active"><a href="<%=basePath%>admin/news.do">
-							<i class="icon-calendar"></i> <span class="menu-text">
-								消息管理 </span>
+
+					<li class="active"><a href="<%=basePath%>admin/news.do"> <i
+							class="icon-calendar"></i> <span class="menu-text"> 消息管理 </span>
 					</a></li>
 
 					<li><a href="<%=basePath%>admin/course.do"> <i
 							class="icon-book"></i> <span class="menu-text"> 课程管理 </span>
 					</a></li>
 
-					<li>
-							<a href="#" class="dropdown-toggle">
-								<i class="icon-legal"></i>
-								<span class="menu-text"> 器械管理 </span>
+					<%-- <li><a href="<%=basePath%>admin/machine.do"> <i
+							class="icon-legal"></i> <span class="menu-text"> 器械管理 </span>
+					</a></li> --%>
+					<li><a href="#" class="dropdown-toggle"> <i
+							class="icon-legal"></i> <span class="menu-text"> 器械管理 </span> <b
+							class="arrow icon-angle-down"></b>
+					</a>
 
-								<b class="arrow icon-angle-down"></b>
-							</a>
+						<ul class="submenu">
+							<li><a href="<%=basePath%>admin/machinebuy.do"> <i
+									class="icon-double-angle-right"></i> 器械购置
+							</a></li>
 
-							<ul class="submenu">
-								<li>
-									<a href="<%=basePath%>admin/machinebuy.do">
-										<i class="icon-double-angle-right"></i>
-										器械购置
-									</a>
-								</li>
-
-								<li>
-									<a href="<%=basePath%>admin/machineuse.do">
-										<i class="icon-double-angle-right"></i>
-										器械使用
-									</a>
-								</li>
-							</ul>
-						</li>
+							<li><a href="<%=basePath%>admin/machineuse.do"> <i
+									class="icon-double-angle-right"></i> 器械使用
+							</a></li>
+						</ul></li>
 
 					<li><a href="<%=basePath%>admin/profit.do"> <i
 							class="icon-bar-chart"></i> <span class="menu-text"> 财务管理
@@ -417,9 +409,17 @@
 						<div class="col-xs-12">
 
 							<div class="table-header">活动列表</div>
-							
-							
-											
+
+							<div
+								class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+								<a class="blue" href="<%=basePath%>admin/addmachine.do"> <i
+									class="icon-plus-sign bigger-130"></i>
+								</a> <a class="red"
+									href="<%=basePath %>admin/deletemachine.do?machineType=${a.machineType}">
+									<i class="icon-trash bigger-130"></i>
+								</a>
+							</div>
+
 							<div class="table-responsive">
 								<table id="sample-table-2"
 									class="table table-striped table-bordered table-hover">
@@ -428,12 +428,11 @@
 											<th class="center"><label> <input
 													type="checkbox" class="ace" /> <span class="lbl"></span>
 											</label></th>
-											<th>活动名称</th>
-											<th>适用会员</th>
-											<th>优惠项目</th>
-											<th>优惠</th>
-											<th>活动开始时间</th>
-											<th>活动结束时间</th>
+											<th>器械名</th>
+											<th>品牌</th>
+											<th>单价</th>
+											<th>数量</th>
+											<th>时间</th>
 											<!-- <th class="hidden-480">Clicks</th>
 
 											<th><i class="icon-time bigger-110 hidden-480"></i>
@@ -445,53 +444,26 @@
 									</thead>
 
 									<tbody>
-										<c:forEach items="${activityList }" var="a">
+										<c:forEach items="${machineList }" var="a">
 											<tr>
 												<td class="center"><label> <input
 														type="checkbox" class="ace" /> <span class="lbl"></span>
 												</label></td>
 
-												<td><c:out value="${a.activityName }"></c:out></td>
-												<c:choose>
-													<c:when test="${a.cardType == 0 }">
-														<td>所有会员</td>
-													</c:when>
-													<c:when test="${a.cardType == 1 }">
-														<td>年卡会员</td>
-													</c:when>
-													<c:when test="${a.cardType == 2 }">
-														<td>季卡会员</td>
-													</c:when>
-													<c:when test="${a.cardType == 3 }">
-														<td>月卡会员</td>
-													</c:when>
-												</c:choose>
-												
-												<c:choose>
-													<c:when test="${a.activityObj == 0 }">
-														<td>所有项目</td>
-													</c:when>
-													<c:when test="${a.activityObj == 1 }">
-														<td>办卡优惠</td>
-													</c:when>
-													<c:when test="${a.activityObj == 2 }">
-														<td>选课优惠</td>
-													</c:when>
-												</c:choose>
-												<td><c:out value="${a.discount }"></c:out></td>
-												<td><c:out value="${a.startTime }"></c:out></td>
-												<td><c:out value="${a.endTime }"></c:out></td>
+												<td><c:out value="${a.machineName }"></c:out></td>
+
+												<td><c:out value="${a.machineBrand }"></c:out></td>
+												<td><c:out value="${a.machineCost }"></c:out></td>
+												<td><c:out value="${a.machineCount }"></c:out></td>
+												<td><c:out value="${a.time }"></c:out></td>
 												<td>
 													<div
 														class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
-														<a class="blue" href="<%=basePath%>admin/addactivity.do">
+														<a class="blue" href="<%=basePath%>admin/addmachine.do">
 															<i class="icon-plus-sign bigger-130"></i>
-														</a> <a class="green"
-															href="<%=basePath %>admin/updateactivity.do?activityId=${a.activityId}&activityName=${a.activityName}&cardType=${a.cardType}&
-															activityObj=${a.activityObj}&discount=${a.discount}&startTime=${a.startTime}&endTime=${a.endTime}">
-															<i class="icon-pencil bigger-130"></i>
-														</a> <a class="red" href="<%=basePath %>admin/deleteactivity.do?activityId=${a.activityId}"> <i
-															class="icon-trash bigger-130"></i>
+														</a> <a class="red"
+															href="<%=basePath %>admin/deletemachine.do?machineType=${a.machineType}">
+															<i class="icon-trash bigger-130"></i>
 														</a>
 													</div>
 
@@ -529,9 +501,9 @@
 
 										</c:forEach>
 									</tbody>
-									
+
 								</table>
-							
+
 							</div>
 						</div>
 					</div>
@@ -668,7 +640,7 @@
 			var oTable1 = $('#sample-table-2').dataTable({
 				"aoColumns" : [ {
 					"bSortable" : false
-				}, null, null, null, null, null, null, {
+				}, null, null, null, null, null, {
 					"bSortable" : false
 				} ]
 			});
