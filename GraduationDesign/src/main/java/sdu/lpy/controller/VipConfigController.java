@@ -36,4 +36,18 @@ public class VipConfigController {
 		model.addAttribute("courseList", courses);
 		return "vConfigPage";
 	}
+	
+	@RequestMapping("updatepw.do")
+	public String updatepw(){
+		return "vUpdatePw";
+	}
+	
+	@RequestMapping("updatePw.do")
+	public String updatePw(HttpServletRequest request,String oldPw,String newPw){
+		String vipId = (String)request.getSession().getAttribute("vipId");
+		vipConfigService.updatePw(oldPw, newPw, vipId);
+		return "redirect:vipconfig.do";
+	}
+	
+	
 }

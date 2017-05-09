@@ -1,5 +1,6 @@
 package sdu.lpy.service.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -85,7 +86,7 @@ public class AdminCourseServiceImpl implements AdminCourseService {
 
 	public List<Course> getSelectedCourse(String vipId) {
 		// TODO Auto-generated method stub
-		List<Course> courses = null;
+		List<Course> courses = new ArrayList<Course>();
 		List<CourseSelect> courseSelects = courseSelectMapper.getSelectedCourses(vipId);
 		
 		for (int i = 0; i < courseSelects.size(); i++) {

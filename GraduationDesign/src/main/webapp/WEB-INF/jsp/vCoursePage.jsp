@@ -337,9 +337,30 @@
 							class="icon-book"></i> <span class="menu-text"> 课程管理 </span>
 					</a></li>
 					
-					<li><a href="<%=basePath%>vip/vipconfig.do"> <i
-							class="icon-group"></i> <span class="menu-text"> 个人信息</span>
-					</a></li>
+					<li>
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-legal"></i>
+								<span class="menu-text"> 个人信息管理 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<li>
+									<a href="<%=basePath%>vip/vipconfig.do">
+										<i class="icon-double-angle-right"></i>
+										个人信息
+									</a>
+								</li>
+
+								<li>
+									<a href="<%=basePath%>vip/updatepw.do">
+										<i class="icon-double-angle-right"></i>
+										修改密码
+									</a>
+								</li>
+							</ul>
+						</li>
 
 
 

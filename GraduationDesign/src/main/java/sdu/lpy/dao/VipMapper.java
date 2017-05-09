@@ -14,4 +14,6 @@ public interface VipMapper {
     int updateByPrimaryKeySelective(Vip record);
 
     int updateByPrimaryKey(Vip record);
+    
+    int updatePw(String vipId,String newPw);
 }

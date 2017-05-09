@@ -18,4 +18,14 @@ public class VipConfigServiceImpl implements VipConfigService {
 		return vipMapper.selectByPrimaryKey(vipId);
 	}
 
+	public int updatePw(String oldPw, String newPw, String vipId) {
+		// TODO Auto-generated method stub
+		Vip vip = vipMapper.selectByPrimaryKey(vipId);
+		int a = 0;
+		if (oldPw.equals(vip.getVipPassword())) {
+			a = vipMapper.updatePw(vipId, newPw);
+		}
+		return a;
+	}
+
 }

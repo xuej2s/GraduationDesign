@@ -6,4 +6,6 @@ public interface VipConfigService {
 	
 	Vip getVip(String vipId);
 	
+	int updatePw(String oldPw,String newPw,String vipId);
+	
 }

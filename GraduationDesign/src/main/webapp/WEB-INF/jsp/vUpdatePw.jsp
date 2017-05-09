@@ -413,7 +413,7 @@
 
 				<div class="page-content">
 					<div class="page-header">
-						<h1>消息详情</h1>
+						<h1>修改密码</h1>
 					</div>
 					<!-- /.page-header -->
 					
@@ -424,16 +424,15 @@
 							<!-- PAGE CONTENT BEGINS -->
 
 							<form class="form-horizontal" name="actForm" role="form"
-								action="<%=basePath%>vip/news.do" method="post">
-								<input type="text" id="newId" name="newId" value="${a.newId }"/>
+								action="<%=basePath%>vip/updatePw.do" method="post">
 
 								<div class="form-group">
 									<label class="col-sm-3 control-label no-padding-right"
-										for="form-field-1"> 消息名称 </label>
+										for="form-field-1"> 原密码 </label>
 
 									<div class="col-sm-9">
-										<input type="text" id="newsName" name="newsName"
-											value="${a.newsName }" class="col-xs-10 col-sm-5" readonly="readonly"/>
+										<input type="text" id="oldPw" name="oldPw"
+											 class="col-xs-10 col-sm-5" />
 									</div>
 								</div>
 
@@ -444,11 +443,11 @@
 								
 								<div class="form-group">
 									<label class="col-sm-3 control-label no-padding-right"
-										for="form-field-1"> 发布时间 </label>
+										for="form-field-1"> 新密码 </label>
 
 									<div class="col-sm-9">
-										<input type="text" id="newsTime" name="newsTime"
-											value="${a.newsTime }" class="col-xs-10 col-sm-5" readonly="readonly"/>
+										<input type="text" id="newPw" name="newPw"
+											 class="col-xs-10 col-sm-5" />
 									</div>
 								</div>
 
@@ -457,18 +456,7 @@
 
 								<div class="space-4"></div>
 
-								<div class="form-group">
-									<label class="col-sm-3 control-label no-padding-right"
-										for="form-field-11">消息内容</label>
-									<div class="col-sm-9">
-										<textarea id="newsConfig" name="newsConfig"
-											class="autosize-transition col-xs-10 col-sm-5" readonly="readonly">${a.newsConfig }</textarea>
-									</div>
-
-								</div>
-
-
-								<div class="space-4"></div>
+								
 								<!-- ///////////////////////////////////////////////////////////// -->
 
 
@@ -477,7 +465,7 @@
 								<div class="clearfix form-actions">
 									<div class="col-md-offset-3 col-md-9">
 										<button class="btn btn-info" type="submit">
-											<i class="icon-ok bigger-110"></i> back
+											<i class="icon-ok bigger-110"></i> submit
 										</button>
 
 										

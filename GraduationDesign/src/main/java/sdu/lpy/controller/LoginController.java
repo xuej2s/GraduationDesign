@@ -108,6 +108,7 @@ public class LoginController {
 		request.getSession().setAttribute("cardType", vip.getCardType());
 		List<News> newsList = adminNewsService.getNews();
 		model.addAttribute("newsList", newsList);
+		model.addAttribute("vipId", vipId);
 		System.out.println(vipId);
 		return "vHomePage";
 	}

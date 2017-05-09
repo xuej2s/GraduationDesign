@@ -114,6 +114,17 @@
     </set>
     where vip_id = #{vipId,jdbcType=VARCHAR}
   </update>
+  
+  <update id="updatePw" parameterType="java.lang.String">
+    update vip
+    <set>
+      
+      <if test="vipPassword != null">
+        vip_password = #{newPw,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where vip_id = #{vipId,jdbcType=VARCHAR}
+  </update>
   <update id="updateByPrimaryKey" parameterType="sdu.lpy.entity.Vip">
     update vip
     set vip_name = #{vipName,jdbcType=VARCHAR},

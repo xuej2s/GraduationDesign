@@ -20,7 +20,7 @@
     <include refid="Base_Column_List" />
     from activity_manage
     where start_time &lt;= #{date,jdbcType=TIMESTAMP}
-    	and endTime &gt;= #{date,jdbcType=TIMESTAMP}
+    	and end_time &gt;= #{date,jdbcType=TIMESTAMP}
   </select>
   
   <delete id="deleteActivity" parameterType="java.lang.String">
