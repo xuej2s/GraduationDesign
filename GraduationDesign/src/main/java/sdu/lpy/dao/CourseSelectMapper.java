@@ -1,5 +1,7 @@
 package sdu.lpy.dao;
 
+import java.util.List;
+
 import sdu.lpy.entity.CourseSelect;
 import sdu.lpy.entity.CourseSelectKey;
 
@@ -15,4 +17,6 @@ public interface CourseSelectMapper {
     int updateByPrimaryKeySelective(CourseSelect record);
 
     int updateByPrimaryKey(CourseSelect record);
+    
+    List<CourseSelect> getSelectedCourses(String vipId);
 }

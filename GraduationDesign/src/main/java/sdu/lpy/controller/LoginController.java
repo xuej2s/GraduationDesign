@@ -1,6 +1,7 @@
 package sdu.lpy.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.jms.Session;
 import javax.json.Json;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,7 +19,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSONObject;
 
 import net.sf.json.JSONArray;
+import sdu.lpy.entity.News;
+import sdu.lpy.entity.Vip;
+import sdu.lpy.service.AdminNewsService;
 import sdu.lpy.service.LoginService;
+import sdu.lpy.service.VipConfigService;
 import sdu.lpy.util.WebUtil;
 
 @Controller
@@ -26,7 +32,12 @@ public class LoginController {
 
 	@Autowired
 	private LoginService loginService;
+	
+	@Autowired
+	private VipConfigService vipConfigService;
 
+	@Autowired
+	private AdminNewsService adminNewsService;
 	//经营者登陆页面
 	@RequestMapping("admin.do")
 	public String adminLogin() {
@@ -91,10 +102,14 @@ public class LoginController {
 
 	//获取会员身份id
 	@RequestMapping("/vhomepage.do")
-	public String vHomePage(HttpServletRequest request) {
+	public String vHomePage(HttpServletRequest request,Model model) {
 		String vipId = (String) request.getSession().getAttribute("vipId");
+		Vip vip = vipConfigService.getVip(vipId);
+		request.getSession().setAttribute("cardType", vip.getCardType());
+		List<News> newsList = adminNewsService.getNews();
+		model.addAttribute("newsList", newsList);
 		System.out.println(vipId);
-		return "homePage";
+		return "vHomePage";
 	}
 
 }

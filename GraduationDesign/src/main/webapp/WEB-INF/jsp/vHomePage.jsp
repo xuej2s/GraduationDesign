@@ -329,6 +329,11 @@
 
 				<!-- 导航栏 -->
 				<ul class="nav nav-list">
+					
+
+
+					
+
 					<li class="active"><a href="<%=basePath%>vip/news.do"> <i
 							class="icon-comment"></i> <span class="menu-text"> 消息管理 </span>
 					</a></li>
@@ -336,31 +341,12 @@
 					<li><a href="<%=basePath%>vip/course.do"> <i
 							class="icon-book"></i> <span class="menu-text"> 课程管理 </span>
 					</a></li>
+					
+					<li><a href="<%=basePath%>vip/vipconfig.do"> <i
+							class="icon-group"></i> <span class="menu-text"> 个人信息</span>
+					</a></li>
 
-					<li>
-							<a href="#" class="dropdown-toggle">
-								<i class="icon-legal"></i>
-								<span class="menu-text"> 个人信息 </span>
-
-								<b class="arrow icon-angle-down"></b>
-							</a>
-
-							<ul class="submenu">
-								<li>
-									<a href="<%=basePath%>vip/config.do">
-										<i class="icon-double-angle-right"></i>
-										基本信息
-									</a>
-								</li>
-
-								<li>
-									<a href="<%=basePath%>vip/selectedcourse.do">
-										<i class="icon-double-angle-right"></i>
-										选课信息
-									</a>
-								</li>
-							</ul>
-						</li>
+					
 
 
 

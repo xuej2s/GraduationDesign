@@ -7,7 +7,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>消息管理</title>
+<title>课程管理</title>
 <meta name="keywords"
 	content="Bootstrap模版,Bootstrap模版下载,Bootstrap教程,Bootstrap中文" />
 <meta name="description"
@@ -336,31 +336,10 @@
 					<li><a href="<%=basePath%>vip/course.do"> <i
 							class="icon-book"></i> <span class="menu-text"> 课程管理 </span>
 					</a></li>
-
-					<li>
-							<a href="#" class="dropdown-toggle">
-								<i class="icon-legal"></i>
-								<span class="menu-text"> 个人信息 </span>
-
-								<b class="arrow icon-angle-down"></b>
-							</a>
-
-							<ul class="submenu">
-								<li>
-									<a href="<%=basePath%>vip/config.do">
-										<i class="icon-double-angle-right"></i>
-										基本信息
-									</a>
-								</li>
-
-								<li>
-									<a href="<%=basePath%>vip/selectedcourse.do">
-										<i class="icon-double-angle-right"></i>
-										选课信息
-									</a>
-								</li>
-							</ul>
-						</li>
+					
+					<li><a href="<%=basePath%>vip/vipconfig.do"> <i
+							class="icon-group"></i> <span class="menu-text"> 个人信息</span>
+					</a></li>
 
 
 
@@ -400,30 +379,54 @@
 					<div class="row">
 						<div class="col-xs-12">
 
-							<div class="table-header">消息列表</div>
+							<div class="table-header">课程列表</div>
 
 							<div class="table-responsive">
 								<table id="sample-table-2"
 									class="table table-striped table-bordered table-hover">
+									<thead>
+										<tr>
+											<th class="center"><label> <input
+													type="checkbox" class="ace" /> <span class="lbl"></span>
+											</label></th>
+											<th>课程名称</th>
+											<th>开始时间</th>
+											<th>结束时间</th>
+											<th>具体时间</th>
+											<th>费用</th>
+											<!-- <th class="hidden-480">Clicks</th>
+
+											<th><i class="icon-time bigger-110 hidden-480"></i>
+												Update</th>
+											<th class="hidden-480">Status</th> -->
+
+											<th></th>
+										</tr>
+									</thead>
 
 									<tbody>
-										<c:forEach items="${newsList }" var="a">
+										<c:forEach items="${courseList }" var="a">
 											<tr>
+												<td class="center"><label> <input
+														type="checkbox" class="ace" /> <span class="lbl"></span>
+												</label></td>
 
+												<td><c:out value="${a.courseName }"></c:out></td>
 
-												<td><c:out value="${a.newsName }"></c:out></td>
-
-												<td><c:out value="${a.newsTime }"></c:out></td>
-
+												<td><c:out value="${a.startTime }"></c:out></td>
+												<td><c:out value="${a.endTime }"></c:out></td>
+												<td><c:out value="${a.weekend }"></c:out></td>
+												<td><c:out value="${a.courseCost }"></c:out></td>
 												<td>
 													<div
 														class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
-
 														<a class="yellow"
-															href="<%=basePath%>vip/shownews.do?newId=${a.newId}"
+															href="<%=basePath%>vip/courseselected.do?courseId=${a.courseId}
+															&vipId=${vipId}&courseCost=${a.courseCost }&cardType=${cardType}"
 															>
 															<i class="icon-zoom-in bigger-130"></i>
 														</a>
+														
 													</div>
 
 													<div class="visible-xs visible-sm hidden-md hidden-lg">
@@ -460,7 +463,9 @@
 
 										</c:forEach>
 									</tbody>
+
 								</table>
+
 							</div>
 						</div>
 					</div>
@@ -595,7 +600,9 @@
 	<script type="text/javascript">
 		jQuery(function($) {
 			var oTable1 = $('#sample-table-2').dataTable({
-				"aoColumns" : [ null, null, {
+				"aoColumns" : [ {
+					"bSortable" : false
+				}, null, null, null, null, null, {
 					"bSortable" : false
 				} ]
 			});

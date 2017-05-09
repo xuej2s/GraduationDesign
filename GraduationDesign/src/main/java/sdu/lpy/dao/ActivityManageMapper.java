@@ -1,5 +1,6 @@
 package sdu.lpy.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import sdu.lpy.entity.ActivityManage;
@@ -7,7 +8,7 @@ import sdu.lpy.entity.ActivityManage;
 public interface ActivityManageMapper {
     
 
-	ActivityManage selectByPrimaryKey(String activityId);
+	List<ActivityManage> selectByDate(Date date);
 
 
 	int updateByPrimaryKey(ActivityManage record);

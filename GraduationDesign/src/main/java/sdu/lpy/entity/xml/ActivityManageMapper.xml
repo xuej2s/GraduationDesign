@@ -15,11 +15,12 @@
     activity_id, activity_name, card_type, activity_obj, start_time, end_time, discount
   </sql>
   
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectByDate" parameterType="java.util.Date" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from activity_manage
-    where activity_id = #{activityId,jdbcType=VARCHAR}
+    where start_time &lt;= #{date,jdbcType=TIMESTAMP}
+    	and endTime &gt;= #{date,jdbcType=TIMESTAMP}
   </select>
   
   <delete id="deleteActivity" parameterType="java.lang.String">
