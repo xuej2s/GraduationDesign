@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="sdu.lpy.entity.Card">
     <id column="card_type" jdbcType="CHAR" property="cardType" />
     <result column="card_name" jdbcType="VARCHAR" property="cardName" />
-    <result column="card_cost" jdbcType="VARCHAR" property="cardCost" />
+    <result column="card_cost" jdbcType="DOUBLE" property="cardCost" />
     <result column="card_time" jdbcType="INTEGER" property="cardTime" />
   </resultMap>
   <sql id="Base_Column_List">

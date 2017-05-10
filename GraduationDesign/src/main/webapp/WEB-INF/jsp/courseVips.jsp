@@ -405,14 +405,9 @@
 					<div class="row">
 						<div class="col-xs-12">
 
-							<div class="table-header">课程列表</div>
+							<div class="table-header">选课会员信息</div>
 
-							<div
-								class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
-								<a class="blue" href="<%=basePath%>admin/addcourse.do"> <i
-									class="icon-plus-sign bigger-130"></i>
-								</a> 
-							</div>
+
 
 							<div class="table-responsive">
 								<table id="sample-table-2"
@@ -422,11 +417,11 @@
 											<th class="center"><label> <input
 													type="checkbox" class="ace" /> <span class="lbl"></span>
 											</label></th>
-											<th>课程名称</th>
-											<th>开始时间</th>
-											<th>结束时间</th>
-											<th>具体时间</th>
-											<th>费用</th>
+											<th>账号</th>
+											<th>姓名</th>
+											<th>性别</th>
+											<th>联系方式</th>
+											<th>会员类型</th>
 											<!-- <th class="hidden-480">Clicks</th>
 
 											<th><i class="icon-time bigger-110 hidden-480"></i>
@@ -438,34 +433,35 @@
 									</thead>
 
 									<tbody>
-										<c:forEach items="${courseList }" var="a">
+										<c:forEach items="${vips }" var="a">
 											<tr>
 												<td class="center"><label> <input
 														type="checkbox" class="ace" /> <span class="lbl"></span>
 												</label></td>
 
-												<td><c:out value="${a.courseName }"></c:out></td>
+												<td><c:out value="${a.vipId }"></c:out></td>
 
-												<td><c:out value="${a.startTime }"></c:out></td>
-												<td><c:out value="${a.endTime }"></c:out></td>
-												<td><c:out value="${a.weekend }"></c:out></td>
-												<td><c:out value="${a.courseCost }"></c:out></td>
+												<td><c:out value="${a.vipName }"></c:out></td>
+												<td><c:out value="${a.vipSex }"></c:out></td>
+												<td><c:out value="${a.vipTel }"></c:out></td>
+												
+												<c:choose>
+													<c:when test="${a.cardType == 1}">
+														<td>年卡会员</td>
+													</c:when>
+													<c:when test="${a.cardType == 2}">
+														<td>季卡会员</td>
+													</c:when>
+													<c:when test="${a.cardType == 3}">
+														<td>月卡会员</td>
+													</c:when>
+												</c:choose>
+												
 												<td>
 													<div
 														class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
-														<a class="yellow"
-															href="<%=basePath%>admin/showcourse.do?courseId=${a.courseId}"
-															>
-															<i class="icon-zoom-in bigger-130"></i>
-														</a>
-														<a class="blue" href="<%=basePath%>admin/addcourse.do">
-															<i class="icon-plus-sign bigger-130"></i>
-														</a> <a class="green"
-															href="<%=basePath %>admin/updatecourse.do?courseId=${a.courseId}&courseName=${a.courseName}&startTime=${a.startTime}&
-															endTime=${a.endTime}&weekend=${a.weekend}&courseCost=${a.courseCost}">
-															<i class="icon-pencil bigger-130"></i>
-														</a> <a class="red"
-															href="<%=basePath %>admin/deletecourse.do?courseId=${a.courseId}">
+														 <a class="red"
+															href="<%=basePath %>admin/deletevip.do?courseId=${courseId}&vipId=${a.vipId}">
 															<i class="icon-trash bigger-130"></i>
 														</a>
 													</div>

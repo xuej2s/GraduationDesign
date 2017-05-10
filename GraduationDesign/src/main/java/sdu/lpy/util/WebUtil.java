@@ -2,6 +2,7 @@ package sdu.lpy.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
 
@@ -43,6 +44,15 @@ public class WebUtil {
 	public static String getCurrentTime(){
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
 		return df.format(new Date());// new Date()为获取当前系统时间
+	}
+	
+	public static Date getEndTime(Date currentTime ,int day){
+		
+		Calendar date = Calendar.getInstance();
+		date.setTime(currentTime);
+		
+		date.set(Calendar.DATE, date.get(Calendar.DATE) + day);
+		return date.getTime();
 	}
 	
 }

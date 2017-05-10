@@ -10,9 +10,11 @@ import org.springframework.stereotype.Service;
 import sdu.lpy.dao.ActivityManageMapper;
 import sdu.lpy.dao.CourseMapper;
 import sdu.lpy.dao.CourseSelectMapper;
+import sdu.lpy.dao.VipMapper;
 import sdu.lpy.entity.ActivityManage;
 import sdu.lpy.entity.Course;
 import sdu.lpy.entity.CourseSelect;
+import sdu.lpy.entity.Vip;
 import sdu.lpy.service.AdminCourseService;
 
 @Service("adminCourseService")
@@ -26,6 +28,9 @@ public class AdminCourseServiceImpl implements AdminCourseService {
 	
 	@Autowired
 	private CourseSelectMapper courseSelectMapper;
+	
+	@Autowired
+	private VipMapper vipMapper;
 	
 	public int deleteByPrimaryKey(String courseId) {
 		// TODO Auto-generated method stub
@@ -94,6 +99,19 @@ public class AdminCourseServiceImpl implements AdminCourseService {
 			courses.add(course);
 		}
 		return courses;
+	}
+
+	public List<Vip> showCourseSelectedVips(String courseId) {
+		// TODO Auto-generated method stub
+		List<CourseSelect> courseSelects = courseSelectMapper.getCourseSelectedVips(courseId);
+		List<Vip> vips = new ArrayList<Vip>();
+		
+		for (int i = 0; i < courseSelects.size(); i++) {
+			String vipId = courseSelects.get(i).getVipId();
+			Vip vip = vipMapper.selectByPrimaryKey(vipId);
+			vips.add(vip);
+		}
+		return vips;
 	}
 
 	

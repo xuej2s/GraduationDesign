@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import sdu.lpy.entity.ActivityManage;
 import sdu.lpy.entity.Course;
+import sdu.lpy.entity.Vip;
 import sdu.lpy.service.AdminCourseService;
 import sdu.lpy.util.WebUtil;
 
@@ -73,6 +74,14 @@ public class AdminCourseController {
 		course.setEndTime(dates[1]);
 		adminCourseService.updateByPrimaryKeySelective(course);
 		return "redirect:course.do";
+	}
+	
+	@RequestMapping("showcourse.do")
+	public String showcourse(String courseId,Model model){
+		List<Vip> vips = adminCourseService.showCourseSelectedVips(courseId);
+		model.addAttribute("vips", vips);
+		model.addAttribute("courseId", courseId);
+		return "courseVips";
 	}
 
 }

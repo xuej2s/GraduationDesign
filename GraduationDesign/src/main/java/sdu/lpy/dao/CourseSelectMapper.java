@@ -19,4 +19,6 @@ public interface CourseSelectMapper {
     int updateByPrimaryKey(CourseSelect record);
     
     List<CourseSelect> getSelectedCourses(String vipId);
+    
+    List<CourseSelect> getCourseSelectedVips(String courseId);
 }

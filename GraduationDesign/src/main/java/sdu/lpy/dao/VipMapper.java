@@ -1,5 +1,7 @@
 package sdu.lpy.dao;
 
+import java.util.List;
+
 import sdu.lpy.entity.Vip;
 
 public interface VipMapper {
@@ -10,6 +12,8 @@ public interface VipMapper {
     int insertSelective(Vip record);
 
     Vip selectByPrimaryKey(String vipId);
+    
+    List<Vip> getAllVips();
 
     int updateByPrimaryKeySelective(Vip record);
 

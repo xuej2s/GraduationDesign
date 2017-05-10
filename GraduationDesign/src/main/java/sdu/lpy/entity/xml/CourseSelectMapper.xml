@@ -27,6 +27,13 @@
     where vip_id = #{vipId,jdbcType=VARCHAR}
   </select>
   
+  <select id="getCourseSelectedVips" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from course_select
+    where course_id = #{courseId,jdbcType=VARCHAR}
+  </select>
+  
   
   <delete id="deleteByPrimaryKey" parameterType="sdu.lpy.entity.CourseSelectKey">
     delete from course_select

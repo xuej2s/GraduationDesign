@@ -5,7 +5,7 @@ public class Card {
 
     private String cardName;
 
-    private String cardCost;
+    private double cardCost;
 
     private Integer cardTime;
 
@@ -25,12 +25,12 @@ public class Card {
         this.cardName = cardName == null ? null : cardName.trim();
     }
 
-    public String getCardCost() {
+    public double getCardCost() {
         return cardCost;
     }
 
-    public void setCardCost(String cardCost) {
-        this.cardCost = cardCost == null ? null : cardCost.trim();
+    public void setCardCost(Double cardCost) {
+        this.cardCost = cardCost == null ? null : cardCost;
     }
 
     public Integer getCardTime() {

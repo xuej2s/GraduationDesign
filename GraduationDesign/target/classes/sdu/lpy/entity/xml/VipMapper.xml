@@ -20,6 +20,15 @@
     from vip
     where vip_id = #{vipId,jdbcType=VARCHAR}
   </select>
+  
+  
+  <select id="getAllVips" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from vip
+    
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from vip
     where vip_id = #{vipId,jdbcType=VARCHAR}

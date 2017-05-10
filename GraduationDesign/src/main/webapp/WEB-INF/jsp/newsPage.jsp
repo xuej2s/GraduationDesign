@@ -329,38 +329,43 @@
 
 				<!-- 导航栏 -->
 				<ul class="nav nav-list">
-					<li class="active"><a href="<%=basePath%>vip/news.do"> <i
-							class="icon-comment"></i> <span class="menu-text"> 消息管理 </span>
+					<li class="active"><a href="<%=basePath%>admin/activity.do">
+							<i class="icon-calendar"></i> <span class="menu-text">
+								活动管理 </span>
 					</a></li>
 
-					<li><a href="<%=basePath%>vip/course.do"> <i
+
+					<li><a href="<%=basePath%>admin/vip.do"> <i
+							class="icon-group"></i> <span class="menu-text"> 会员管理 </span>
+					</a></li>
+
+					<li class="active"><a href="<%=basePath%>admin/news.do"> <i
+							class="icon-calendar"></i> <span class="menu-text"> 消息管理 </span>
+					</a></li>
+
+					<li><a href="<%=basePath%>admin/course.do"> <i
 							class="icon-book"></i> <span class="menu-text"> 课程管理 </span>
 					</a></li>
 
-					<li>
-							<a href="#" class="dropdown-toggle">
-								<i class="icon-legal"></i>
-								<span class="menu-text"> 个人信息 </span>
+					<li><a href="#" class="dropdown-toggle"> <i
+							class="icon-legal"></i> <span class="menu-text"> 器械管理 </span> <b
+							class="arrow icon-angle-down"></b>
+					</a>
 
-								<b class="arrow icon-angle-down"></b>
-							</a>
+						<ul class="submenu">
+							<li><a href="<%=basePath%>admin/machinebuy.do"> <i
+									class="icon-double-angle-right"></i> 器械购置
+							</a></li>
 
-							<ul class="submenu">
-								<li>
-									<a href="<%=basePath%>vip/config.do">
-										<i class="icon-double-angle-right"></i>
-										基本信息
-									</a>
-								</li>
+							<li><a href="<%=basePath%>admin/machineuse.do"> <i
+									class="icon-double-angle-right"></i> 器械使用
+							</a></li>
+						</ul></li>
 
-								<li>
-									<a href="<%=basePath%>vip/selectedcourse.do">
-										<i class="icon-double-angle-right"></i>
-										选课信息
-									</a>
-								</li>
-							</ul>
-						</li>
+					<li><a href="<%=basePath%>admin/profit.do"> <i
+							class="icon-bar-chart"></i> <span class="menu-text"> 财务管理
+						</span>
+					</a></li>
 
 
 
@@ -420,9 +425,16 @@
 														class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
 
 														<a class="yellow"
-															href="<%=basePath%>vip/shownews.do?newId=${a.newId}"
-															>
+															href="<%=basePath%>vip/shownews.do?newId=${a.newId}">
 															<i class="icon-zoom-in bigger-130"></i>
+														</a> <a class="blue" href="<%=basePath%>admin/addnews.do">
+															<i class="icon-plus-sign bigger-130"></i>
+														</a> <a class="green"
+															href="<%=basePath %>admin/updatenews.do?newId=${a.newId}&newsName=${a.newsName}&newsConfig=${a.newsConfig}">
+															<i class="icon-pencil bigger-130"></i>
+														</a> <a class="red"
+															href="<%=basePath %>admin/deletenews.do?newId=${a.newId}">
+															<i class="icon-trash bigger-130"></i>
 														</a>
 													</div>
 
