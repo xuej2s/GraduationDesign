@@ -58,7 +58,7 @@ public class AdminVipController {
 	public String deletevip(String vipId) {
 		
 		vipConfigService.deleteByPrimaryKey(vipId);
-		return "redirect:activity.do";
+		return "redirect:vip.do";
 
 	}
 }

@@ -333,45 +333,34 @@
 							<i class="icon-calendar"></i> <span class="menu-text">
 								活动管理 </span>
 					</a></li>
-					
+
 
 					<li><a href="<%=basePath%>admin/vip.do"> <i
 							class="icon-group"></i> <span class="menu-text"> 会员管理 </span>
 					</a></li>
-					
-					<li class="active"><a href="<%=basePath%>admin/news.do">
-							<i class="icon-calendar"></i> <span class="menu-text">
-								消息管理 </span>
+
+					<li class="active"><a href="<%=basePath%>admin/news.do"> <i
+							class="icon-calendar"></i> <span class="menu-text"> 消息管理 </span>
 					</a></li>
 
 					<li><a href="<%=basePath%>admin/course.do"> <i
 							class="icon-book"></i> <span class="menu-text"> 课程管理 </span>
 					</a></li>
 
-					<li>
-							<a href="#" class="dropdown-toggle">
-								<i class="icon-legal"></i>
-								<span class="menu-text"> 器械管理 </span>
+					<li><a href="#" class="dropdown-toggle"> <i
+							class="icon-legal"></i> <span class="menu-text"> 器械管理 </span> <b
+							class="arrow icon-angle-down"></b>
+					</a>
 
-								<b class="arrow icon-angle-down"></b>
-							</a>
+						<ul class="submenu">
+							<li><a href="<%=basePath%>admin/machinebuy.do"> <i
+									class="icon-double-angle-right"></i> 器械购置
+							</a></li>
 
-							<ul class="submenu">
-								<li>
-									<a href="<%=basePath%>admin/machinebuy.do">
-										<i class="icon-double-angle-right"></i>
-										器械购置
-									</a>
-								</li>
-
-								<li>
-									<a href="<%=basePath%>admin/machineuse.do">
-										<i class="icon-double-angle-right"></i>
-										器械使用
-									</a>
-								</li>
-							</ul>
-						</li>
+							<li><a href="<%=basePath%>admin/machineuse.do"> <i
+									class="icon-double-angle-right"></i> 器械使用
+							</a></li>
+						</ul></li>
 
 					<li><a href="<%=basePath%>admin/profit.do"> <i
 							class="icon-bar-chart"></i> <span class="menu-text"> 财务管理
@@ -417,9 +406,21 @@
 						<div class="col-xs-12">
 
 							<div class="table-header">活动列表</div>
-							
-							
-											
+							<div
+								class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+								<a class="blue" href="<%=basePath%>admin/addactivity.do"> <i
+									class="icon-plus-sign bigger-130"></i>
+								</a> <a class="green"
+									href="<%=basePath %>admin/updateactivity.do?activityId=${a.activityId}&activityName=${a.activityName}&cardType=${a.cardType}&
+															activityObj=${a.activityObj}&discount=${a.discount}&startTime=${a.startTime}&endTime=${a.endTime}">
+									<i class="icon-pencil bigger-130"></i>
+								</a> <a class="red"
+									href="<%=basePath %>admin/deleteactivity.do?activityId=${a.activityId}">
+									<i class="icon-trash bigger-130"></i>
+								</a>
+							</div>
+
+
 							<div class="table-responsive">
 								<table id="sample-table-2"
 									class="table table-striped table-bordered table-hover">
@@ -466,7 +467,7 @@
 														<td>月卡会员</td>
 													</c:when>
 												</c:choose>
-												
+
 												<c:choose>
 													<c:when test="${a.activityObj == 0 }">
 														<td>所有项目</td>
@@ -490,8 +491,9 @@
 															href="<%=basePath %>admin/updateactivity.do?activityId=${a.activityId}&activityName=${a.activityName}&cardType=${a.cardType}&
 															activityObj=${a.activityObj}&discount=${a.discount}&startTime=${a.startTime}&endTime=${a.endTime}">
 															<i class="icon-pencil bigger-130"></i>
-														</a> <a class="red" href="<%=basePath %>admin/deleteactivity.do?activityId=${a.activityId}"> <i
-															class="icon-trash bigger-130"></i>
+														</a> <a class="red"
+															href="<%=basePath %>admin/deleteactivity.do?activityId=${a.activityId}">
+															<i class="icon-trash bigger-130"></i>
 														</a>
 													</div>
 
@@ -529,9 +531,9 @@
 
 										</c:forEach>
 									</tbody>
-									
+
 								</table>
-							
+
 							</div>
 						</div>
 					</div>

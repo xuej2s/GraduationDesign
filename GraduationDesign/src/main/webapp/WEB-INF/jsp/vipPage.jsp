@@ -407,6 +407,13 @@
 
 							<div class="table-header">会员信息</div>
 
+							<div
+								class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+								<a class="blue" href="<%=basePath%>admin/addvip.do"> <i
+									class="icon-plus-sign bigger-130"></i>
+								</a> 
+							</div>
+
 
 
 							<div class="table-responsive">
@@ -465,8 +472,7 @@
 															<i class="icon-zoom-in bigger-130"></i>
 														</a> <a class="blue" href="<%=basePath%>admin/addvip.do">
 															<i class="icon-plus-sign bigger-130"></i>
-														</a> 
-														 <a class="red"
+														</a> <a class="red"
 															href="<%=basePath %>admin/deletevip.do?vipId=${a.vipId}">
 															<i class="icon-trash bigger-130"></i>
 														</a>
