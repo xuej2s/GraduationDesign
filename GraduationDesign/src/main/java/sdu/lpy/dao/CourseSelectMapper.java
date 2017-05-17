@@ -1,9 +1,11 @@
 package sdu.lpy.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import sdu.lpy.entity.CourseSelect;
 import sdu.lpy.entity.CourseSelectKey;
+import sdu.lpy.entity.TestGroup;
 
 public interface CourseSelectMapper {
     int deleteByPrimaryKey(CourseSelectKey key);
@@ -21,4 +23,7 @@ public interface CourseSelectMapper {
     List<CourseSelect> getSelectedCourses(String vipId);
     
     List<CourseSelect> getCourseSelectedVips(String courseId);
+    
+    List<TestGroup> testGroupBy();
+    
 }

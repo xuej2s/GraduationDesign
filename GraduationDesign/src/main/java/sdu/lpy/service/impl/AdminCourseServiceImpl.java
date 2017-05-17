@@ -65,15 +65,11 @@ public class AdminCourseServiceImpl implements AdminCourseService {
 			for (int i = 0; i < activityManages.size(); i++) {
 				String actObj = activityManages.get(i).getActivityObj();
 				String actCardType = activityManages.get(i).getCardType();
-				if (actObj == "0" || actObj == "2") {
-					if (actCardType == "0" || actCardType == cardType) {
+				if (actObj.equals("0") || actObj.equals("2")) {
+					if (actCardType.equals("0") || actCardType.equals(cardType)) {
 						discount = activityManages.get(i).getDiscount();
 						break;
-					}else {
-						activityManages.remove(i);
 					}
-				}else {
-					activityManages.remove(i);
 				}
 			}
 		}
@@ -83,7 +79,6 @@ public class AdminCourseServiceImpl implements AdminCourseService {
 			double cost = record.getCourseCost();
 			
 			double cost1 = cost * discount;
-			System.out.println(cost1+"11111111111");
 			record.setCourseCost(cost1);
 			return courseSelectMapper.insertSelective(record);
 		

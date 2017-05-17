@@ -34,6 +34,12 @@ public class WebUtil {
 		return sdate;
 	}
 	
+	public static String changeDateToStringyyyy(Date date){
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		String sdate = sdf.format(date);
+		return sdate;
+	}
+	
 	public static String autoCreateId(){
 		UUID uuid = UUID.randomUUID();
 		String id = uuid.toString();

@@ -1,7 +1,9 @@
 package sdu.lpy.service;
 
+import java.util.Date;
 import java.util.List;
 
+import sdu.lpy.entity.CardFee;
 import sdu.lpy.entity.Vip;
 
 public interface VipConfigService {
@@ -15,5 +17,9 @@ public interface VipConfigService {
 	int insertSelective(Vip record);
 	
 	int deleteByPrimaryKey(String vipId);
+	
+	List<CardFee> getCardFee(Date date);
+	
+	int insertCardFee();
 	
 }

@@ -1,6 +1,7 @@
 package sdu.lpy.controller;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import javax.jms.Session;
@@ -51,7 +52,9 @@ public class LoginController {
 	public String aLogin(String inputEmail, String inputPassword) {
 
 		if (inputPassword.equals(loginService.getAdminPwd(inputEmail))) {
-
+			if (vipConfigService.getCardFee(new Date()).size() == 0) {
+				vipConfigService.insertCardFee();
+			}
 			return "homePage";
 
 		} else {

@@ -34,6 +34,21 @@
     where course_id = #{courseId,jdbcType=VARCHAR}
   </select>
   
+  <!-- //////////////////////////////////////////////////////// -->
+  <resultMap id="testGroup" type="sdu.lpy.entity.TestGroup">
+   
+    <result column="selectTime" jdbcType="VARCHAR" property="selectTime" />
+    <result column="profit" jdbcType="DOUBLE" property="profit" />
+    
+  </resultMap>
+  <select id="testGroupBy" resultMap="testGroup">
+  	select date_format(select_time,'%Y/%m/%d') selectTime, sum(course_cost) profit
+	from course_select
+	group by date_format(select_time,'%Y/%m/%d')
+  </select>
+  
+  
+  <!-- ///////////////////////////////////////////////////////// -->
   
   <delete id="deleteByPrimaryKey" parameterType="sdu.lpy.entity.CourseSelectKey">
     delete from course_select

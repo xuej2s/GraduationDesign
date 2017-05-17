@@ -65,22 +65,24 @@ public class VipConfigServiceImpl implements VipConfigService {
 
 		List<ActivityManage> activityManages = activityManageMapper.selectByDate(date);
 		double discount = 1;
+		
+		
+		
+		
 		// 判断是否有活动优惠
 		if (activityManages.size() > 0) {
 
 			for (int i = 0; i < activityManages.size(); i++) {
 				String actObj = activityManages.get(i).getActivityObj();
 				String actCardType = activityManages.get(i).getCardType();
-				if (actObj == "0" || actObj == "1") {
-					if (actCardType == "0" || actCardType == cardType) {
+				
+				if (actObj.equals("0") || actObj.equals("1")) {
+					if (actCardType.equals("0") || actCardType.equals(cardType) ) {
+						
 						discount = activityManages.get(i).getDiscount();
 						break;
-					} else {
-						activityManages.remove(i);
 					}
-				} else {
-					activityManages.remove(i);
-				}
+				} 
 			}
 		}
 		int days = card.getCardTime();
@@ -106,6 +108,26 @@ public class VipConfigServiceImpl implements VipConfigService {
 	public int deleteByPrimaryKey(String vipId) {
 		// TODO Auto-generated method stub
 		return vipMapper.deleteByPrimaryKey(vipId);
+	}
+
+	public List<CardFee> getCardFee(Date date) {
+		// TODO Auto-generated method stub
+		String dateString = WebUtil.changeDateToStringyyyy(date);
+		
+		
+		return cardFeeMapper.getCardFee(dateString);
+	}
+
+	public int insertCardFee() {
+		// TODO Auto-generated method stub
+		CardFee cardFee = new CardFee();
+		cardFee.setCardType("1");
+		cardFee.setCardFee((double) 0);
+		cardFee.setVipId(WebUtil.autoCreateId());
+		cardFee.setStartTime(new Date());
+		
+		
+		return cardFeeMapper.insertSelective(cardFee);
 	}
 
 }

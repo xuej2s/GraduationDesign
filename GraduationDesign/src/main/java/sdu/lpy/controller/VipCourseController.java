@@ -27,14 +27,12 @@ public class VipCourseController {
 		model.addAttribute("courseList", courses);
 		String vipId = (String) request.getSession().getAttribute("vipId");
 		model.addAttribute("vipId", vipId);
-		System.out.println(vipId+"course");
 		return "vCoursePage";
 	}
 	
 	//选课
 	@RequestMapping("courseselected.do")
 	public String courseselected(CourseSelect courseSelect,String cardType){
-		System.out.println(courseSelect.getVipId());
 		adminCourseService.insertSelective(courseSelect,cardType);
 		return "redirect:vipconfig.do";
 	}
