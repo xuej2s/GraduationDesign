@@ -4,6 +4,7 @@ import java.util.List;
 
 import sdu.lpy.entity.Course;
 import sdu.lpy.entity.CourseSelect;
+import sdu.lpy.entity.CourseSelectKey;
 import sdu.lpy.entity.Vip;
 
 public interface AdminCourseService {
@@ -21,4 +22,6 @@ public interface AdminCourseService {
     int insertSelective(CourseSelect record,String cardType);
     
     List<Vip> showCourseSelectedVips(String courseId);
+    
+    int deleteByPrimaryKey(CourseSelectKey key);
 }

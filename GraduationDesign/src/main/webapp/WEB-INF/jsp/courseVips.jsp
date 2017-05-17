@@ -362,10 +362,23 @@
 							</a></li>
 						</ul></li>
 
-					<li><a href="<%=basePath%>admin/profit.do"> <i
-							class="icon-bar-chart"></i> <span class="menu-text"> 财务管理
-						</span>
-					</a></li>
+
+					<li><a href="#" class="dropdown-toggle"> <i
+							class="icon-legal"></i> <span class="menu-text"> 财务管理 </span> <b
+							class="arrow icon-angle-down"></b>
+					</a>
+
+						<ul class="submenu">
+							<li><a href="<%=basePath%>admin/profit.do"> <i
+									class="icon-bar-chart"></i> 财务管理
+							</a></li>
+
+							<li><a href="<%=basePath%>admin/chart.do"> <i
+									class="icon-bar-chart"></i> 图表展示
+							</a></li>
+						</ul></li>
+
+
 
 
 
@@ -461,7 +474,7 @@
 													<div
 														class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
 														 <a class="red"
-															href="<%=basePath %>admin/deletevip.do?courseId=${courseId}&vipId=${a.vipId}">
+															href="<%=basePath %>admin/deletecoursevip.do?courseId=${courseId}&vipId=${a.vipId}">
 															<i class="icon-trash bigger-130"></i>
 														</a>
 													</div>

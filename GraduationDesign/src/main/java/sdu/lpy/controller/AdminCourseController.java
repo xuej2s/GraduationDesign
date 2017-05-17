@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import sdu.lpy.entity.ActivityManage;
 import sdu.lpy.entity.Course;
+import sdu.lpy.entity.CourseSelectKey;
 import sdu.lpy.entity.Vip;
 import sdu.lpy.service.AdminCourseService;
 import sdu.lpy.util.WebUtil;
@@ -83,5 +84,16 @@ public class AdminCourseController {
 		model.addAttribute("courseId", courseId);
 		return "courseVips";
 	}
+	
+	@RequestMapping("deletecoursevip")
+	public String showcourse(String courseId,String vipId){
+		CourseSelectKey key = new CourseSelectKey();
+		key.setCourseId(courseId);
+		key.setVipId(vipId);
+		adminCourseService.deleteByPrimaryKey(key);
+		return "redirect:showcourse.do";
+	}
+	
+	
 
 }

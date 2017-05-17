@@ -347,9 +347,6 @@
 							class="icon-book"></i> <span class="menu-text"> 课程管理 </span>
 					</a></li>
 
-					<%-- <li><a href="<%=basePath%>admin/machine.do"> <i
-							class="icon-legal"></i> <span class="menu-text"> 器械管理 </span>
-					</a></li> --%>
 					<li><a href="#" class="dropdown-toggle"> <i
 							class="icon-legal"></i> <span class="menu-text"> 器械管理 </span> <b
 							class="arrow icon-angle-down"></b>
@@ -365,10 +362,23 @@
 							</a></li>
 						</ul></li>
 
-					<li><a href="<%=basePath%>admin/profit.do"> <i
-							class="icon-bar-chart"></i> <span class="menu-text"> 财务管理
-						</span>
-					</a></li>
+
+					<li><a href="#" class="dropdown-toggle"> <i
+							class="icon-legal"></i> <span class="menu-text"> 财务管理 </span> <b
+							class="arrow icon-angle-down"></b>
+					</a>
+
+						<ul class="submenu">
+							<li><a href="<%=basePath%>admin/profit.do"> <i
+									class="icon-bar-chart"></i> 财务管理
+							</a></li>
+
+							<li><a href="<%=basePath%>admin/chart.do"> <i
+									class="icon-bar-chart"></i> 图表展示
+							</a></li>
+						</ul></li>
+
+
 
 
 

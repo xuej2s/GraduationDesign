@@ -349,48 +349,51 @@
 								活动管理 </span>
 					</a></li>
 
+
 					<li><a href="<%=basePath%>admin/vip.do"> <i
 							class="icon-group"></i> <span class="menu-text"> 会员管理 </span>
 					</a></li>
-					
-					<li class="active"><a href="<%=basePath%>admin/news.do">
-							<i class="icon-calendar"></i> <span class="menu-text">
-								消息管理 </span>
+
+					<li class="active"><a href="<%=basePath%>admin/news.do"> <i
+							class="icon-calendar"></i> <span class="menu-text"> 消息管理 </span>
 					</a></li>
 
 					<li><a href="<%=basePath%>admin/course.do"> <i
 							class="icon-book"></i> <span class="menu-text"> 课程管理 </span>
 					</a></li>
 
-					<li>
-							<a href="#" class="dropdown-toggle">
-								<i class="icon-legal"></i>
-								<span class="menu-text"> 器械管理 </span>
+					<li><a href="#" class="dropdown-toggle"> <i
+							class="icon-legal"></i> <span class="menu-text"> 器械管理 </span> <b
+							class="arrow icon-angle-down"></b>
+					</a>
 
-								<b class="arrow icon-angle-down"></b>
-							</a>
+						<ul class="submenu">
+							<li><a href="<%=basePath%>admin/machinebuy.do"> <i
+									class="icon-double-angle-right"></i> 器械购置
+							</a></li>
 
-							<ul class="submenu">
-								<li>
-									<a href="<%=basePath%>admin/machinebuy.do">
-										<i class="icon-double-angle-right"></i>
-										器械购置
-									</a>
-								</li>
+							<li><a href="<%=basePath%>admin/machineuse.do"> <i
+									class="icon-double-angle-right"></i> 器械使用
+							</a></li>
+						</ul></li>
 
-								<li>
-									<a href="<%=basePath%>admin/machineuse.do">
-										<i class="icon-double-angle-right"></i>
-										器械使用
-									</a>
-								</li>
-							</ul>
-						</li>
 
-					<li><a href="<%=basePath%>admin/profit.do"> <i
-							class="icon-bar-chart"></i> <span class="menu-text"> 财务管理
-						</span>
-					</a></li>
+					<li><a href="#" class="dropdown-toggle"> <i
+							class="icon-legal"></i> <span class="menu-text"> 财务管理 </span> <b
+							class="arrow icon-angle-down"></b>
+					</a>
+
+						<ul class="submenu">
+							<li><a href="<%=basePath%>admin/profit.do"> <i
+									class="icon-bar-chart"></i> 财务管理
+							</a></li>
+
+							<li><a href="<%=basePath%>admin/chart.do"> <i
+									class="icon-bar-chart"></i> 图表展示
+							</a></li>
+						</ul></li>
+
+
 
 
 

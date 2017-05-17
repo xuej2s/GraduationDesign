@@ -7,7 +7,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>消息管理</title>
+<title>课程管理</title>
 <meta name="keywords"
 	content="Bootstrap模版,Bootstrap模版下载,Bootstrap教程,Bootstrap中文" />
 <meta name="description"
@@ -417,75 +417,110 @@
 
 					<div class="row">
 						<div class="col-xs-12">
+							<div class="table-header">个人信息</div>
+							<div class="profile-user-info profile-user-info-striped">
+								<div class="profile-info-row">
+									<div class="profile-info-name">账号</div>
 
-							<div class="table-header">消息列表</div>
+									<div class="profile-info-value">
+										<span class="editable" id="vipId">${vip.vipId }</span>
+									</div>
+								</div>
+								
+								<div class="profile-info-row">
+									<div class="profile-info-name">姓名</div>
+
+									<div class="profile-info-value">
+										<span class="editable" id="vipName">${vip.vipName }</span>
+									</div>
+								</div>
+								
+								<div class="profile-info-row">
+									<div class="profile-info-name">性别</div>
+
+									<div class="profile-info-value">
+										<span class="editable" id="vipSex">${vip.vipSex }</span>
+									</div>
+								</div>
+								
+								<div class="profile-info-row">
+									<div class="profile-info-name">联系方式</div>
+
+									<div class="profile-info-value">
+										<span class="editable" id="vipTel">${vip.vipTel }</span>
+									</div>
+								</div>
+								
+								<div class="profile-info-row">
+									<div class="profile-info-name">到期时间</div>
+
+									<div class="profile-info-value">
+										<span class="editable" id="endTime">${vip.endTime }</span>
+									</div>
+								</div>
+								<div class="profile-info-row">
+									<div class="profile-info-name">会员类型</div>
+
+									<div class="profile-info-value">
+										<c:choose>
+											<c:when test="${vip.cardType == 1}">
+											<span class="editable" id="cardType">年卡会员</span>
+											</c:when>
+											<c:when test="${vip.cardType == 2}">
+											<span class="editable" id="cardType">季卡会员</span>
+											</c:when>
+											<c:when test="${vip.cardType == 3}">
+											<span class="editable" id="cardType">月卡会员</span>
+											</c:when>
+										</c:choose>
+									</div>
+								</div>
+							</div>
+							
+							<div class="hr hr-18 dotted hr-double"></div>
+							<div class="table-header">已选课程</div>
 
 							<div class="table-responsive">
 								<table id="sample-table-2"
 									class="table table-striped table-bordered table-hover">
+									<thead>
+										<tr>
+											<th class="center"><label> <input
+													type="checkbox" class="ace" /> <span class="lbl"></span>
+											</label></th>
+											<th>课程名称</th>
+											<th>开始时间</th>
+											<th>结束时间</th>
+											<th>具体时间</th>
+
+											<!-- <th class="hidden-480">Clicks</th>
+
+											<th><i class="icon-time bigger-110 hidden-480"></i>
+												Update</th>
+											<th class="hidden-480">Status</th> -->
+
+										</tr>
+									</thead>
 
 									<tbody>
-										<c:forEach items="${newsList }" var="a">
+										<c:forEach items="${courseList }" var="a">
 											<tr>
+												<td class="center"><label> <input
+														type="checkbox" class="ace" /> <span class="lbl"></span>
+												</label></td>
 
+												<td><c:out value="${a.courseName }"></c:out></td>
 
-												<td><c:out value="${a.newsName }"></c:out></td>
-
-												<td><c:out value="${a.newsTime }"></c:out></td>
-
-												<td>
-													<div
-														class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
-
-														<a class="yellow"
-															href="<%=basePath%>vip/shownews.do?newId=${a.newId}">
-															<i class="icon-zoom-in bigger-130"></i>
-														</a> <a class="blue" href="<%=basePath%>admin/addnews.do">
-															<i class="icon-plus-sign bigger-130"></i>
-														</a> <a class="green"
-															href="<%=basePath %>admin/updatenews.do?newId=${a.newId}&newsName=${a.newsName}&newsConfig=${a.newsConfig}">
-															<i class="icon-pencil bigger-130"></i>
-														</a> <a class="red"
-															href="<%=basePath %>admin/deletenews.do?newId=${a.newId}">
-															<i class="icon-trash bigger-130"></i>
-														</a>
-													</div>
-
-													<div class="visible-xs visible-sm hidden-md hidden-lg">
-														<div class="inline position-relative">
-															<button class="btn btn-minier btn-yellow dropdown-toggle"
-																data-toggle="dropdown">
-																<i class="icon-caret-down icon-only bigger-120"></i>
-															</button>
-
-															<ul
-																class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
-																<li><a href="#" class="tooltip-info"
-																	data-rel="tooltip" title="View"> <span class="blue">
-																			<i class="icon-zoom-in bigger-120"></i>
-																	</span>
-																</a></li>
-
-																<li><a href="#" class="tooltip-success"
-																	data-rel="tooltip" title="Edit"> <span
-																		class="green"> <i class="icon-edit bigger-120"></i>
-																	</span>
-																</a></li>
-
-																<li><a href="#" class="tooltip-error"
-																	data-rel="tooltip" title="Delete"> <span
-																		class="red"> <i class="icon-trash bigger-120"></i>
-																	</span>
-																</a></li>
-															</ul>
-														</div>
-													</div>
-												</td>
+												<td><c:out value="${a.startTime }"></c:out></td>
+												<td><c:out value="${a.endTime }"></c:out></td>
+												<td><c:out value="${a.weekend }"></c:out></td>
 											</tr>
 
 										</c:forEach>
 									</tbody>
+
 								</table>
+
 							</div>
 						</div>
 					</div>
@@ -620,9 +655,9 @@
 	<script type="text/javascript">
 		jQuery(function($) {
 			var oTable1 = $('#sample-table-2').dataTable({
-				"aoColumns" : [ null, null, {
+				"aoColumns" : [ {
 					"bSortable" : false
-				} ]
+				}, null, null, null, null ]
 			});
 
 			$('table th input:checkbox').on(

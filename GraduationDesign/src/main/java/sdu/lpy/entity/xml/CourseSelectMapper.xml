@@ -1,137 +1,183 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="sdu.lpy.dao.CourseSelectMapper">
-  <resultMap id="BaseResultMap" type="sdu.lpy.entity.CourseSelect">
-    <id column="course_id" jdbcType="VARCHAR" property="courseId" />
-    <id column="vip_id" jdbcType="VARCHAR" property="vipId" />
-    <result column="select_time" jdbcType="TIMESTAMP" property="selectTime" />
-    <result column="cancel_time" jdbcType="TIMESTAMP" property="cancelTime" />
-    <result column="course_cost" jdbcType="DOUBLE" property="courseCost" />
-    <result column="course_evaluation" jdbcType="DOUBLE" property="courseEvaluation" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    course_id, vip_id, select_time, cancel_time, course_cost, course_evaluation
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="sdu.lpy.entity.CourseSelectKey" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from course_select
-    where course_id = #{courseId,jdbcType=VARCHAR}
-      and vip_id = #{vipId,jdbcType=VARCHAR}
-  </select>
-  
-  <select id="getSelectedCourses" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from course_select
-    where vip_id = #{vipId,jdbcType=VARCHAR}
-  </select>
-  
-  <select id="getCourseSelectedVips" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from course_select
-    where course_id = #{courseId,jdbcType=VARCHAR}
-  </select>
-  
-  <!-- //////////////////////////////////////////////////////// -->
-  <resultMap id="testGroup" type="sdu.lpy.entity.TestGroup">
-   
-    <result column="selectTime" jdbcType="VARCHAR" property="selectTime" />
-    <result column="profit" jdbcType="DOUBLE" property="profit" />
-    
-  </resultMap>
-  <select id="testGroupBy" resultMap="testGroup">
-  	select date_format(select_time,'%Y/%m/%d') selectTime, sum(course_cost) profit
-	from course_select
-	group by date_format(select_time,'%Y/%m/%d')
-  </select>
-  
-  
-  <!-- ///////////////////////////////////////////////////////// -->
-  
-  <delete id="deleteByPrimaryKey" parameterType="sdu.lpy.entity.CourseSelectKey">
-    delete from course_select
-    where course_id = #{courseId,jdbcType=VARCHAR}
-      and vip_id = #{vipId,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="sdu.lpy.entity.CourseSelect">
-    insert into course_select (course_id, vip_id, select_time, 
-      cancel_time, course_cost, course_evaluation
-      )
-    values (#{courseId,jdbcType=VARCHAR}, #{vipId,jdbcType=VARCHAR}, #{selectTime,jdbcType=TIMESTAMP}, 
-      #{cancelTime,jdbcType=TIMESTAMP}, #{courseCost,jdbcType=DOUBLE}, #{courseEvaluation,jdbcType=DOUBLE}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="sdu.lpy.entity.CourseSelect">
-    insert into course_select
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="courseId != null">
-        course_id,
-      </if>
-      <if test="vipId != null">
-        vip_id,
-      </if>
-      <if test="selectTime != null">
-        select_time,
-      </if>
-      <if test="cancelTime != null">
-        cancel_time,
-      </if>
-      <if test="courseCost != null">
-        course_cost,
-      </if>
-      <if test="courseEvaluation != null">
-        course_evaluation,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="courseId != null">
-        #{courseId,jdbcType=VARCHAR},
-      </if>
-      <if test="vipId != null">
-        #{vipId,jdbcType=VARCHAR},
-      </if>
-      <if test="selectTime != null">
-        #{selectTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="cancelTime != null">
-        #{cancelTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="courseCost != null">
-        #{courseCost,jdbcType=DOUBLE},
-      </if>
-      <if test="courseEvaluation != null">
-        #{courseEvaluation,jdbcType=DOUBLE},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="sdu.lpy.entity.CourseSelect">
-    update course_select
-    <set>
-      <if test="selectTime != null">
-        select_time = #{selectTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="cancelTime != null">
-        cancel_time = #{cancelTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="courseCost != null">
-        course_cost = #{courseCost,jdbcType=DOUBLE},
-      </if>
-      <if test="courseEvaluation != null">
-        course_evaluation = #{courseEvaluation,jdbcType=DOUBLE},
-      </if>
-    </set>
-    where course_id = #{courseId,jdbcType=VARCHAR}
-      and vip_id = #{vipId,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="sdu.lpy.entity.CourseSelect">
-    update course_select
-    set select_time = #{selectTime,jdbcType=TIMESTAMP},
-      cancel_time = #{cancelTime,jdbcType=TIMESTAMP},
-      course_cost = #{courseCost,jdbcType=DOUBLE},
-      course_evaluation = #{courseEvaluation,jdbcType=DOUBLE}
-    where course_id = #{courseId,jdbcType=VARCHAR}
-      and vip_id = #{vipId,jdbcType=VARCHAR}
-  </update>
+	<resultMap id="BaseResultMap" type="sdu.lpy.entity.CourseSelect">
+		<id column="course_id" jdbcType="VARCHAR" property="courseId" />
+		<id column="vip_id" jdbcType="VARCHAR" property="vipId" />
+		<result column="select_time" jdbcType="TIMESTAMP" property="selectTime" />
+		<result column="cancel_time" jdbcType="TIMESTAMP" property="cancelTime" />
+		<result column="course_cost" jdbcType="DOUBLE" property="courseCost" />
+		<result column="course_evaluation" jdbcType="DOUBLE" property="courseEvaluation" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		course_id, vip_id, select_time, cancel_time, course_cost,
+		course_evaluation
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="sdu.lpy.entity.CourseSelectKey"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from course_select
+		where course_id = #{courseId,jdbcType=VARCHAR}
+		and
+		vip_id = #{vipId,jdbcType=VARCHAR}
+	</select>
+
+	<select id="getSelectedCourses" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from course_select
+		where vip_id = #{vipId,jdbcType=VARCHAR}
+	</select>
+
+	<select id="getCourseSelectedVips" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from course_select
+		where course_id = #{courseId,jdbcType=VARCHAR}
+	</select>
+
+	<!-- //////////////////////////////////////////////////////// -->
+	<resultMap id="testGroup" type="sdu.lpy.entity.TestGroup">
+
+		<result column="selectTime" jdbcType="VARCHAR" property="selectTime" />
+		<result column="profit" jdbcType="DOUBLE" property="profit" />
+
+	</resultMap>
+	<select id="testGroupBy" resultMap="testGroup">
+		select
+		date_format(select_time,'%Y/%m/%d') selectTime, sum(course_cost)
+		profit
+		from course_select
+		group by date_format(select_time,'%Y/%m/%d')
+	</select>
+
+
+	<!-- ///////////////////////////////////////////////////////// -->
+	<resultMap id="CourseProfitMap" type="sdu.lpy.entity.CourseProfit">
+
+		<result column="vip_name" jdbcType="VARCHAR" property="vipName" />
+		<result column="course_name" jdbcType="VARCHAR" property="courseName" />
+		<result column="select_time" jdbcType="TIMESTAMP" property="selectTime" />
+		<result column="course_cost" jdbcType="DOUBLE" property="courseCost" />
+	</resultMap>
+
+	<select id="getCourseProfit" parameterType="java.util.Date"
+		resultMap="CourseProfitMap">
+		SELECT a.select_time,a.course_cost,b.course_name,c.vip_name
+		FROM
+		course_select a,course b,vip c
+		<where>
+			a.course_id = b.course_id and
+			a.vip_id = c.vip_id
+			<if
+				test="param1 != null and param1 != '' and param2 != null and param2 != ''">
+				and a.select_time between #{param1,jdbcType=DATE} and
+				#{param2,jdbcType=DATE}
+			</if>
+		</where>
+	</select>
+
+
+
+	<!-- /////////////////////////////////////////////// -->
+
+	<delete id="deleteByPrimaryKey" parameterType="sdu.lpy.entity.CourseSelectKey">
+		delete from
+		course_select
+		where course_id = #{courseId,jdbcType=VARCHAR}
+		and vip_id
+		= #{vipId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="sdu.lpy.entity.CourseSelect">
+		insert into course_select
+		(course_id, vip_id, select_time,
+		cancel_time, course_cost,
+		course_evaluation
+		)
+		values (#{courseId,jdbcType=VARCHAR},
+		#{vipId,jdbcType=VARCHAR},
+		#{selectTime,jdbcType=TIMESTAMP},
+		#{cancelTime,jdbcType=TIMESTAMP}, #{courseCost,jdbcType=DOUBLE},
+		#{courseEvaluation,jdbcType=DOUBLE}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="sdu.lpy.entity.CourseSelect">
+		insert into course_select
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="courseId != null">
+				course_id,
+			</if>
+			<if test="vipId != null">
+				vip_id,
+			</if>
+			<if test="selectTime != null">
+				select_time,
+			</if>
+			<if test="cancelTime != null">
+				cancel_time,
+			</if>
+			<if test="courseCost != null">
+				course_cost,
+			</if>
+			<if test="courseEvaluation != null">
+				course_evaluation,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="courseId != null">
+				#{courseId,jdbcType=VARCHAR},
+			</if>
+			<if test="vipId != null">
+				#{vipId,jdbcType=VARCHAR},
+			</if>
+			<if test="selectTime != null">
+				#{selectTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="cancelTime != null">
+				#{cancelTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="courseCost != null">
+				#{courseCost,jdbcType=DOUBLE},
+			</if>
+			<if test="courseEvaluation != null">
+				#{courseEvaluation,jdbcType=DOUBLE},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="sdu.lpy.entity.CourseSelect">
+		update course_select
+		<set>
+			<if test="selectTime != null">
+				select_time = #{selectTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="cancelTime != null">
+				cancel_time = #{cancelTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="courseCost != null">
+				course_cost = #{courseCost,jdbcType=DOUBLE},
+			</if>
+			<if test="courseEvaluation != null">
+				course_evaluation = #{courseEvaluation,jdbcType=DOUBLE},
+			</if>
+		</set>
+		where course_id = #{courseId,jdbcType=VARCHAR}
+		and vip_id =
+		#{vipId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="sdu.lpy.entity.CourseSelect">
+		update
+		course_select
+		set select_time = #{selectTime,jdbcType=TIMESTAMP},
+		cancel_time = #{cancelTime,jdbcType=TIMESTAMP},
+		course_cost =
+		#{courseCost,jdbcType=DOUBLE},
+		course_evaluation =
+		#{courseEvaluation,jdbcType=DOUBLE}
+		where course_id =
+		#{courseId,jdbcType=VARCHAR}
+		and vip_id = #{vipId,jdbcType=VARCHAR}
+	</update>
 </mapper>

@@ -1,5 +1,6 @@
 package testData;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -21,8 +22,8 @@ import com.github.abel533.echarts.series.Pie;
 
 import sdu.lpy.dao.CardFeeMapper;
 import sdu.lpy.dao.CourseSelectMapper;
+import sdu.lpy.dao.ProfitMapper;
 import sdu.lpy.entity.CardFee;
-import sdu.lpy.entity.Profit;
 import sdu.lpy.entity.TestGroup;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -37,10 +38,13 @@ public class TestGroupData {
 	@Autowired
 	private CardFeeMapper cardFeeMapper;
 	
+	@Autowired
+	private ProfitMapper profitMapper;
+	
 	
 	
 	@Test
 	public void getGroupData(){
-		System.out.println(cardFeeMapper.getCardFee("2017/05/16").size());
+		System.out.println(cardFeeMapper.getCardProfit(null, null).size());
 	}
 }

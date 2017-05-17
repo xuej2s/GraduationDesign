@@ -1,8 +1,10 @@
 package sdu.lpy.dao;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import sdu.lpy.entity.CourseProfit;
 import sdu.lpy.entity.CourseSelect;
 import sdu.lpy.entity.CourseSelectKey;
 import sdu.lpy.entity.TestGroup;
@@ -25,5 +27,7 @@ public interface CourseSelectMapper {
     List<CourseSelect> getCourseSelectedVips(String courseId);
     
     List<TestGroup> testGroupBy();
+    
+    List<CourseProfit> getCourseProfit(Date startTime,Date endTime);
     
 }

@@ -16,7 +16,8 @@
 		<include refid="Base_Column_List" />
 		from card_fee
 		where card_type = #{cardType,jdbcType=CHAR}
-		and vip_id = #{vipId,jdbcType=VARCHAR}
+		and vip_id =
+		#{vipId,jdbcType=VARCHAR}
 	</select>
 
 	<select id="getCardFee" parameterType="java.lang.String"
@@ -24,22 +25,51 @@
 		select
 		<include refid="Base_Column_List" />
 		from card_fee
-		where date_format(start_time,'%Y/%m/%d') = #{date,jdbcType=TIMESTAMP}
+		where date_format(start_time,'%Y/%m/%d') =
+		#{date,jdbcType=TIMESTAMP}
 		and card_fee = 0
 	</select>
 
 
+	<!-- ////////////////////////////////////////// -->
+	<resultMap id="CardProfitMap" type="sdu.lpy.entity.CardProfit">
+		<id column="card_type" jdbcType="CHAR" property="cardType" />
+		<result column="vip_name" jdbcType="VARCHAR" property="vipName" />
+		<result column="card_fee" jdbcType="DOUBLE" property="cardFee" />
+		<result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+	</resultMap>
+	<select id="getCardProfit" parameterType="java.util.Date" resultMap="CardProfitMap">
+		SELECT a.card_type,a.card_fee,a.start_time,b.vip_name
+		FROM card_fee a,vip b
+		<where>
+			a.vip_id = b.vip_id
+			
+			<if
+				test="param1 != null and param1 != '' and param2 != null and param2 != ''">
+				and a.start_time between #{param1,jdbcType=DATE} and
+				#{param2,jdbcType=DATE}
+			</if>
+		</where>
+	</select>
+
+
+	<!-- ////////////////////////////////////////// -->
+
 
 
 	<delete id="deleteByPrimaryKey" parameterType="sdu.lpy.entity.CardFeeKey">
-		delete from card_fee
+		delete from
+		card_fee
 		where card_type = #{cardType,jdbcType=CHAR}
-		and vip_id = #{vipId,jdbcType=VARCHAR}
+		and vip_id =
+		#{vipId,jdbcType=VARCHAR}
 	</delete>
 	<insert id="insert" parameterType="sdu.lpy.entity.CardFee">
-		insert into card_fee (card_type, vip_id, card_fee,
+		insert into card_fee
+		(card_type, vip_id, card_fee,
 		start_time)
-		values (#{cardType,jdbcType=CHAR}, #{vipId,jdbcType=VARCHAR},
+		values
+		(#{cardType,jdbcType=CHAR}, #{vipId,jdbcType=VARCHAR},
 		#{cardFee,jdbcType=DOUBLE},
 		#{startTime,jdbcType=TIMESTAMP})
 	</insert>
@@ -85,16 +115,19 @@
 			</if>
 		</set>
 		where card_type = #{cardType,jdbcType=CHAR}
-		and vip_id = #{vipId,jdbcType=VARCHAR}
+		and vip_id =
+		#{vipId,jdbcType=VARCHAR}
 	</update>
 	<update id="updateByPrimaryKey" parameterType="sdu.lpy.entity.CardFee">
 		update card_fee
 		set card_fee = #{cardFee,jdbcType=DOUBLE},
-		start_time = #{startTime,jdbcType=TIMESTAMP}
-		where card_type = #{cardType,jdbcType=CHAR}
+		start_time =
+		#{startTime,jdbcType=TIMESTAMP}
+		where card_type =
+		#{cardType,jdbcType=CHAR}
 		and vip_id = #{vipId,jdbcType=VARCHAR}
 	</update>
 
-	
+
 
 </mapper>

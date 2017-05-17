@@ -445,7 +445,7 @@
 															href="<%=basePath%>vip/courseselected.do?courseId=${a.courseId}
 															&vipId=${vipId}&courseCost=${a.courseCost }&cardType=${cardType}"
 															>
-															<i class="icon-zoom-in bigger-130"></i>
+															<i class="icon-plus-sign bigger-130"></i>
 														</a>
 														
 													</div>

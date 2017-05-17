@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sdu.lpy.dao.ProfitMapper">
+	<resultMap id="BaseResultMap" type="sdu.lpy.entity.Profit">
+		<result column="date" jdbcType="DATE" property="date" />
+		<result column="vip" jdbcType="DOUBLE" property="vip" />
+		<result column="mechine" jdbcType="DOUBLE" property="mechine" />
+		<result column="course" jdbcType="DOUBLE" property="course" />
+		<result column="sum" jdbcType="DOUBLE" property="sum" />
+	</resultMap>
+	<select id="getProfit" parameterType="java.util.Date" resultMap="BaseResultMap">
+		select * from
+		(select a.date, if(isnull(a.vip),0,a.vip)
+		vip,if(isnull(b.mechine),0,b.mechine*-1)
+		mechine,if(isnull(c.course),0,b.c.course)
+		course,if(isnull(a.vip),0,a.vip)+if(isnull(b.mechine),0,b.mechine*-1)+if(isnull(c.course),0,b.c.course)
+		sum
+		from ((select str_to_date(date_format(start_time,'%Y/%m/%d'),'%Y/%m/%d')
+		date ,sum(card_fee) vip
+		from graduationdesign.card_fee
+		group by
+		str_to_date(date_format(start_time,'%Y/%m/%d'),'%Y/%m/%d')) a left
+		join
+
+
+		(select str_to_date(date_format(time,'%Y/%m/%d'),'%Y/%m/%d') date
+		,sum(sum_cost) mechine
+		from graduationdesign.machine_fee
+		group by
+		str_to_date(date_format(time,'%Y/%m/%d'),'%Y/%m/%d')) b on a.date =
+		b.date) left join
+
+
+		(select str_to_date(date_format(select_time,'%Y/%m/%d'),'%Y/%m/%d') date
+		,sum(course_cost) course
+		from graduationdesign.course_select
+		group by str_to_date(date_format(select_time,'%Y/%m/%d'),'%Y/%m/%d')) c on
+		a.date = c.date ) d
+		<where>
+			<if
+				test="param1 != null and param1 != '' and param2 != null and param2 != ''">
+				d.date between #{param1,jdbcType=DATE} and
+				#{param2,jdbcType=DATE}
+			</if>
+		</where>
+	</select>
+
+	<insert id="insert" parameterType="sdu.lpy.entity.Profit">
+		insert into profit (date, vip,
+		mechine,
+		course, sum)
+		values (#{date,jdbcType=DATE},
+		#{vip,jdbcType=DOUBLE},
+		#{mechine,jdbcType=DOUBLE},
+		#{course,jdbcType=DOUBLE}, #{sum,jdbcType=DOUBLE})
+	</insert>
+	<insert id="insertSelective" parameterType="sdu.lpy.entity.Profit">
+		insert into profit
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="date != null">
+				date,
+			</if>
+			<if test="vip != null">
+				vip,
+			</if>
+			<if test="mechine != null">
+				mechine,
+			</if>
+			<if test="course != null">
+				course,
+			</if>
+			<if test="sum != null">
+				sum,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="date != null">
+				#{date,jdbcType=DATE},
+			</if>
+			<if test="vip != null">
+				#{vip,jdbcType=DOUBLE},
+			</if>
+			<if test="mechine != null">
+				#{mechine,jdbcType=DOUBLE},
+			</if>
+			<if test="course != null">
+				#{course,jdbcType=DOUBLE},
+			</if>
+			<if test="sum != null">
+				#{sum,jdbcType=DOUBLE},
+			</if>
+		</trim>
+	</insert>
+</mapper>

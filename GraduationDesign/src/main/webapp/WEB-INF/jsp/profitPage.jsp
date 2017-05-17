@@ -7,7 +7,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>Bootstrap表单组件 - Bootstrap后台管理系统模版Ace下载</title>
+<title>活动管理</title>
 <meta name="keywords"
 	content="Bootstrap模版,Bootstrap模版下载,Bootstrap教程,Bootstrap中文" />
 <meta name="description"
@@ -15,6 +15,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <!-- basic styles -->
+
 
 <link
 	href="${pageContext.request.contextPath }/assets/css/bootstrap.min.css"
@@ -27,19 +28,6 @@
 		<![endif]-->
 
 <!-- page specific plugin styles -->
-
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/assets/css/jquery-ui-1.10.3.custom.min.css" />
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/assets/css/chosen.css" />
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/assets/css/datepicker.css" />
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/assets/css/bootstrap-timepicker.css" />
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/assets/css/daterangepicker.css" />
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/assets/css/colorpicker.css" />
 
 <!-- fonts -->
 
@@ -60,6 +48,20 @@
 		<![endif]-->
 
 <!-- inline styles related to this page -->
+<!-- page specific plugin styles -->
+
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/assets/css/jquery-ui-1.10.3.custom.min.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/assets/css/chosen.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/assets/css/datepicker.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/assets/css/bootstrap-timepicker.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/assets/css/daterangepicker.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/assets/css/colorpicker.css" />
 
 <!-- ace settings handler -->
 
@@ -78,11 +80,6 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<style type="text/css">
-#newId {
-	display: none;
-}
-</style>
 </head>
 
 <body>
@@ -345,6 +342,7 @@
 				<!-- #sidebar-shortcuts -->
 
 
+				<!-- 导航栏 -->
 				<ul class="nav nav-list">
 					<li class="active"><a href="<%=basePath%>admin/activity.do">
 							<i class="icon-calendar"></i> <span class="menu-text">
@@ -403,6 +401,9 @@
 				</ul>
 				<!-- /.nav-list -->
 
+				<!-- 导航栏---end ---- -->
+
+
 				<div class="sidebar-collapse" id="sidebar-collapse">
 					<i class="icon-double-angle-left"
 						data-icon1="icon-double-angle-left"
@@ -418,166 +419,235 @@
 			</div>
 
 			<div class="main-content">
-				<div class="breadcrumbs" id="breadcrumbs">
-					<script type="text/javascript">
-						try {
-							ace.settings.check('breadcrumbs', 'fixed')
-						} catch (e) {
-						}
-					</script>
 
-
-
-
-				</div>
 
 				<div class="page-content">
-					<div class="page-header">
-						<h1>消息修改</h1>
-					</div>
 					<!-- /.page-header -->
-					
-					
+
+
+
+
+
+					<div class="hr hr-18 dotted hr-double"></div>
 
 					<div class="row">
-						<div class="col-xs-12">
-							<!-- PAGE CONTENT BEGINS -->
-
-							<form class="form-horizontal" name="actForm" role="form"
-								action="<%=basePath%>admin/news.do" method="post">
-								<input type="text" id="newId" name="newId" value="${a.newId }"/>
-
+						<div class="col-sm-12">
+							<form class="form-horizontal" role="form"
+								action="<%=basePath%>admin/profit.do" method="post">
 								<div class="form-group">
 									<label class="col-sm-3 control-label no-padding-right"
-										for="form-field-1"> 消息名称 </label>
+										for="id-date-range-picker-1">起止时间</label>
 
-									<div class="col-sm-9">
-										<input type="text" id="newsName" name="newsName"
-											value="${a.newsName }" class="col-xs-10 col-sm-5" readonly="readonly"/>
-									</div>
-								</div>
+									<div class="row">
+										<div class="col-xs-10 col-sm-3">
+											<div class="input-group">
+												<span class="input-group-addon"> <i
+													class="icon-calendar bigger-110"></i>
+												</span> <input class="form-control" type="text" name="dateRange"
+													id="id-date-range-picker-1" />
 
-
-
-
-								<div class="space-4"></div>
-								
-								<div class="form-group">
-									<label class="col-sm-3 control-label no-padding-right"
-										for="form-field-1"> 发布时间 </label>
-
-									<div class="col-sm-9">
-										<input type="text" id="newsTime" name="newsTime"
-											value="${a.newsTime }" class="col-xs-10 col-sm-5" readonly="readonly"/>
-									</div>
-								</div>
-
-
-
-
-								<div class="space-4"></div>
-
-								<div class="form-group">
-									<label class="col-sm-3 control-label no-padding-right"
-										for="form-field-11">消息内容</label>
-									<div class="col-sm-9">
-										<textarea id="newsConfig" name="newsConfig"
-											class="autosize-transition col-xs-10 col-sm-5" readonly="readonly">${a.newsConfig }</textarea>
-									</div>
-
-								</div>
-
-
-								<div class="space-4"></div>
-								<!-- ///////////////////////////////////////////////////////////// -->
-
-
-
-
-								<div class="clearfix form-actions">
-									<div class="col-md-offset-3 col-md-9">
+											</div>
+										</div>
 										<button class="btn btn-info" type="submit">
-											<i class="icon-ok bigger-110"></i> back
+											<i class="icon-ok bigger-110"></i> Submit
 										</button>
-
-										
 									</div>
 								</div>
-
-
-
-
-
-
-								<!-- PAGE CONTENT ENDS -->
+							</form>
 						</div>
-						<!-- /.col -->
-					</div>
-					<!-- /.row -->
-				</div>
-				<!-- /.page-content -->
-			</div>
-			<!-- /.main-content -->
+						
+						<div class="col-xs-12">
 
-			<div class="ace-settings-container" id="ace-settings-container">
-				<div class="btn btn-app btn-xs btn-warning ace-settings-btn"
-					id="ace-settings-btn">
-					<i class="icon-cog bigger-150"></i>
-				</div>
+							<div class="table-header">财务总表</div>
+							<div class="table-responsive">
+								<table id="sample-table-2"
+									class="table table-striped table-bordered table-hover">
+									<thead>
+										<tr>
+											<th>时间</th>
+											<th>会员收益</th>
+											<th>课程收益</th>
+											<th>器械支出</th>
+											<th>总计</th>
+										</tr>
+									</thead>
 
-				<div class="ace-settings-box" id="ace-settings-box">
-					<div>
-						<div class="pull-left">
-							<select id="skin-colorpicker" class="hide">
-								<option data-skin="default" value="#438EB9">#438EB9</option>
-								<option data-skin="skin-1" value="#222A2D">#222A2D</option>
-								<option data-skin="skin-2" value="#C6487E">#C6487E</option>
-								<option data-skin="skin-3" value="#D0D0D0">#D0D0D0</option>
-							</select>
+									<tbody>
+										<c:forEach items="${profitList }" var="a">
+											<tr>
+												<td><c:out value="${a.date }"></c:out></td>
+												<td><c:out value="${a.vip }"></c:out></td>
+												<td><c:out value="${a.course }"></c:out></td>
+												<td><c:out value="${a.mechine }"></c:out></td>
+												<td><c:out value="${a.sum }"></c:out></td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+							<br><br>
 						</div>
-						<span>&nbsp; Choose Skin</span>
-					</div>
+						
+						
+						<!-- <div class="row"> -->
+							<div class="col-xs-4">
+								<div class="table-header">会员收益</div>
+								<div class="table-responsive">
+									<table id="sample-table-3"
+										class="table table-striped table-bordered table-hover">
+										<thead>
+											<tr>
+												<th>时间</th>
+												<th>会员收益</th>
+												<th>课程收益</th>
+												<th>器械支出</th>
+												<th>总计</th>
+											</tr>
+										</thead>
 
-					<div>
-						<input type="checkbox" class="ace ace-checkbox-2"
-							id="ace-settings-navbar" /> <label class="lbl"
-							for="ace-settings-navbar"> Fixed Navbar</label>
-					</div>
+										<tbody>
+											<c:forEach items="${profitList }" var="a">
+												<tr>
+													<td><c:out value="${a.date }"></c:out></td>
+													<td><c:out value="${a.vip }"></c:out></td>
+													<td><c:out value="${a.course }"></c:out></td>
+													<td><c:out value="${a.mechine }"></c:out></td>
+													<td><c:out value="${a.sum }"></c:out></td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="col-xs-4">
+								<div class="table-header">课程收益</div>
+							<div class="table-responsive">
+								<table id="sample-table-4"
+									class="table table-striped table-bordered table-hover">
+									<thead>
+										<tr>
+											<th>时间</th>
+											<th>会员收益</th>
+											<th>课程收益</th>
+											<th>器械支出</th>
+											<th>总计</th>
+										</tr>
+									</thead>
 
-					<div>
-						<input type="checkbox" class="ace ace-checkbox-2"
-							id="ace-settings-sidebar" /> <label class="lbl"
-							for="ace-settings-sidebar"> Fixed Sidebar</label>
-					</div>
+									<tbody>
+										<c:forEach items="${profitList }" var="a">
+											<tr>
+												<td><c:out value="${a.date }"></c:out></td>
+												<td><c:out value="${a.vip }"></c:out></td>
+												<td><c:out value="${a.course }"></c:out></td>
+												<td><c:out value="${a.mechine }"></c:out></td>
+												<td><c:out value="${a.sum }"></c:out></td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+							</div>
+							<div class="col-xs-4">
+								<div class="table-header">器械支出</div>
+							<div class="table-responsive">
+								<table id="sample-table-5"
+									class="table table-striped table-bordered table-hover">
+									<thead>
+										<tr>
+											<th>时间</th>
+											<th>会员收益</th>
+											<th>课程收益</th>
+											<th>器械支出</th>
+											<th>总计</th>
+										</tr>
+									</thead>
 
-					<div>
-						<input type="checkbox" class="ace ace-checkbox-2"
-							id="ace-settings-breadcrumbs" /> <label class="lbl"
-							for="ace-settings-breadcrumbs"> Fixed Breadcrumbs</label>
+									<tbody>
+										<c:forEach items="${profitList }" var="a">
+											<tr>
+												<td><c:out value="${a.date }"></c:out></td>
+												<td><c:out value="${a.vip }"></c:out></td>
+												<td><c:out value="${a.course }"></c:out></td>
+												<td><c:out value="${a.mechine }"></c:out></td>
+												<td><c:out value="${a.sum }"></c:out></td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+							</div>
+						<!-- </div> -->
 					</div>
-
-					<div>
-						<input type="checkbox" class="ace ace-checkbox-2"
-							id="ace-settings-rtl" /> <label class="lbl"
-							for="ace-settings-rtl"> Right To Left (rtl)</label>
-					</div>
-
-					<div>
-						<input type="checkbox" class="ace ace-checkbox-2"
-							id="ace-settings-add-container" /> <label class="lbl"
-							for="ace-settings-add-container"> Inside <b>.container</b>
-						</label>
-					</div>
+					<!-- PAGE CONTENT ENDS -->
 				</div>
+				<!-- /.col -->
 			</div>
-			<!-- /#ace-settings-container -->
+			<!-- /.row -->
 		</div>
-		<!-- /.main-container-inner -->
+		<!-- /.page-content -->
+	</div>
+	<!-- /.main-content -->
 
-		<a href="#" id="btn-scroll-up"
-			class="btn-scroll-up btn btn-sm btn-inverse"> <i
-			class="icon-double-angle-up icon-only bigger-110"></i>
-		</a>
+	<div class="ace-settings-container" id="ace-settings-container">
+		<div class="btn btn-app btn-xs btn-warning ace-settings-btn"
+			id="ace-settings-btn">
+			<i class="icon-cog bigger-150"></i>
+		</div>
+
+		<div class="ace-settings-box" id="ace-settings-box">
+			<div>
+				<div class="pull-left">
+					<select id="skin-colorpicker" class="hide">
+						<option data-skin="default" value="#438EB9">#438EB9</option>
+						<option data-skin="skin-1" value="#222A2D">#222A2D</option>
+						<option data-skin="skin-2" value="#C6487E">#C6487E</option>
+						<option data-skin="skin-3" value="#D0D0D0">#D0D0D0</option>
+					</select>
+				</div>
+				<span>&nbsp; Choose Skin</span>
+			</div>
+
+			<div>
+				<input type="checkbox" class="ace ace-checkbox-2"
+					id="ace-settings-navbar" /> <label class="lbl"
+					for="ace-settings-navbar"> Fixed Navbar</label>
+			</div>
+
+			<div>
+				<input type="checkbox" class="ace ace-checkbox-2"
+					id="ace-settings-sidebar" /> <label class="lbl"
+					for="ace-settings-sidebar"> Fixed Sidebar</label>
+			</div>
+
+			<div>
+				<input type="checkbox" class="ace ace-checkbox-2"
+					id="ace-settings-breadcrumbs" /> <label class="lbl"
+					for="ace-settings-breadcrumbs"> Fixed Breadcrumbs</label>
+			</div>
+
+			<div>
+				<input type="checkbox" class="ace ace-checkbox-2"
+					id="ace-settings-rtl" /> <label class="lbl" for="ace-settings-rtl">
+					Right To Left (rtl)</label>
+			</div>
+
+			<div>
+				<input type="checkbox" class="ace ace-checkbox-2"
+					id="ace-settings-add-container" /> <label class="lbl"
+					for="ace-settings-add-container"> Inside <b>.container</b>
+				</label>
+			</div>
+		</div>
+	</div>
+	<!-- /#ace-settings-container -->
+	</div>
+	<!-- /.main-container-inner -->
+
+	<a href="#" id="btn-scroll-up"
+		class="btn-scroll-up btn btn-sm btn-inverse"> <i
+		class="icon-double-angle-up icon-only bigger-110"></i>
+	</a>
 	</div>
 	<!-- /.main-container -->
 
@@ -586,7 +656,7 @@
 	<!--[if !IE]> -->
 
 	<script
-		src="${pageContext.request.contextPath }/assets\js\jquery-2.0.3.min.js"></script>
+		src="${pageContext.request.contextPath }/assets/js/jquery-2.0.3.min.js"></script>
 
 	<!-- <![endif]-->
 
@@ -624,10 +694,20 @@
 
 	<!-- page specific plugin scripts -->
 
-	<!--[if lte IE 8]>
-		  <script src="${pageContext.request.contextPath }/assets/js/excanvas.min.js"></script>
-		<![endif]-->
+	<script
+		src="${pageContext.request.contextPath }/assets/js/jquery.dataTables.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/assets/js/jquery.dataTables.bootstrap.js"></script>
 
+	
+	<script
+		src="${pageContext.request.contextPath }/assets/js/date-time/bootstrap-datepicker.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/assets/js/date-time/bootstrap-timepicker.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/assets/js/date-time/moment.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/assets/js/date-time/daterangepicker.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath }/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
 	<script
@@ -656,7 +736,6 @@
 		src="${pageContext.request.contextPath }/assets/js/jquery.maskedinput.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath }/assets/js/bootstrap-tag.min.js"></script>
-
 	<!-- ace scripts -->
 
 	<script
@@ -665,6 +744,163 @@
 
 	<!-- inline scripts related to this page -->
 
+	<script type="text/javascript">
+		jQuery(function($) {
+			var oTable1 = $('#sample-table-2').dataTable({
+				"aoColumns" : [ null, null, null, null, null ]
+			});
+
+			$('table th input:checkbox').on(
+					'click',
+					function() {
+						var that = this;
+						$(this).closest('table').find(
+								'tr > td:first-child input:checkbox').each(
+								function() {
+									this.checked = that.checked;
+									$(this).closest('tr').toggleClass(
+											'selected');
+								});
+
+					});
+
+			$('[data-rel="tooltip"]').tooltip({
+				placement : tooltip_placement
+			});
+			function tooltip_placement(context, source) {
+				var $source = $(source);
+				var $parent = $source.closest('table')
+				var off1 = $parent.offset();
+				var w1 = $parent.width();
+
+				var off2 = $source.offset();
+				var w2 = $source.width();
+
+				if (parseInt(off2.left) < parseInt(off1.left)
+						+ parseInt(w1 / 2))
+					return 'right';
+				return 'left';
+			}
+		})
+	</script>
+	<script type="text/javascript">
+		jQuery(function($) {
+			var oTable1 = $('#sample-table-3').dataTable({
+				"aoColumns" : [ null, null, null, null, null ]
+			});
+
+			$('table th input:checkbox').on(
+					'click',
+					function() {
+						var that = this;
+						$(this).closest('table').find(
+								'tr > td:first-child input:checkbox').each(
+								function() {
+									this.checked = that.checked;
+									$(this).closest('tr').toggleClass(
+											'selected');
+								});
+
+					});
+
+			$('[data-rel="tooltip"]').tooltip({
+				placement : tooltip_placement
+			});
+			function tooltip_placement(context, source) {
+				var $source = $(source);
+				var $parent = $source.closest('table')
+				var off1 = $parent.offset();
+				var w1 = $parent.width();
+
+				var off2 = $source.offset();
+				var w2 = $source.width();
+
+				if (parseInt(off2.left) < parseInt(off1.left)
+						+ parseInt(w1 / 2))
+					return 'right';
+				return 'left';
+			}
+		})
+	</script>
+	<script type="text/javascript">
+		jQuery(function($) {
+			var oTable1 = $('#sample-table-4').dataTable({
+				"aoColumns" : [ null, null, null, null, null ]
+			});
+
+			$('table th input:checkbox').on(
+					'click',
+					function() {
+						var that = this;
+						$(this).closest('table').find(
+								'tr > td:first-child input:checkbox').each(
+								function() {
+									this.checked = that.checked;
+									$(this).closest('tr').toggleClass(
+											'selected');
+								});
+
+					});
+
+			$('[data-rel="tooltip"]').tooltip({
+				placement : tooltip_placement
+			});
+			function tooltip_placement(context, source) {
+				var $source = $(source);
+				var $parent = $source.closest('table')
+				var off1 = $parent.offset();
+				var w1 = $parent.width();
+
+				var off2 = $source.offset();
+				var w2 = $source.width();
+
+				if (parseInt(off2.left) < parseInt(off1.left)
+						+ parseInt(w1 / 2))
+					return 'right';
+				return 'left';
+			}
+		})
+	</script>
+	<script type="text/javascript">
+		jQuery(function($) {
+			var oTable1 = $('#sample-table-5').dataTable({
+				"aoColumns" : [ null, null, null, null, null ]
+			});
+
+			$('table th input:checkbox').on(
+					'click',
+					function() {
+						var that = this;
+						$(this).closest('table').find(
+								'tr > td:first-child input:checkbox').each(
+								function() {
+									this.checked = that.checked;
+									$(this).closest('tr').toggleClass(
+											'selected');
+								});
+
+					});
+
+			$('[data-rel="tooltip"]').tooltip({
+				placement : tooltip_placement
+			});
+			function tooltip_placement(context, source) {
+				var $source = $(source);
+				var $parent = $source.closest('table')
+				var off1 = $parent.offset();
+				var w1 = $parent.width();
+
+				var off2 = $source.offset();
+				var w2 = $source.width();
+
+				if (parseInt(off2.left) < parseInt(off1.left)
+						+ parseInt(w1 / 2))
+					return 'right';
+				return 'left';
+			}
+		})
+		
+	</script>
 	<script type="text/javascript">
 		jQuery(function($) {
 			$('#id-disable-check').on('click', function() {

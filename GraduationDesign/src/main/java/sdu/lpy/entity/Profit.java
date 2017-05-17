@@ -3,56 +3,53 @@ package sdu.lpy.entity;
 import java.util.Date;
 
 public class Profit {
+    private Date date;
 
-	private Date date;
-	
-	private double courseIn;
-	
-	private double vipIn;
-	
-	private double mechineOut;
-	
-	private double sumIn;
+    private Double vip;
 
-	public Date getDate() {
-		return date;
-	}
+    private Double mechine;
 
-	public void setDate(Date date) {
-		this.date = date;
-	}
+    private Double course;
 
-	public double getCourseIn() {
-		return courseIn;
-	}
+    private Double sum;
 
-	public void setCourseIn(double courseIn) {
-		this.courseIn = courseIn;
-	}
+    public Date getDate() {
+        return date;
+    }
 
-	public double getVipIn() {
-		return vipIn;
-	}
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
-	public void setVipIn(double vipIn) {
-		this.vipIn = vipIn;
-	}
+    public Double getVip() {
+        return vip;
+    }
 
-	public double getMechineOut() {
-		return mechineOut;
-	}
+    public void setVip(Double vip) {
+        this.vip = vip;
+    }
 
-	public void setMechineOut(double mechineOut) {
-		this.mechineOut = mechineOut;
-	}
+    public Double getMechine() {
+        return mechine;
+    }
 
-	public double getSumIn() {
-		return sumIn;
-	}
+    public void setMechine(Double mechine) {
+        this.mechine = mechine;
+    }
 
-	public void setSumIn(double sumIn) {
-		this.sumIn = sumIn;
-	}
-	
-	
+    public Double getCourse() {
+        return course;
+    }
+
+    public void setCourse(Double course) {
+        this.course = course;
+    }
+
+    public Double getSum() {
+        return sum;
+    }
+
+    public void setSum(Double sum) {
+        this.sum = sum;
+    }
 }

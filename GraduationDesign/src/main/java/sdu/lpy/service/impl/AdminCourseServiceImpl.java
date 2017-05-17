@@ -14,6 +14,7 @@ import sdu.lpy.dao.VipMapper;
 import sdu.lpy.entity.ActivityManage;
 import sdu.lpy.entity.Course;
 import sdu.lpy.entity.CourseSelect;
+import sdu.lpy.entity.CourseSelectKey;
 import sdu.lpy.entity.Vip;
 import sdu.lpy.service.AdminCourseService;
 
@@ -107,6 +108,11 @@ public class AdminCourseServiceImpl implements AdminCourseService {
 			vips.add(vip);
 		}
 		return vips;
+	}
+
+	public int deleteByPrimaryKey(CourseSelectKey key) {
+		// TODO Auto-generated method stub
+		return courseSelectMapper.deleteByPrimaryKey(key);
 	}
 
 	

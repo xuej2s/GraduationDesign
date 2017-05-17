@@ -5,7 +5,7 @@ import java.util.List;
 
 import sdu.lpy.entity.CardFee;
 import sdu.lpy.entity.CardFeeKey;
-import sdu.lpy.entity.Profit;
+import sdu.lpy.entity.CardProfit;
 
 public interface CardFeeMapper {
 	int deleteByPrimaryKey(CardFeeKey key);
@@ -22,6 +22,6 @@ public interface CardFeeMapper {
 
 	List<CardFee> getCardFee(String date);
 	
-
+	List<CardProfit> getCardProfit(Date startTime,Date endTime);
 	
 }

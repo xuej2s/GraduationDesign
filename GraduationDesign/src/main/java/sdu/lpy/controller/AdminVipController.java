@@ -39,7 +39,7 @@ public class AdminVipController {
 
 		model.addAttribute("vip", vip);
 		model.addAttribute("courseList", courses);
-		return "vConfigPage";
+		return "adminVConfig";
 	}
 
 	@RequestMapping("addvip.do")
