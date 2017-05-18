@@ -453,7 +453,7 @@
 					<div class="row">
 						<div class="col-sm-12">
 							<form class="form-horizontal" role="form"
-								action="<%=basePath%>admin/showprofitchart.do" method="post">
+								action="<%=basePath%>admin/chart.do" method="post">
 								<div class="form-group">
 									<label class="col-sm-3 control-label no-padding-right"
 										for="id-date-range-picker-1">起止时间</label>
@@ -476,57 +476,118 @@
 							</form>
 						</div>
 						<h2>展示</h2>
+						
 						<div class="col-sm-4">
-							<div id="main" style="width: 100%; height: 800px;"></div>
+							<div id="pieIn" style="width: 100%; height: 400px;"></div>
 						</div>
 						<div class="col-sm-8">
 							<div class="row">
-								<div class="col-sm-12">
-									<div id="main1" style="width: 100%; height: 400px;"></div>
+								<div class="col-sm-6">
+									<div id="barCard" style="width: 100%; height: 200px;"></div>
 								</div>
+							
+							
+								<div class="col-sm-6">
+									<div id="lineCard" style="width: 100%px; height: 200px;"></div>
+								</div>
+							
+							
+								<div class="col-sm-6">
+									<div id="barCourse" style="width: 100%; height: 200px;"></div>
+								</div>
+							
+								<div class="col-sm-6">
+									<div id="lineCourse" style="width: 100%px; height: 200px;"></div>
+								</div>
+							
 							</div>
+						</div>
+						<div class="col-sm-4">
+							<div id="pieOut" style="width: 100%; height: 250px;"></div>
+						</div>
+						<div class="col-sm-8">
 							<div class="row">
-								<div class="col-sm-12">
-									<div id="main2" style="width: 600px; height: 400px;"></div>
+								<div class="col-sm-6">
+									<div id="barMachine" style="width: 100%; height: 200px;"></div>
+								</div>
+							
+								<div class="col-sm-6">
+									<div id="lineMachine" style="width: 100%px; height: 200px;"></div>
 								</div>
 							</div>
 						</div>
 					</div>
 
 
+					
 					<script type="text/javascript">
 						//图表  
 						var psLineChar = echarts.init(document
-								.getElementById('main'));
+								.getElementById('lineMachine'));
 
-						var option = $
-						{
-							option
-						};
+						var option = ${lineMachineOutOption};
 						psLineChar.setOption(option);
 					</script>
 					<script type="text/javascript">
 						//图表  
 						var psLineChar = echarts.init(document
-								.getElementById('main1'));
+								.getElementById('barMachine'));
 
-						var option = $
-						{
-							option
-						};
+						var option = ${barMachineOutOption};
 						psLineChar.setOption(option);
 					</script>
 					<script type="text/javascript">
 						//图表  
 						var psLineChar = echarts.init(document
-								.getElementById('main2'));
+								.getElementById('pieOut'));
 
-						var option = $
-						{
-							option
-						};
+						var option = ${pieOutOptin};
 						psLineChar.setOption(option);
 					</script>
+					<script type="text/javascript">
+						//图表  
+						var psLineChar = echarts.init(document
+								.getElementById('pieIn'));
+
+						var option = ${pieInOptin};
+						psLineChar.setOption(option);
+					</script>
+					<script type="text/javascript">
+						//图表  
+						var psLineChar = echarts.init(document
+								.getElementById('barCard'));
+
+						var option = ${barCardInOption};
+						psLineChar.setOption(option);
+					</script>
+					<script type="text/javascript">
+						//图表  
+						var psLineChar = echarts.init(document
+								.getElementById('lineCard'));
+
+						var option = ${lineCardInOption};
+						psLineChar.setOption(option);
+					</script>
+					<script type="text/javascript">
+						//图表  
+						var psLineChar = echarts.init(document
+								.getElementById('barCourse'));
+
+						var option = ${barCourseInOption};
+						
+						psLineChar.setOption(option);
+					</script> 
+					<script type="text/javascript">
+						//图表  
+						var psLineChar = echarts.init(document
+								.getElementById('lineCourse'));
+
+						var option = ${lineCourseInOptin};
+						
+						psLineChar.setOption(option);
+					</script> 
+					
+					
 
 				</div>
 				<!-- /.page-content -->
