@@ -455,7 +455,7 @@
 								</div>
 							</form>
 						</div>
-						
+
 						<div class="col-xs-12">
 
 							<div class="table-header">财务总表</div>
@@ -485,98 +485,107 @@
 									</tbody>
 								</table>
 							</div>
-							<br><br>
+							<br>
+							<br>
 						</div>
-						
-						
-						<!-- <div class="row"> -->
-							<div class="col-xs-4">
-								<div class="table-header">会员收益</div>
-								<div class="table-responsive">
-									<table id="sample-table-3"
-										class="table table-striped table-bordered table-hover">
-										<thead>
-											<tr>
-												<th>时间</th>
-												<th>会员收益</th>
-												<th>课程收益</th>
-												<th>器械支出</th>
-												<th>总计</th>
-											</tr>
-										</thead>
 
-										<tbody>
-											<c:forEach items="${profitList }" var="a">
-												<tr>
-													<td><c:out value="${a.date }"></c:out></td>
-													<td><c:out value="${a.vip }"></c:out></td>
-													<td><c:out value="${a.course }"></c:out></td>
-													<td><c:out value="${a.mechine }"></c:out></td>
-													<td><c:out value="${a.sum }"></c:out></td>
-												</tr>
-											</c:forEach>
-										</tbody>
-									</table>
-								</div>
+
+						<!-- <div class="row"> -->
+						<div class="col-xs-4">
+							<div class="table-header">会员收益</div>
+							<div class="table-responsive">
+								<table id="sample-table-3"
+									class="table table-striped table-bordered table-hover">
+									<thead>
+										<tr>
+											<th>时间</th>
+											<th>会员姓名</th>
+											<th>办卡类型</th>
+											<th>收益</th>
+										</tr>
+									</thead>
+
+									<tbody>
+										<c:forEach items="${cardProfits }" var="a">
+											<tr>
+												<td><c:out value="${a.startTime }"></c:out></td>
+												<td><c:out value="${a.vipName }"></c:out></td>
+												<c:choose>
+													<c:when test="${a.cardType == 1}">
+														<td>年卡会员</td>
+													</c:when>
+													<c:when test="${a.cardType == 2}">
+														<td>季卡会员</td>
+													</c:when>
+													<c:when test="${a.cardType == 3}">
+														<td>月卡会员</td>
+													</c:when>
+												</c:choose>
+												<td><c:out value="${a.cardFee }"></c:out></td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
 							</div>
-							<div class="col-xs-4">
-								<div class="table-header">课程收益</div>
+						</div>
+						<div class="col-xs-4">
+							<div class="table-header">课程收益</div>
 							<div class="table-responsive">
 								<table id="sample-table-4"
 									class="table table-striped table-bordered table-hover">
 									<thead>
 										<tr>
 											<th>时间</th>
-											<th>会员收益</th>
-											<th>课程收益</th>
-											<th>器械支出</th>
-											<th>总计</th>
+											<th>课程名称</th>
+											<th>会员姓名</th>
+											<th>收益</th>
 										</tr>
 									</thead>
 
 									<tbody>
-										<c:forEach items="${profitList }" var="a">
+										<c:forEach items="${courseProfits }" var="a">
 											<tr>
-												<td><c:out value="${a.date }"></c:out></td>
-												<td><c:out value="${a.vip }"></c:out></td>
-												<td><c:out value="${a.course }"></c:out></td>
-												<td><c:out value="${a.mechine }"></c:out></td>
-												<td><c:out value="${a.sum }"></c:out></td>
+												<td><c:out value="${a.selectTime }"></c:out></td>
+												<td><c:out value="${a.courseName }"></c:out></td>
+												<td><c:out value="${a.vipName }"></c:out></td>
+												<td><c:out value="${a.courseCost }"></c:out></td>
 											</tr>
 										</c:forEach>
 									</tbody>
 								</table>
 							</div>
-							</div>
-							<div class="col-xs-4">
-								<div class="table-header">器械支出</div>
+						</div>
+						<div class="col-xs-4">
+							<div class="table-header">器械支出</div>
 							<div class="table-responsive">
 								<table id="sample-table-5"
 									class="table table-striped table-bordered table-hover">
 									<thead>
 										<tr>
 											<th>时间</th>
-											<th>会员收益</th>
-											<th>课程收益</th>
-											<th>器械支出</th>
-											<th>总计</th>
+											<th>器械名称</th>
+											<th>器械品牌</th>
+											<th>单价</th>
+											<th>购买数量</th>
+											<th>支出</th>
 										</tr>
 									</thead>
 
 									<tbody>
-										<c:forEach items="${profitList }" var="a">
+										<c:forEach items="${machineBuyConfigs }" var="a">
 											<tr>
-												<td><c:out value="${a.date }"></c:out></td>
-												<td><c:out value="${a.vip }"></c:out></td>
-												<td><c:out value="${a.course }"></c:out></td>
-												<td><c:out value="${a.mechine }"></c:out></td>
-												<td><c:out value="${a.sum }"></c:out></td>
+												<td><c:out value="${a.time }"></c:out></td>
+												<td><c:out value="${a.machineName }"></c:out></td>
+												<td><c:out value="${a.machineBrand }"></c:out></td>
+												<td><c:out value="${a.machineCost }"></c:out></td>
+												<td><c:out value="${a.machineCount }"></c:out></td>
+												<td><c:out value="${a.sumCost }"></c:out></td>
 											</tr>
 										</c:forEach>
 									</tbody>
 								</table>
 							</div>
-							</div>
+						</div>
 						<!-- </div> -->
 					</div>
 					<!-- PAGE CONTENT ENDS -->
@@ -699,7 +708,7 @@
 	<script
 		src="${pageContext.request.contextPath }/assets/js/jquery.dataTables.bootstrap.js"></script>
 
-	
+
 	<script
 		src="${pageContext.request.contextPath }/assets/js/date-time/bootstrap-datepicker.min.js"></script>
 	<script
@@ -786,7 +795,7 @@
 	<script type="text/javascript">
 		jQuery(function($) {
 			var oTable1 = $('#sample-table-3').dataTable({
-				"aoColumns" : [ null, null, null, null, null ]
+				"aoColumns" : [ null, null, null, null ]
 			});
 
 			$('table th input:checkbox').on(
@@ -825,7 +834,7 @@
 	<script type="text/javascript">
 		jQuery(function($) {
 			var oTable1 = $('#sample-table-4').dataTable({
-				"aoColumns" : [ null, null, null, null, null ]
+				"aoColumns" : [ null, null, null, null ]
 			});
 
 			$('table th input:checkbox').on(
@@ -864,7 +873,7 @@
 	<script type="text/javascript">
 		jQuery(function($) {
 			var oTable1 = $('#sample-table-5').dataTable({
-				"aoColumns" : [ null, null, null, null, null ]
+				"aoColumns" : [ null, null, null, null, null,null ]
 			});
 
 			$('table th input:checkbox').on(
@@ -899,7 +908,6 @@
 				return 'left';
 			}
 		})
-		
 	</script>
 	<script type="text/javascript">
 		jQuery(function($) {

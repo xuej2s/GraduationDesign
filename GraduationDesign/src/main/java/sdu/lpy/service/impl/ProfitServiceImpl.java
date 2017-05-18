@@ -8,8 +8,12 @@ import org.springframework.stereotype.Service;
 
 import sdu.lpy.dao.CardFeeMapper;
 import sdu.lpy.dao.CourseSelectMapper;
+import sdu.lpy.dao.MachineConfigMapper;
 import sdu.lpy.dao.MachineFeeMapper;
 import sdu.lpy.dao.ProfitMapper;
+import sdu.lpy.entity.CardProfit;
+import sdu.lpy.entity.CourseProfit;
+import sdu.lpy.entity.MachineBuyConfig;
 import sdu.lpy.entity.Profit;
 import sdu.lpy.service.ProfitService;
 
@@ -23,25 +27,11 @@ public class ProfitServiceImpl implements ProfitService {
 	private CardFeeMapper cardFeeMapper;
 	
 	@Autowired
-	private MachineFeeMapper machineFeeMapper;
+	private MachineConfigMapper machineConfigMapper;
 	
 	@Autowired
 	private ProfitMapper profitMapper;
 
-	public int getMechineOut() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	public int getCourseProfit() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	public int getVipProfit() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	public void outputToExcel() {
 		// TODO Auto-generated method stub
@@ -51,6 +41,21 @@ public class ProfitServiceImpl implements ProfitService {
 	public List<Profit> getProfit(Date startTime, Date endTime) {
 		// TODO Auto-generated method stub
 		return profitMapper.getProfit(startTime, endTime);
+	}
+
+	public List<CourseProfit> getCourseProfit(Date startTime, Date endTime) {
+		// TODO Auto-generated method stub
+		return courseSelectMapper.getCourseProfit(startTime, endTime);
+	}
+
+	public List<CardProfit> getCardProfit(Date startTime, Date endTime) {
+		// TODO Auto-generated method stub
+		return cardFeeMapper.getCardProfit(startTime, endTime);
+	}
+
+	public List<MachineBuyConfig> getMachineProfit(Date startTime, Date endTime) {
+		// TODO Auto-generated method stub
+		return machineConfigMapper.getMachineProfit(startTime, endTime);
 	}
 
 }

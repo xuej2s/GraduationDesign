@@ -1,5 +1,6 @@
 package sdu.lpy.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import sdu.lpy.entity.MachineBuyConfig;
@@ -19,4 +20,6 @@ public interface MachineConfigMapper {
 	int updateByPrimaryKey(MachineConfig record);
 
 	List<MachineBuyConfig> getAllMachine();
+	
+	List<MachineBuyConfig> getMachineProfit(Date startTime,Date endTime);
 }

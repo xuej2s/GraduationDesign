@@ -1,102 +1,119 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="sdu.lpy.dao.MachineConfigMapper">
-  <resultMap id="BaseResultMap" type="sdu.lpy.entity.MachineConfig">
-    <id column="machine_type" jdbcType="VARCHAR" property="machineType" />
-    <result column="machine_name" jdbcType="VARCHAR" property="machineName" />
-    <result column="machine_brand" jdbcType="VARCHAR" property="machineBrand" />
-    <result column="machine_cost" jdbcType="DOUBLE" property="machineCost" />
-  </resultMap>
-  
-  <resultMap type="sdu.lpy.entity.MachineBuyConfig" id="MachineBuyConfigMap">
-  	<id column="machine_type" jdbcType="VARCHAR" property="machineType" />
-  	<id column="machine_fee_id" jdbcType="VARCHAR" property="machineFeeId" />
-    <result column="machine_name" jdbcType="VARCHAR" property="machineName" />
-    <result column="machine_brand" jdbcType="VARCHAR" property="machineBrand" />
-    <result column="machine_cost" jdbcType="DOUBLE" property="machineCost" />
-    <result column="machine_count" jdbcType="INTEGER" property="machineCount" />
-    <result column="time" jdbcType="TIMESTAMP" property="time" />
-    <result column="sum_cost" jdbcType="DOUBLE" property="sumCost" />
-  </resultMap>
-  
-  <sql id="Base_Column_List">
-    machine_type, machine_name, machine_brand, machine_cost
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from machine_config
-    where machine_type = #{machineType,jdbcType=VARCHAR}
-  </select>
-  
-  <select id="getAllMachine" resultMap="MachineBuyConfigMap">
-  	select *
-  	from machine_config a,machine_fee b
-  	where a.machine_type = b.machine_type
-  </select>
-  
-  
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from machine_config
-    where machine_type = #{machineType,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="sdu.lpy.entity.MachineConfig">
-    insert into machine_config (machine_type, machine_name, machine_brand, 
-      machine_cost)
-    values (#{machineType,jdbcType=VARCHAR}, #{machineName,jdbcType=VARCHAR}, #{machineBrand,jdbcType=VARCHAR}, 
-      #{machineCost,jdbcType=DOUBLE})
-  </insert>
-  <insert id="insertSelective" parameterType="sdu.lpy.entity.MachineConfig">
-    insert into machine_config
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="machineType != null">
-        machine_type,
-      </if>
-      <if test="machineName != null">
-        machine_name,
-      </if>
-      <if test="machineBrand != null">
-        machine_brand,
-      </if>
-      <if test="machineCost != null">
-        machine_cost,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="machineType != null">
-        #{machineType,jdbcType=VARCHAR},
-      </if>
-      <if test="machineName != null">
-        #{machineName,jdbcType=VARCHAR},
-      </if>
-      <if test="machineBrand != null">
-        #{machineBrand,jdbcType=VARCHAR},
-      </if>
-      <if test="machineCost != null">
-        #{machineCost,jdbcType=DOUBLE},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="sdu.lpy.entity.MachineConfig">
-    update machine_config
-    <set>
-      <if test="machineName != null">
-        machine_name = #{machineName,jdbcType=VARCHAR},
-      </if>
-      <if test="machineBrand != null">
-        machine_brand = #{machineBrand,jdbcType=VARCHAR},
-      </if>
-      <if test="machineCost != null">
-        machine_cost = #{machineCost,jdbcType=DOUBLE},
-      </if>
-    </set>
-    where machine_type = #{machineType,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="sdu.lpy.entity.MachineConfig">
-    update machine_config
-    set machine_name = #{machineName,jdbcType=VARCHAR},
-      machine_brand = #{machineBrand,jdbcType=VARCHAR},
-      machine_cost = #{machineCost,jdbcType=DOUBLE}
-    where machine_type = #{machineType,jdbcType=VARCHAR}
-  </update>
+	<resultMap id="BaseResultMap" type="sdu.lpy.entity.MachineConfig">
+		<id column="machine_type" jdbcType="VARCHAR" property="machineType" />
+		<result column="machine_name" jdbcType="VARCHAR" property="machineName" />
+		<result column="machine_brand" jdbcType="VARCHAR" property="machineBrand" />
+		<result column="machine_cost" jdbcType="DOUBLE" property="machineCost" />
+	</resultMap>
+
+	<resultMap type="sdu.lpy.entity.MachineBuyConfig" id="MachineBuyConfigMap">
+		<id column="machine_type" jdbcType="VARCHAR" property="machineType" />
+		<id column="machine_fee_id" jdbcType="VARCHAR" property="machineFeeId" />
+		<result column="machine_name" jdbcType="VARCHAR" property="machineName" />
+		<result column="machine_brand" jdbcType="VARCHAR" property="machineBrand" />
+		<result column="machine_cost" jdbcType="DOUBLE" property="machineCost" />
+		<result column="machine_count" jdbcType="INTEGER" property="machineCount" />
+		<result column="time" jdbcType="TIMESTAMP" property="time" />
+		<result column="sum_cost" jdbcType="DOUBLE" property="sumCost" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		machine_type, machine_name, machine_brand, machine_cost
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from machine_config
+		where machine_type = #{machineType,jdbcType=VARCHAR}
+	</select>
+
+	<select id="getAllMachine" resultMap="MachineBuyConfigMap">
+		select *
+		from machine_config a,machine_fee b
+		where a.machine_type = b.machine_type
+	</select>
+
+	<select id="getMachineProfit" parameterType="java.util.Date"
+		resultMap="MachineBuyConfigMap">
+		select *
+		from machine_config a,machine_fee b
+		<where>
+			a.machine_type = b.machine_type
+
+			<if
+				test="param1 != null and param1 != '' and param2 != null and param2 != ''">
+				and b.time between #{param1,jdbcType=DATE} and
+				#{param2,jdbcType=DATE}
+			</if>
+		</where>
+	</select>
+
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from machine_config
+		where machine_type = #{machineType,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="sdu.lpy.entity.MachineConfig">
+		insert into machine_config (machine_type, machine_name, machine_brand,
+		machine_cost)
+		values (#{machineType,jdbcType=VARCHAR}, #{machineName,jdbcType=VARCHAR},
+		#{machineBrand,jdbcType=VARCHAR},
+		#{machineCost,jdbcType=DOUBLE})
+	</insert>
+	<insert id="insertSelective" parameterType="sdu.lpy.entity.MachineConfig">
+		insert into machine_config
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="machineType != null">
+				machine_type,
+			</if>
+			<if test="machineName != null">
+				machine_name,
+			</if>
+			<if test="machineBrand != null">
+				machine_brand,
+			</if>
+			<if test="machineCost != null">
+				machine_cost,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="machineType != null">
+				#{machineType,jdbcType=VARCHAR},
+			</if>
+			<if test="machineName != null">
+				#{machineName,jdbcType=VARCHAR},
+			</if>
+			<if test="machineBrand != null">
+				#{machineBrand,jdbcType=VARCHAR},
+			</if>
+			<if test="machineCost != null">
+				#{machineCost,jdbcType=DOUBLE},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="sdu.lpy.entity.MachineConfig">
+		update machine_config
+		<set>
+			<if test="machineName != null">
+				machine_name = #{machineName,jdbcType=VARCHAR},
+			</if>
+			<if test="machineBrand != null">
+				machine_brand = #{machineBrand,jdbcType=VARCHAR},
+			</if>
+			<if test="machineCost != null">
+				machine_cost = #{machineCost,jdbcType=DOUBLE},
+			</if>
+		</set>
+		where machine_type = #{machineType,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="sdu.lpy.entity.MachineConfig">
+		update machine_config
+		set machine_name = #{machineName,jdbcType=VARCHAR},
+		machine_brand = #{machineBrand,jdbcType=VARCHAR},
+		machine_cost = #{machineCost,jdbcType=DOUBLE}
+		where machine_type = #{machineType,jdbcType=VARCHAR}
+	</update>
 </mapper>

@@ -22,6 +22,7 @@ import com.github.abel533.echarts.series.Pie;
 
 import sdu.lpy.dao.CardFeeMapper;
 import sdu.lpy.dao.CourseSelectMapper;
+import sdu.lpy.dao.MachineConfigMapper;
 import sdu.lpy.dao.ProfitMapper;
 import sdu.lpy.entity.CardFee;
 import sdu.lpy.entity.TestGroup;
@@ -41,10 +42,13 @@ public class TestGroupData {
 	@Autowired
 	private ProfitMapper profitMapper;
 	
+	@Autowired
+	private MachineConfigMapper machineConfigMapper;
+	
 	
 	
 	@Test
 	public void getGroupData(){
-		System.out.println(cardFeeMapper.getCardProfit(null, null).size());
+		System.out.println(machineConfigMapper.getMachineProfit(null, null).size());
 	}
 }
