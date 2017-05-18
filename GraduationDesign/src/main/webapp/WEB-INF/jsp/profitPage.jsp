@@ -64,6 +64,10 @@
 	href="${pageContext.request.contextPath }/assets/css/colorpicker.css" />
 
 <!-- ace settings handler -->
+<style type="text/css">
+	#startTime {display: none;}
+	#endTime {display: none;}
+</style>
 
 <script
 	src="${pageContext.request.contextPath }/assets/js/ace-extra.min.js"></script>
@@ -433,7 +437,7 @@
 					<div class="row">
 						<div class="col-sm-12">
 							<form class="form-horizontal" role="form"
-								action="<%=basePath%>admin/profit.do" method="post">
+								action="<%=basePath%>admin/profit.do" method="post" >
 								<div class="form-group">
 									<label class="col-sm-3 control-label no-padding-right"
 										for="id-date-range-picker-1">起止时间</label>
@@ -448,11 +452,18 @@
 
 											</div>
 										</div>
-										<button class="btn btn-info" type="submit">
+										<button class="btn btn-info" type="submit" >
 											<i class="icon-ok bigger-110"></i> Submit
 										</button>
 									</div>
 								</div>
+							</form>
+							<form action="<%=basePath%>admin/excelout.do" method="post">
+										<input id="startTime" name="startTime" value="${startTime }">
+										<input id="endTime" name="endTime" value="${endTime }">
+										<button class="btn btn-app btn-inverse btn-xs">
+											<i class="icon-download-alt"></i>表格导出
+										</button>
 							</form>
 						</div>
 

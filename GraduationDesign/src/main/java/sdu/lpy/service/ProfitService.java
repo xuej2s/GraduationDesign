@@ -1,5 +1,6 @@
 package sdu.lpy.service;
 
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
@@ -11,7 +12,7 @@ import sdu.lpy.entity.Profit;
 public interface ProfitService {
 	
 	
-	void outputToExcel();
+	void outputToExcel(String startTime,String endTime) throws ParseException;
 	
 	List<Profit> getProfit(Date startTime,Date endTime);
 	

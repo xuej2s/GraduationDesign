@@ -1,8 +1,11 @@
 package sdu.lpy.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,16 +32,21 @@ public class ProfitController {
 			Date[] dates = WebUtil.changeDateRangeToDate(dateRange);
 			Date startTime = dates[0];
 			Date endTime = dates[1];
+			
+			String startTimeString = WebUtil.changeDateToString(startTime);
+			String endTimeString =  WebUtil.changeDateToString(endTime);
 
 			List<Profit> profits = profitService.getProfit(startTime, endTime);
-			List<CourseProfit> courseProfits = profitService.getCourseProfit(startTime, endTime);
-			List<CardProfit> cardProfits = profitService.getCardProfit(startTime, endTime);
-			List<MachineBuyConfig> machineBuyConfigs = profitService.getMachineProfit(startTime, endTime);
+			List<CourseProfit> courseProfits = profitService.getCourseProfit(startTime, WebUtil.getEndTime(endTime, 1));
+			List<CardProfit> cardProfits = profitService.getCardProfit(startTime, WebUtil.getEndTime(endTime, 1));
+			List<MachineBuyConfig> machineBuyConfigs = profitService.getMachineProfit(startTime, WebUtil.getEndTime(endTime, 1));
 
 			model.addAttribute("profitList", profits);
 			model.addAttribute("courseProfits", courseProfits);
 			model.addAttribute("cardProfits", cardProfits);
 			model.addAttribute("machineBuyConfigs", machineBuyConfigs);
+			model.addAttribute("startTime", startTimeString);
+			model.addAttribute("endTime", endTimeString);
 
 			return "profitPage";
 		} else {
@@ -53,7 +61,28 @@ public class ProfitController {
 			model.addAttribute("cardProfits", cardProfits);
 			model.addAttribute("machineBuyConfigs", machineBuyConfigs);
 			model.addAttribute("profitList", profits);
+			model.addAttribute("startTime", null);
+			model.addAttribute("endTime", null);
+
 			return "profitPage";
 		}
 	}
+	
+	@RequestMapping("excelout.do")
+	public String excelOut(String startTime,String endTime) throws UnsupportedEncodingException, ParseException{
+		if (startTime != null && endTime != null && startTime != "" && endTime != "") {
+			
+			profitService.outputToExcel(startTime, endTime);
+			return "redirect:profit.do";
+		}else {
+			profitService.outputToExcel(null, null);
+			return "redirect:profit.do";
+		}
+	}
 }
+
+/* // 设置response参数，可以打开下载页面
+        res.reset();
+        res.setContentType("application/vnd.ms-excel;charset=utf-8");
+        res.setHeader("Content-Disposition", "attachment;filename="
+                + new String(("test" + ".xls").getBytes(), "iso-8859-1"));*/

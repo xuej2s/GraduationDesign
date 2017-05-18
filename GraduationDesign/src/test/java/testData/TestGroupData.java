@@ -1,7 +1,10 @@
 package testData;
 
+import java.text.ParseException;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.junit.Test;
@@ -25,30 +28,40 @@ import sdu.lpy.dao.CourseSelectMapper;
 import sdu.lpy.dao.MachineConfigMapper;
 import sdu.lpy.dao.ProfitMapper;
 import sdu.lpy.entity.CardFee;
+import sdu.lpy.entity.Profit;
 import sdu.lpy.entity.TestGroup;
+import sdu.lpy.util.ExportExcel;
+import sdu.lpy.util.WebUtil;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:spring-mybatis.xml" })
 public class TestGroupData {
 
 	private static Logger logger = Logger.getLogger(TestGroupData.class);
-	
+
 	@Autowired
 	private CourseSelectMapper courseSelectMapper;
-	
+
 	@Autowired
 	private CardFeeMapper cardFeeMapper;
-	
+
 	@Autowired
 	private ProfitMapper profitMapper;
-	
+
 	@Autowired
 	private MachineConfigMapper machineConfigMapper;
-	
-	
-	
+
 	@Test
-	public void getGroupData(){
-		System.out.println(machineConfigMapper.getMachineProfit(null, null).size());
+	public void getGroupData() throws ParseException {
+		String dateRange = "05/16/2017 - 05/16/2017";
+		Date[] dates = WebUtil.changeDateRangeToDate(dateRange);
+		
+		Date startTime = dates[0];
+		Date endTime = dates[1];
+		
+		System.out.println(profitMapper.getProfit(startTime, endTime).size());
+		System.out.println(cardFeeMapper.getCardProfit(startTime, endTime).size());
+		System.out.println(courseSelectMapper.getCourseProfit(startTime, endTime).size());
+		System.out.println(machineConfigMapper.getMachineProfit(startTime, endTime).size());
 	}
 }
